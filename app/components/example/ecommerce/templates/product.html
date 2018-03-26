@@ -1,11 +1,20 @@
 <form ng-submit="create()" role="form" novalidate class="panel panel-default ng-scope ng-invalid ng-invalid-required ng-dirty ng-valid-minlength" >
     <div class="modal-header panel-heading">
-        <button type="button" class="close" data-dismiss="modal" aria-hidden="true" ng-click="back()">&times;</button>
-        <h4 class="modal-title" id="myDeviceLabel">Product</h4>
+        <div class="input-group search">
+            <h4 class="modal-title">Product</h4>
+            <span class="input-group-btn">
+                <button class="btn btn-round btn-sm btn-default" ng-click="back()" >
+                        <i class="fa fa-close">Cancel</i>
+                </button>
+                <button class="btn btn-round btn-sm btn-success"  ng-click="save()" >
+                        <i class="fa fa-plus"> Save</i>
+                </button>
+            </span>
+        </div>
     </div>
     <div class="modal-body">
     <div class="row form-row ">
-        <div class="col-sm-6" >
+        <div class="col-sm-6">
             <div>
                 <div class="tabbable selectable container-padding">
                     <ul class="nav nav-tabs" role="tablist">
@@ -19,6 +28,7 @@
                             <a class="editable-label" data-target="#snippet_305" data-toggle="tab">Price</a>
                         </li>
                     </ul>
+
                     <div class="tab-content">
                         <div class="tab-pane active sortable" id="snippet_289" role="tabpanel">
                             <!-- Horizontal Line -->
@@ -28,50 +38,50 @@
                                     <!-- Text Input-->
                                     <div class="form-group">
                                         <label class="control-label editable-label" for="">Category</label>
-                                        <input class="form-control input-sm" name="category" type="text"></div>
+                                        <input class="form-control input-sm" ng-model="modelData.category" name="category" type="text"></div>
                                 </div>
                                 <div class="col-sm-8" id="snippet_294">
                                     <!-- Text Input-->
                                     <div class="form-group">
                                         <label class="control-label editable-label" for="">Sub Category</label>
-                                        <input class="form-control input-sm" name="subcategory" type="text"></div>
+                                        <input class="form-control input-sm" ng-model="modelData.subcategory" name="subcategory" type="text"></div>
                                 </div>
                             </div>
                             <!-- Text Input-->
                             <div class="form-group">
                                 <label class="control-label editable-label" for="">Title</label>
-                                <input class="form-control input-sm" name="title" type="text"></div>
+                                <input class="form-control input-sm" name="title"  ng-model="modelData.title"  type="text"></div>
                             <!-- Text Input-->
                             <div class="form-group">
                                 <label class="control-label editable-label" for="">Tags</label>
-                                <input class="form-control input-sm" name="tags" type="text"></div>
+                                <input class="form-control input-sm" ng-model="modelData.tags" name="tags" type="text"></div>
                             <!-- Text Area -->
                             <div class="form-group">
                                 <label class=" control-label editable-label" for="">Description</label>
-                                <textarea class="form-control productDescription" name="description"></textarea>
+                                <textarea class="form-control productDescription" ng-model="modelData.description" name="description"></textarea>
                             </div>
                         </div>
                         <div class="tab-pane" id="snippet_299" role="tabpanel">
                             <!-- Text Input-->
                             <div class="form-group">
                                 <label class="control-label editable-label" for="">Brand</label>
-                                <input class="form-control input-sm" name="brand" type="text"></div>
+                                <input class="form-control input-sm" ng-model="modelData.brand" name="brand" type="text"></div>
                             <!-- Text Input-->
                             <div class="form-group">
                                 <label class="control-label editable-label" for="">SKU</label>
-                                <input class="form-control input-sm" name="sku" type="text"></div>
+                                <input class="form-control input-sm" ng-model="modelData.sku" name="sku" type="text"></div>
                             <!-- Text Input-->
                             <div class="form-group">
                                 <label class="control-label editable-label" for="">Materials</label>
-                                <input class="form-control input-sm" name="materials" type="text"></div>
+                                <input class="form-control input-sm" ng-model="modelData.materials" name="materials" type="text"></div>
                             <!-- Text Input-->
                             <div class="form-group">
                                 <label class="control-label editable-label" for="">UPC</label>
-                                <input class="form-control input-sm" name="upc" type="text"></div>
+                                <input class="form-control input-sm" ng-model="modelData.upc" name="upc" type="text"></div>
                             <!-- Text Input-->
                             <div class="form-group">
                                 <label class="control-label editable-label" for="">Inventory</label>
-                                <input class="form-control input-sm" name="inventory" type="text"></div>
+                                <input class="form-control input-sm" ng-model="modelData.inventory" name="inventory" type="text"></div>
                         </div>
                         <div class="tab-pane" id="snippet_305" role="tabpanel">
                             <div class="row">
@@ -79,29 +89,29 @@
                                     <!-- Text Input-->
                                     <div class="form-group">
                                         <label class="control-label editable-label" for="">Tier 0 Qty</label>
-                                        <input class="form-control input-sm" name="tiers[0].quantity" type="text"></div>
+                                        <input class="form-control input-sm" ng-model="modelData.tiers[0].quantity" name="tiers[0].quantity" type="text"></div>
                                     <!-- Text Input-->
                                     <div class="form-group">
                                         <label class="control-label editable-label" for="">Tier 1 Qty</label>
-                                        <input class="form-control input-sm" name="tiers[1].quantity" type="text"></div>
+                                        <input class="form-control input-sm" ng-model="modelData.tiers[1].quantity" name="tiers[1].quantity" type="text"></div>
                                     <!-- Text Input-->
                                     <div class="form-group">
                                         <label class="control-label editable-label" for="">Tier 2 Qty</label>
-                                        <input class="form-control input-sm" name="tiers[2].quantity" type="text"></div>
+                                        <input class="form-control input-sm" ng-model="modelData.tiers[2].quantity" name="tiers[2].quantity" type="text"></div>
                                 </div>
                                 <div class="col-sm-6" id="snippet_311">
                                     <!-- Text Input-->
                                     <div class="form-group">
                                         <label class="control-label editable-label" for="">Tier 0 Price</label>
-                                        <input class="form-control input-sm" name="tiers[0].price" type="text"></div>
+                                        <input class="form-control input-sm" ng-model="modelData.tiers[0].price" name="tiers[0].price" type="text"></div>
                                     <!-- Text Input-->
                                     <div class="form-group">
                                         <label class="control-label editable-label" for="">Tier 1 Price</label>
-                                        <input class="form-control input-sm" name="tiers[1].price" type="text"></div>
+                                        <input class="form-control input-sm" ng-model="modelData.tiers[1].price" name="tiers[1].price" type="text"></div>
                                     <!-- Text Input-->
                                     <div class="form-group">
                                         <label class="control-label editable-label" for="">Tier 2 Price</label>
-                                        <input class="form-control input-sm" name="tiers[2].price" type="text"></div>
+                                        <input class="form-control input-sm" ng-model="modelData.tiers[2].price" name="tiers[2].price" type="text"></div>
                                 </div>
                             </div>
                         </div>
@@ -110,9 +120,9 @@
             </div>
         </div>
         <div class="col-sm-6">
-            <!-- Image -->
+            <!-- Image ng-model="modelData.images[2].url" img/no_image_placeholder.png -->
             <div class="control-group">
-                <img class="img-responsive " image="images[2].url" src="img/no_image_placeholder.png">
+                <img class="img-responsive " image="images[2].url" src="{{modelData.images[2].url}}">
             </div>
         </div>
     </div>
