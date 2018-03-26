@@ -29,16 +29,17 @@
                 </tr>
             </thead>
             <tbody>
-                <tr ng-repeat="item in items" >
+                <tr ng-dblclick="update(item._id)"  ng-repeat="item in items" >
                     <td ng-click="update(item._id)" class='img-thumbnail'><img  ng-if="item.images[0].url" src="{{item.images[0].url}}"></td>
                     <td>
                         <button class="btn btn-round btn-xs btn-default pull-right"  ng-click="remove(item._id)" >
                             <i class="fa fa-remove"></i>
                         </button>
-                        <h3>{{item.title}} - {{item.category}}
-                        </h3>
-
-                        <h5 ng-bind-html="item.subcategory"></h5>
+                        <h3 ng-bind-html="item.title"></h3>
+                        <h5>
+                            <span ng-bind-html="item.category"></span> -
+                            <span class="inline" ng-bind-html="item.subcategory"></span>
+                        </h5>
                         <i ng-bind-html="item.description"></i>
                     </td>
                 </tr>
