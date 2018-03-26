@@ -41,6 +41,8 @@
     <link href="styles/landingpage.css" rel="stylesheet">
     <link href="styles/plan.css" rel="stylesheet">
     <link href="styles/app.css" rel="stylesheet">
+    <link href="styles/side-bar.css" rel="stylesheet">
+    <link href="styles/top-bar.css" rel="stylesheet">
     <!-- endbuild -->
 </head>
 
@@ -55,6 +57,7 @@
 
 <!-- For parent child routes i.e. /index/home -->
 <div  ui-view="header"></div>
+<div  ui-view="side"></div>
 <div  ui-view="content" id='view-content'><!-- Where your content will live --></div>
 <div  ui-view="footer"></div>
 
@@ -93,6 +96,7 @@
 <script src="bower_components/prism/prism.js"></script>
 <!-- Angular scripts-->
 <script src="bower_components/angular/angular.js"></script>
+<script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
 <script src="bower_components/angular-animate/angular-animate.js"></script>
 <script src="bower_components/angular-cookies/angular-cookies.js"></script>
 <script src="bower_components/angular-resource/angular-resource.js"></script>
@@ -141,8 +145,9 @@
 <script src="services/subscriptions/payment_services.js"></script>
 
 <!-- Begin Services Controllers And Routers -->
-
-
+<script src="components/example/ecommerce/admin/ecom.js"></script>
+<script src="components/example/ecommerce/admin/dashboard.js"></script>
+<script src="components/example/ecommerce/admin/product.js"></script>
 <!-- End Services Controllers And Routers -->
 
 <!-- endbuild -->

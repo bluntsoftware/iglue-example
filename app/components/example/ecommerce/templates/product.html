@@ -1,0 +1,120 @@
+<form ng-submit="create()" role="form" novalidate class="panel panel-default ng-scope ng-invalid ng-invalid-required ng-dirty ng-valid-minlength" >
+    <div class="modal-header panel-heading">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true" ng-click="back()">&times;</button>
+        <h4 class="modal-title" id="myDeviceLabel">Product</h4>
+    </div>
+    <div class="modal-body">
+    <div class="row form-row ">
+        <div class="col-sm-6" >
+            <div>
+                <div class="tabbable selectable container-padding">
+                    <ul class="nav nav-tabs" role="tablist">
+                        <li>
+                            <a class="editable-label active" data-target="#snippet_289" data-toggle="tab">Info</a>
+                        </li>
+                        <li>
+                            <a class="editable-label" data-target="#snippet_299" data-toggle="tab">Detail</a>
+                        </li>
+                        <li>
+                            <a class="editable-label" data-target="#snippet_305" data-toggle="tab">Price</a>
+                        </li>
+                    </ul>
+                    <div class="tab-content">
+                        <div class="tab-pane active sortable" id="snippet_289" role="tabpanel">
+                            <!-- Horizontal Line -->
+                            <div style="border-top:1px solid rgb(185, 185, 185);height:1px;padding:10px;width:100%"></div>
+                            <div class="row">
+                                <div class="col-sm-4" id="snippet_292">
+                                    <!-- Text Input-->
+                                    <div class="form-group">
+                                        <label class="control-label editable-label" for="">Category</label>
+                                        <input class="form-control input-sm" name="category" type="text"></div>
+                                </div>
+                                <div class="col-sm-8" id="snippet_294">
+                                    <!-- Text Input-->
+                                    <div class="form-group">
+                                        <label class="control-label editable-label" for="">Sub Category</label>
+                                        <input class="form-control input-sm" name="subcategory" type="text"></div>
+                                </div>
+                            </div>
+                            <!-- Text Input-->
+                            <div class="form-group">
+                                <label class="control-label editable-label" for="">Title</label>
+                                <input class="form-control input-sm" name="title" type="text"></div>
+                            <!-- Text Input-->
+                            <div class="form-group">
+                                <label class="control-label editable-label" for="">Tags</label>
+                                <input class="form-control input-sm" name="tags" type="text"></div>
+                            <!-- Text Area -->
+                            <div class="form-group">
+                                <label class=" control-label editable-label" for="">Description</label>
+                                <textarea class="form-control productDescription" name="description"></textarea>
+                            </div>
+                        </div>
+                        <div class="tab-pane" id="snippet_299" role="tabpanel">
+                            <!-- Text Input-->
+                            <div class="form-group">
+                                <label class="control-label editable-label" for="">Brand</label>
+                                <input class="form-control input-sm" name="brand" type="text"></div>
+                            <!-- Text Input-->
+                            <div class="form-group">
+                                <label class="control-label editable-label" for="">SKU</label>
+                                <input class="form-control input-sm" name="sku" type="text"></div>
+                            <!-- Text Input-->
+                            <div class="form-group">
+                                <label class="control-label editable-label" for="">Materials</label>
+                                <input class="form-control input-sm" name="materials" type="text"></div>
+                            <!-- Text Input-->
+                            <div class="form-group">
+                                <label class="control-label editable-label" for="">UPC</label>
+                                <input class="form-control input-sm" name="upc" type="text"></div>
+                            <!-- Text Input-->
+                            <div class="form-group">
+                                <label class="control-label editable-label" for="">Inventory</label>
+                                <input class="form-control input-sm" name="inventory" type="text"></div>
+                        </div>
+                        <div class="tab-pane" id="snippet_305" role="tabpanel">
+                            <div class="row">
+                                <div class="col-sm-6" id="snippet_307">
+                                    <!-- Text Input-->
+                                    <div class="form-group">
+                                        <label class="control-label editable-label" for="">Tier 0 Qty</label>
+                                        <input class="form-control input-sm" name="tiers[0].quantity" type="text"></div>
+                                    <!-- Text Input-->
+                                    <div class="form-group">
+                                        <label class="control-label editable-label" for="">Tier 1 Qty</label>
+                                        <input class="form-control input-sm" name="tiers[1].quantity" type="text"></div>
+                                    <!-- Text Input-->
+                                    <div class="form-group">
+                                        <label class="control-label editable-label" for="">Tier 2 Qty</label>
+                                        <input class="form-control input-sm" name="tiers[2].quantity" type="text"></div>
+                                </div>
+                                <div class="col-sm-6" id="snippet_311">
+                                    <!-- Text Input-->
+                                    <div class="form-group">
+                                        <label class="control-label editable-label" for="">Tier 0 Price</label>
+                                        <input class="form-control input-sm" name="tiers[0].price" type="text"></div>
+                                    <!-- Text Input-->
+                                    <div class="form-group">
+                                        <label class="control-label editable-label" for="">Tier 1 Price</label>
+                                        <input class="form-control input-sm" name="tiers[1].price" type="text"></div>
+                                    <!-- Text Input-->
+                                    <div class="form-group">
+                                        <label class="control-label editable-label" for="">Tier 2 Price</label>
+                                        <input class="form-control input-sm" name="tiers[2].price" type="text"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-6">
+            <!-- Image -->
+            <div class="control-group">
+                <img class="img-responsive " image="images[2].url" src="img/no_image_placeholder.png">
+            </div>
+        </div>
+    </div>
+    </div>
+</form>

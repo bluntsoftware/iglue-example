@@ -1,0 +1,62 @@
+<div class="panel panel-default filterable" id="snippet_52" >
+    <div class="panel-heading">
+        <h3 class="panel-title">Products</h3>
+        <div class="input-group search">
+            <input class="form-control input-sm" placeholder="Search for">
+            <span class="input-group-btn">
+                <button class="btn btn-round btn-sm btn-default" type="submit">
+                    <i class="fa fa-search"></i>
+                </button>
+                <button class="btn btn-round btn-sm btn-default btn-filter">
+                    <i class="fa fa-filter"></i>
+                </button>
+            </span>
+            <span class="btn-group pull-right text-center">
+                <a class="btn btn-sm btn-round btn-default pager_prev" type="button">Prev</a>
+                <a class="btn btn-sm btn-default page_number" type="button">0 of 0</a>
+                <a class="btn btn-sm btn-round btn-default pager_next" type="button">Next</a>
+            </span>
+        </div>
+    </div>
+    <div class="panel-body no-more-tables">
+        <table class="table table-striped table-bordered table-hover table-condensed">
+            <thead>
+            <tr class="filters">
+                <th>
+                    <div class="input-group input-group-unstyled">
+                        <input class="form-control input-sm" disabled="" placeholder="Title" type="text">
+                        <span class="input-group-addon">
+								<i class="text-muted column_sort fa fa-sort" data-sort="title"></i>
+                        </span>
+                    </div>
+                </th>
+
+                <th>
+                    <div class="input-group input-group-unstyled"><input class="form-control input-sm" disabled="" placeholder="Description" type="text">
+                        <span class="input-group-addon">
+								<i class="text-muted column_sort fa fa-sort" data-sort="description"></i>
+							</span>
+                    </div>
+                </th>
+
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="item in items" >
+                <td ><img ng-if="item.images[0].url" src="{{item.images[0].url}}"></td>
+                <td >
+                    <h3>{{item.title}} - {{item.category}}</h3>
+                    <h5 ng-bind-html="item.subcategory"></h5>
+                    <i ng-bind-html="item.description"></i>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="panel-footer">
+        <div class="row container-padding">
+            <div class="col-sm-4"></div>
+            <div class="record_count col-sm-4"></div>
+        </div>
+    </div>
+</div>

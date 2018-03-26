@@ -11,6 +11,7 @@ var catwalkApp  = angular.module('catwalk', [
     'ui.bootstrap',                 // Bootstrap Styling
     'ngResource',                   // Ajax Server Calls
     'ngCookies',                    // Security Tokens
+    'ngSanitize',
     'http-auth-interceptor',        // Security
     'pascalprecht.translate',       // Different Languages
     'ngTagsInput',                  // tags

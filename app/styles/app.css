@@ -1,6 +1,9 @@
 /* ASSET FILE TREE */
 
-
+.navbar-brand{
+    padding-top: 5px;
+    padding-left: 5px;
+}
 .logout {
     padding-right: 20px;
 }
@@ -10,6 +13,8 @@
 #view-content {
     margin-top: 45px;
 }
+
+
 .team-member{
     text-align: center;
 }
