@@ -1,4 +1,3 @@
-
 catwalkApp.controller('cart-controller', ['$scope','$location','$stateParams','conduit',
     function ($scope,$location,$stateParams,conduit) {
         $scope.srchterm = '';

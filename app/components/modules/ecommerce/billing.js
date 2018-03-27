@@ -1,4 +1,3 @@
-
 catwalkApp.controller('billing-controller', ['$scope','$location','$stateParams','conduit',
     function ($scope,$location,$stateParams,conduit) {
         $scope.srchterm = '';
@@ -18,12 +17,18 @@ catwalkApp.controller('billing-controller', ['$scope','$location','$stateParams'
             $scope.search();
         }, true);
 
-        $scope.sort = function(){
+        $scope.sort = function(sortField){
+
+            if(sortField){
+                $scope.listParams.sidx = sortField;
+            }
+
             if($scope.listParams.sord ==='ASC'){
                 $scope.listParams.sord = 'DESC';
             }else{
                 $scope.listParams.sord = 'ASC';
             }
+
             $scope.search();
         };
 
