@@ -1,8 +1,8 @@
 
-catwalkApp.controller('product-controller', ['$scope','$location','$stateParams','conduit',
+catwalkApp.controller('customer-controller', ['$scope','$location','$stateParams','conduit',
     function ($scope,$location,$stateParams,conduit) {
         $scope.srchterm = '';
-        $scope.collection = conduit.collection('product','');
+        $scope.collection = conduit.collection('customer','');
         $scope.listParams = {
             or:false,
             filterByFields: "{}",
@@ -77,8 +77,8 @@ catwalkApp.controller('product-controller', ['$scope','$location','$stateParams'
         };
 
         $scope.get = function(id){
-            $scope.collection.getById(id).then(function(product) {
-                $scope.modelData = product;
+            $scope.collection.getById(id).then(function(customer) {
+                $scope.modelData = customer;
                 $scope.imageSrc = "";
             });
         };
@@ -101,11 +101,11 @@ catwalkApp.controller('product-controller', ['$scope','$location','$stateParams'
         };
 
         $scope.new= function(){
-            $location.path('/ecom/product/');
+            $location.path('/ecom/customer/');
         };
 
         $scope.update= function(id){
-            $location.path('/ecom/product/' + id);
+            $location.path('/ecom/customer/' + id);
         };
 
         if($stateParams.id){ $scope.get($stateParams.id);}
@@ -117,20 +117,20 @@ catwalkApp.controller('product-controller', ['$scope','$location','$stateParams'
 catwalkApp.config(['$stateProvider', '$urlRouterProvider','USER_ROLES',
     function ($stateProvider, $urlRouterProvider,USER_ROLES) {
         $stateProvider
-            .state('ecom.products', {
-                url: "/products",
-                templateUrl: "components/modules/ecommerce/admin/templates/product-list.html",
-                controller: 'product-controller'
+            .state('ecom.customers', {
+                url: "/customers",
+                templateUrl: "components/modules/ecommerce/templates/customer-list.html",
+                controller: 'customer-controller'
             })
-            .state('ecom.new_product', {
-                url: "/product",
-                templateUrl: "components/modules/ecommerce/admin/templates/product.html",
-                controller: 'product-controller'
+            .state('ecom.new_customer', {
+                url: "/customer",
+                templateUrl: "components/modules/ecommerce/templates/customer.html",
+                controller: 'customer-controller'
             })
-            .state('ecom.product', {
-                url: "/product/:id",
-                templateUrl: "components/modules/ecommerce/admin/templates/product.html",
-                controller: 'product-controller'
+            .state('ecom.customer', {
+                url: "/customer/:id",
+                templateUrl: "components/modules/ecommerce/templates/customer.html",
+                controller: 'customer-controller'
             })
     }
 ]);

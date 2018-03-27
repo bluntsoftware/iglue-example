@@ -1,5 +1,5 @@
 //Main Controller
-catwalkApp.controller('cart-controller', ['$scope','USettings',
+catwalkApp.controller('shop-controller', ['$scope','USettings',
     function ($scope,USettings) {
         angular.element('.nav-side-menu').css('background', '#37474F');
         angular.element('.page-topbar').css('background', '#37474F');
@@ -16,15 +16,15 @@ catwalkApp.controller('cart-controller', ['$scope','USettings',
 catwalkApp.config(['$stateProvider', '$urlRouterProvider','USER_ROLES',
     function ($stateProvider, $urlRouterProvider,USER_ROLES) {
         $stateProvider
-            .state('cart', {
-                url: "/cart",
+            .state('shop', {
+                url: "/shop",
                 views: {
                     'header': {
-                        templateUrl:'components/modules/ecommerce/admin/templates/header.html',
+                        templateUrl:'components/modules/ecommerce/templates/header.html',
                         controller:'ecommerce-controller as main'
                     },
                     'side': {
-                        templateUrl:'components/modules/ecommerce/admin/templates/side-bar.html',
+                        templateUrl:'components/modules/ecommerce/templates/side-bar.html',
                         controller:'ecommerce-controller as main'
                     },
                     'content': {

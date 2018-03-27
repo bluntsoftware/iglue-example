@@ -119,17 +119,17 @@ catwalkApp.config(['$stateProvider', '$urlRouterProvider','USER_ROLES',
         $stateProvider
             .state('ecom.vendors', {
                 url: "/vendors",
-                templateUrl: "components/modules/ecommerce/admin/templates/vendor-list.html",
+                templateUrl: "components/modules/ecommerce/templates/vendor-list.html",
                 controller: 'vendor-controller'
             })
             .state('ecom.new_vendor', {
                 url: "/vendor",
-                templateUrl: "components/modules/ecommerce/admin/templates/vendor.html",
+                templateUrl: "components/modules/ecommerce/templates/vendor.html",
                 controller: 'vendor-controller'
             })
             .state('ecom.vendor', {
                 url: "/vendor/:id",
-                templateUrl: "components/modules/ecommerce/admin/templates/vendor.html",
+                templateUrl: "components/modules/ecommerce/templates/vendor.html",
                 controller: 'vendor-controller'
             })
     }
