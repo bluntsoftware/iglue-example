@@ -135,5 +135,10 @@ catwalkApp.config(['$stateProvider', '$urlRouterProvider','USER_ROLES',
                 templateUrl: "components/modules/ecommerce/templates/product.html",
                 controller: 'product-controller'
             })
+            .state('shop.products', {
+                url: "/products",
+                templateUrl: "components/modules/ecommerce/templates/product-list.html",
+                controller: 'product-controller'
+            })
     }
 ]);

@@ -20,11 +20,11 @@ catwalkApp.config(['$stateProvider', '$urlRouterProvider','USER_ROLES',
                 url: "/shop",
                 views: {
                     'header': {
-                        templateUrl:'components/modules/ecommerce/templates/header.html',
+                        templateUrl:'components/modules/ecommerce/templates/shop-header.html',
                         controller:'ecommerce-controller as main'
                     },
                     'side': {
-                        templateUrl:'components/modules/ecommerce/templates/side-bar.html',
+                        templateUrl:'components/modules/ecommerce/templates/shop-side-bar.html',
                         controller:'ecommerce-controller as main'
                     },
                     'content': {
