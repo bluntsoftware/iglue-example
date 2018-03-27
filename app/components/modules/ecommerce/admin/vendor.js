@@ -1,7 +1,8 @@
-catwalkApp.controller('category-controller', ['$scope','$location','$stateParams','conduit',
+
+catwalkApp.controller('vendor-controller', ['$scope','$location','$stateParams','conduit',
     function ($scope,$location,$stateParams,conduit) {
         $scope.srchterm = '';
-        $scope.collection = conduit.collection('category','');
+        $scope.collection = conduit.collection('vendor','');
         $scope.listParams = {
             or:false,
             filterByFields: "{}",
@@ -76,8 +77,8 @@ catwalkApp.controller('category-controller', ['$scope','$location','$stateParams
         };
 
         $scope.get = function(id){
-            $scope.collection.getById(id).then(function(category) {
-                $scope.modelData = category;
+            $scope.collection.getById(id).then(function(vendor) {
+                $scope.modelData = vendor;
                 $scope.imageSrc = "";
             });
         };
@@ -100,11 +101,11 @@ catwalkApp.controller('category-controller', ['$scope','$location','$stateParams
         };
 
         $scope.new= function(){
-            $location.path('/ecom/category/');
+            $location.path('/ecom/vendor/');
         };
 
         $scope.update= function(id){
-            $location.path('/ecom/category/' + id);
+            $location.path('/ecom/vendor/' + id);
         };
 
         if($stateParams.id){ $scope.get($stateParams.id);}
@@ -116,20 +117,20 @@ catwalkApp.controller('category-controller', ['$scope','$location','$stateParams
 catwalkApp.config(['$stateProvider', '$urlRouterProvider','USER_ROLES',
     function ($stateProvider, $urlRouterProvider,USER_ROLES) {
         $stateProvider
-            .state('ecom.categorys', {
-                url: "/categorys",
-                templateUrl: "components/example/ecommerce/templates/category-list.html",
-                controller: 'category-controller'
+            .state('ecom.vendors', {
+                url: "/vendors",
+                templateUrl: "components/modules/ecommerce/admin/templates/vendor-list.html",
+                controller: 'vendor-controller'
             })
-            .state('ecom.new_category', {
-                url: "/category",
-                templateUrl: "components/example/ecommerce/templates/category.html",
-                controller: 'category-controller'
+            .state('ecom.new_vendor', {
+                url: "/vendor",
+                templateUrl: "components/modules/ecommerce/admin/templates/vendor.html",
+                controller: 'vendor-controller'
             })
-            .state('ecom.category', {
-                url: "/category/:id",
-                templateUrl: "components/example/ecommerce/templates/category.html",
-                controller: 'category-controller'
+            .state('ecom.vendor', {
+                url: "/vendor/:id",
+                templateUrl: "components/modules/ecommerce/admin/templates/vendor.html",
+                controller: 'vendor-controller'
             })
     }
 ]);

@@ -1,8 +1,7 @@
-
-catwalkApp.controller('vendor-controller', ['$scope','$location','$stateParams','conduit',
+catwalkApp.controller('category-controller', ['$scope','$location','$stateParams','conduit',
     function ($scope,$location,$stateParams,conduit) {
         $scope.srchterm = '';
-        $scope.collection = conduit.collection('vendor','');
+        $scope.collection = conduit.collection('category','');
         $scope.listParams = {
             or:false,
             filterByFields: "{}",
@@ -36,10 +35,12 @@ catwalkApp.controller('vendor-controller', ['$scope','$location','$stateParams',
                 filterByFields['$or'].push({'subcategory':{'$regex':search,'$options':'i'}});
                 filterByFields['$or'].push({'category':{'$regex':search,'$options':'i'}});
                 filterByFields['$or'].push({'title':{'$regex':search,'$options':'i'}});
+                $scope.listParams['filterByFields'] =  filterByFields;
+
                 $scope.listParams['projection']['subcategory'] = 1;
                 $scope.listParams['projection']['category'] = 1;
                 $scope.listParams['projection']['title'] = 1;
-                $scope.listParams['filterByFields'] =  filterByFields;
+
             }else{
                 $scope.listParams['projection'] = {};
                 $scope.listParams['filterByFields'] = {};
@@ -77,8 +78,8 @@ catwalkApp.controller('vendor-controller', ['$scope','$location','$stateParams',
         };
 
         $scope.get = function(id){
-            $scope.collection.getById(id).then(function(vendor) {
-                $scope.modelData = vendor;
+            $scope.collection.getById(id).then(function(category) {
+                $scope.modelData = category;
                 $scope.imageSrc = "";
             });
         };
@@ -101,11 +102,11 @@ catwalkApp.controller('vendor-controller', ['$scope','$location','$stateParams',
         };
 
         $scope.new= function(){
-            $location.path('/ecom/vendor/');
+            $location.path('/ecom/category/');
         };
 
         $scope.update= function(id){
-            $location.path('/ecom/vendor/' + id);
+            $location.path('/ecom/category/' + id);
         };
 
         if($stateParams.id){ $scope.get($stateParams.id);}
@@ -117,20 +118,20 @@ catwalkApp.controller('vendor-controller', ['$scope','$location','$stateParams',
 catwalkApp.config(['$stateProvider', '$urlRouterProvider','USER_ROLES',
     function ($stateProvider, $urlRouterProvider,USER_ROLES) {
         $stateProvider
-            .state('ecom.vendors', {
-                url: "/vendors",
-                templateUrl: "components/example/ecommerce/templates/vendor-list.html",
-                controller: 'vendor-controller'
+            .state('ecom.categories', {
+                url: "/categorys",
+                templateUrl: "components/modules/ecommerce/admin/templates/category-list.html",
+                controller: 'category-controller'
             })
-            .state('ecom.new_vendor', {
-                url: "/vendor",
-                templateUrl: "components/example/ecommerce/templates/vendor.html",
-                controller: 'vendor-controller'
+            .state('ecom.new_category', {
+                url: "/category",
+                templateUrl: "components/modules/ecommerce/admin/templates/category.html",
+                controller: 'category-controller'
             })
-            .state('ecom.vendor', {
-                url: "/vendor/:id",
-                templateUrl: "components/example/ecommerce/templates/vendor.html",
-                controller: 'vendor-controller'
+            .state('ecom.category', {
+                url: "/category/:id",
+                templateUrl: "components/modules/ecommerce/admin/templates/category.html",
+                controller: 'category-controller'
             })
     }
 ]);

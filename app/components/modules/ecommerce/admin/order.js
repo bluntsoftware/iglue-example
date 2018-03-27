@@ -1,8 +1,8 @@
 
-catwalkApp.controller('billing-controller', ['$scope','$location','$stateParams','conduit',
+catwalkApp.controller('order-controller', ['$scope','$location','$stateParams','conduit',
     function ($scope,$location,$stateParams,conduit) {
         $scope.srchterm = '';
-        $scope.collection = conduit.collection('billing','');
+        $scope.collection = conduit.collection('order','');
         $scope.listParams = {
             or:false,
             filterByFields: "{}",
@@ -77,8 +77,8 @@ catwalkApp.controller('billing-controller', ['$scope','$location','$stateParams'
         };
 
         $scope.get = function(id){
-            $scope.collection.getById(id).then(function(billing) {
-                $scope.modelData = billing;
+            $scope.collection.getById(id).then(function(order) {
+                $scope.modelData = order;
                 $scope.imageSrc = "";
             });
         };
@@ -101,11 +101,11 @@ catwalkApp.controller('billing-controller', ['$scope','$location','$stateParams'
         };
 
         $scope.new= function(){
-            $location.path('/ecom/billing/');
+            $location.path('/ecom/order/');
         };
 
         $scope.update= function(id){
-            $location.path('/ecom/billing/' + id);
+            $location.path('/ecom/order/' + id);
         };
 
         if($stateParams.id){ $scope.get($stateParams.id);}
@@ -117,20 +117,20 @@ catwalkApp.controller('billing-controller', ['$scope','$location','$stateParams'
 catwalkApp.config(['$stateProvider', '$urlRouterProvider','USER_ROLES',
     function ($stateProvider, $urlRouterProvider,USER_ROLES) {
         $stateProvider
-            .state('ecom.billings', {
-                url: "/billings",
-                templateUrl: "components/example/ecommerce/templates/billing-list.html",
-                controller: 'billing-controller'
+            .state('ecom.orders', {
+                url: "/orders",
+                templateUrl: "components/modules/ecommerce/admin/templates/order-list.html",
+                controller: 'order-controller'
             })
-            .state('ecom.new_billing', {
-                url: "/billing",
-                templateUrl: "components/example/ecommerce/templates/billing.html",
-                controller: 'billing-controller'
+            .state('ecom.new_order', {
+                url: "/order",
+                templateUrl: "components/modules/ecommerce/admin/templates/order.html",
+                controller: 'order-controller'
             })
-            .state('ecom.billing', {
-                url: "/billing/:id",
-                templateUrl: "components/example/ecommerce/templates/billing.html",
-                controller: 'billing-controller'
+            .state('ecom.order', {
+                url: "/order/:id",
+                templateUrl: "components/modules/ecommerce/admin/templates/order.html",
+                controller: 'order-controller'
             })
     }
 ]);
