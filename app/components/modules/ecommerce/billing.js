@@ -18,17 +18,14 @@ catwalkApp.controller('billing-controller', ['$scope','$location','$stateParams'
         }, true);
 
         $scope.sort = function(sortField){
-
             if(sortField){
                 $scope.listParams.sidx = sortField;
             }
-
             if($scope.listParams.sord ==='ASC'){
                 $scope.listParams.sord = 'DESC';
             }else{
                 $scope.listParams.sord = 'ASC';
             }
-
             $scope.search();
         };
 
