@@ -18,7 +18,10 @@ catwalkApp.controller('product-controller', ['$scope','$location','$stateParams'
             $scope.search();
         }, true);
 
-        $scope.sort = function(){
+        $scope.sort = function(sortField){
+            if(sortField){
+                $scope.listParams.sidx = sortField;
+            }
             if($scope.listParams.sord ==='ASC'){
                 $scope.listParams.sord = 'DESC';
             }else{
@@ -30,7 +33,7 @@ catwalkApp.controller('product-controller', ['$scope','$location','$stateParams'
         $scope.search = function(){
             var filterByFields = {'$or':[]};
             var search = $scope.srchterm;
-            //lets search on subcategory, category && title
+            //lets search on subcategory, category && title mongo search
             $scope.listParams.page = 1;
             if( search&& search !== '' ){
                 filterByFields['$or'].push({'subcategory':{'$regex':search,'$options':'i'}});
