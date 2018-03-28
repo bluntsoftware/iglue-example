@@ -1,0 +1,50 @@
+<section>
+    <hr>
+    <div class="row">
+
+        <div class="media col-sm-5">
+            <img alt="Alt Image" src="{{modelData.images[2].url}}" style="max-width: 75%">
+        </div>
+        <div class="media col-sm-7">
+            <div>
+                <div class="media-heading">
+                    <h2 ng-bind-html="modelData.title"></h2>
+
+                </div>
+                <div class=" pull-right">
+                    <a class="pull-right badge badge-default">{{modelData.raters}}</a>
+                    <a class="pull-right  rating" ng-repeat="star in [5,4,3,2,1]">
+                        <i ng-switch="item.rating >= star">
+                            <i ng-click="rate(modelData.id,star)" ng-switch-when="true">
+                                <i class="fa fa-2x fa-star"></i>
+                            </i>
+                            <i ng-switch-when="false">
+                                <i ng-switch="item.rating > (star-1)">
+                                    <i ng-click="rate(page.id,star)" ng-switch-when="true">
+                                        <i class="fa fa-2x fa-star-half-full"></i>
+                                    </i>
+                                    <i ng-click="rate(page.id,star)" ng-switch-when="false">
+                                        <i class="fa fa-2x fa-star-o"></i>
+                                    </i>
+                                </i>
+                            </i>
+                        </i>
+                    </a>
+                </div>
+                <h5>
+                    <span ng-bind-html="modelData.category"></span> -
+                    <span class="inline" ng-bind-html="modelData.subcategory"></span>
+                </h5>
+                <h5>${{modelData.tiers[0].price}}</h5>
+                <div ng-bind-html="modelData.description"></div>
+                <hr>
+                <div class="btn-ground text-center ">
+                    <button type="button" ng-click="back()" class="btn btn-primary"><i class="fa fa-backward"></i> Back
+                    </button>
+                    <button type="button" class="btn btn-primary"><i class="fa fa-shopping-cart"></i> Add To Cart
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

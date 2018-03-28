@@ -135,6 +135,9 @@ catwalkApp.controller('product-controller', ['$scope','$rootScope','$location','
         $scope.update= function(id){
             $location.path('/ecom/product/' + id);
         };
+        $scope.detail= function(id){
+            $location.path('/shop/detail/' + id);
+        };
 
         if($stateParams.id){ $scope.get($stateParams.id);}
         else{ $scope.list();}
@@ -172,6 +175,11 @@ catwalkApp.config(['$stateProvider', '$urlRouterProvider','USER_ROLES',
             .state('shop.home', {
                 url: "/home",
                 templateUrl: "components/modules/ecommerce/templates/home.html",
+                controller: 'product-controller'
+            })
+            .state('shop.detail', {
+                url: "/detail/:id",
+                templateUrl: "components/modules/ecommerce/templates/detail.html",
                 controller: 'product-controller'
             })
 

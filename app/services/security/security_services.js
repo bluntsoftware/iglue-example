@@ -50,24 +50,15 @@ catwalkApp.factory('USettings', function ($resource,$q) {
     };
     return this;
 });
-
+//Must be admin to access
 catwalkApp.factory('Settings', function ($resource,$q) {
-    this.init = function () {
-        this.settings = null;
-    };
     this.get = function () {
         var deferred = $q.defer();
-        var self = this;
-        if(!this.settings){
-            $resource(user_manager_base_url + 'applicationSettings' , {}, {
-                'get': { method: 'GET', params: {}, isArray: false}
-            }).get({},function(data) {
-                self.settings = data.rows[0];
-                deferred.resolve(self.settings);
-            });
-        }else{
-            deferred.resolve(this.settings);
-        }
+        $resource(user_manager_base_url + 'applicationSettings' , {}, {
+            'get': { method: 'GET', params: {}, isArray: false}
+        }).get({},function(data) {
+            deferred.resolve(data.rows[0]);
+        });
         return deferred.promise;
     };
     return this;
