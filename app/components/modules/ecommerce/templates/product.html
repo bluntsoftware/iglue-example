@@ -29,6 +29,23 @@
                         <div class="tab-pane active sortable" id="snippet_289" role="tabpanel">
                             <!-- Horizontal Line -->
                             <div style="border-top:1px solid rgb(185, 185, 185);height:1px;padding:10px;width:100%"></div>
+
+                            <!-- Text Input-->
+                            <div class="form-group">
+                                <label class="control-label editable-label" for="">Title</label>
+                                <input class="form-control input-sm" name="title"  ng-model="modelData.title"  type="text">
+                            </div>
+                            <!-- Text Input-->
+
+                            <!-- Tags -->
+                            <div class="form-group">
+                                <label class="control-label editable-label">Tags</label>
+                                <tags-input ng-model="modelData.tags"  on-tag-added="addProductTag($tag)">
+                                    <auto-complete min-length="1"  source="loadProductTags($query)"></auto-complete>
+                                </tags-input>
+                            </div>
+                            <!-- Tags -->
+
                             <div class="row">
                                 <div class="col-sm-4" id="snippet_292">
                                     <!-- Text Input-->
@@ -43,14 +60,7 @@
                                         <input class="form-control input-sm" ng-model="modelData.subcategory" name="subcategory" type="text"></div>
                                 </div>
                             </div>
-                            <!-- Text Input-->
-                            <div class="form-group">
-                                <label class="control-label editable-label" for="">Title</label>
-                                <input class="form-control input-sm" name="title"  ng-model="modelData.title"  type="text"></div>
-                            <!-- Text Input-->
-                            <div class="form-group">
-                                <label class="control-label editable-label" for="">Tags</label>
-                                <input class="form-control input-sm" ng-model="modelData.tags" name="tags" type="text"></div>
+
                             <!-- Text Area -->
                             <div class="form-group">
                                 <label class=" control-label editable-label" for="">Description</label>

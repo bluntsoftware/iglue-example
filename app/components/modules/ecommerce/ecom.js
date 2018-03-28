@@ -8,6 +8,11 @@ catwalkApp.controller('ecommerce-controller', ['$scope','Settings',
             $scope.settings = data;
             $scope.base_url = base_url;
         });
+
+        $scope.gotoConduit= function(){
+            window.location = base_url +"#/admin/conduit";
+        }
+
     }
 ]);
 /**

@@ -15,10 +15,16 @@
         <div class="pull-left pagetitle">
             <span class='line'></span>
             <h1>Ecommerce</h1>
-            <div></div>
+
+        </div>
+        <div ui-sref="shop.home" style="cursor:pointer;color: #dcdcdc;padding-left: 20px"  class="pull-left info-menu">
+            <span class='fa fa-lg fa-shopping-cart'> Go Shop</span>
+        </div>
+        <div ng-click="gotoConduit()" style="cursor:pointer;color: #dcdcdc;padding-left: 20px"  class="pull-left info-menu">
+            <span class='fa fa-lg fa-flag'> Conduit</span>
         </div>
         <div ui-sref="logout" style="cursor:pointer;color: #dcdcdc;padding-right: 15px" class="pull-right info-menu logout">
-            <span class='fa fa-lg fa-sign-out'>Logout</span>
+            <span class='fa fa-lg fa-sign-out'> Logout</span>
         </div>
     </div>
 </div>

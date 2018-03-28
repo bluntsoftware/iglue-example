@@ -1,6 +1,6 @@
 
-catwalkApp.controller('product-controller', ['$scope','$rootScope','$location','$stateParams','conduit',
-    function ($scope,$rootScope,$location,$stateParams,conduit) {
+catwalkApp.controller('product-controller', ['$scope','$rootScope','$location','$stateParams','conduit','$q',
+    function ($scope,$rootScope,$location,$stateParams,conduit,$q) {
         $scope.srchterm = '';
         $scope.collection = conduit.collection('product','');
         $scope.category ='';
@@ -15,16 +15,43 @@ catwalkApp.controller('product-controller', ['$scope','$rootScope','$location','
             rows: 20,
             sidx: "title"
         };
+
+        $scope.addProductTag = function(tag){
+            if(tag && tag.text){
+                conduit.collection('product-tag','').save({_id:tag.text});
+            }
+        };
+
+        $scope.loadProductTags = function(query){
+            var deferred = $q.defer();
+            var listparams = {
+                sord: "ASC",
+                rows: 1000,
+                sidx: "_id",
+                filterByFields:{'_id':{ '$regex': '^'+query , '$options': 'i' } }
+            };
+            conduit.collection('product-tag','').get(listparams ).then(function(data){
+                var tags = [];
+                $.each(data.rows,function(idx,tag){
+                    tags.push({'text':tag._id});
+                });
+                deferred.resolve(tags);
+            });
+            return  deferred.promise;
+        };
+
         $scope.totalpages = 0;
 
         $rootScope.$on('eventSearchProducts',function(events,data){
             $scope.srchterm = data;
         });
 
-
         $scope.$watch('srchterm', function(newVal, oldVal) {
             $scope.search();
         }, true);
+
+
+
 
         $scope.sort = function(sortField){
             if(sortField){
@@ -112,7 +139,6 @@ catwalkApp.controller('product-controller', ['$scope','$rootScope','$location','
         };
 
         $scope.save = function(){
-            console.log($scope.modelData);
             $scope.collection.save($scope.modelData).then(function(){
                 $scope.back();
             });
