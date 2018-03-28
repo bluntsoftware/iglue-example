@@ -5,7 +5,6 @@ catwalkApp.controller('ecommerce-controller', ['$scope','Settings',
         angular.element('.page-topbar').css('background', '#37474F');
         angular.element('.nav-side-menu').css('margin-top', '60px');
         Settings.get().then(function(data){
-            console.log(data);
             $scope.settings = data;
             $scope.base_url = base_url;
         });

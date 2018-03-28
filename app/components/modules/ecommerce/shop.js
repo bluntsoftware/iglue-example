@@ -30,10 +30,6 @@ catwalkApp.config(['$stateProvider', '$urlRouterProvider','USER_ROLES',
                         templateUrl:'components/modules/ecommerce/templates/shop-header.html',
                         controller:'shop-controller'
                     },
-                   /* 'side': {
-                        templateUrl:'components/modules/ecommerce/templates/shop-side-bar.html',
-                        controller:'ecommerce-controller as main'
-                    },*/
                     'content': {
                         template:'<div class="has-topbar" ui-view></div>'
                     }
@@ -41,4 +37,3 @@ catwalkApp.config(['$stateProvider', '$urlRouterProvider','USER_ROLES',
             })
     }
 ]).run(securityHandler);
-//has-sidebar
