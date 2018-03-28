@@ -16,6 +16,14 @@ catwalkApp.controller('product-controller', ['$scope','$rootScope','$location','
             sidx: "title"
         };
 
+        $scope.addToCart = function(id){
+            $scope.collection.getById(id).then(function(product) {
+                if(product){
+                    $rootScope.$broadcast('eventAddToCart',product);
+                }
+            });
+        };
+
         $scope.addProductTag = function(tag){
             if(tag && tag.text){
                 conduit.collection('product-tag','').save({_id:tag.text});
@@ -134,7 +142,7 @@ catwalkApp.controller('product-controller', ['$scope','$rootScope','$location','
         $scope.get = function(id){
             $scope.collection.getById(id).then(function(product) {
                 $scope.modelData = product;
-                $scope.imageSrc = "";
+
             });
         };
 
