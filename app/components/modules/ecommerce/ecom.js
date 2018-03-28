@@ -1,10 +1,11 @@
 //Main Controller
-catwalkApp.controller('ecommerce-controller', ['$scope','USettings',
-    function ($scope,USettings) {
+catwalkApp.controller('ecommerce-controller', ['$scope','Settings',
+    function ($scope,Settings) {
         angular.element('.nav-side-menu').css('background', '#37474F');
         angular.element('.page-topbar').css('background', '#37474F');
         angular.element('.nav-side-menu').css('margin-top', '60px');
-        USettings.get().then(function(data){
+        Settings.get().then(function(data){
+            console.log(data);
             $scope.settings = data;
             $scope.base_url = base_url;
         });
@@ -21,16 +22,26 @@ catwalkApp.config(['$stateProvider', '$urlRouterProvider','USER_ROLES',
                 views: {
                     'header': {
                         templateUrl:'components/modules/ecommerce/templates/ecom-header.html',
-                        controller:'ecommerce-controller as main'
+                        controller:'ecommerce-controller',
+                        access: {
+                            authorizedRoles: [USER_ROLES.admin]
+                        }
                     },
                     'side': {
                         templateUrl:'components/modules/ecommerce/templates/ecom-side-bar.html',
-                        controller:'ecommerce-controller as main'
+                        controller:'ecommerce-controller',
+                        access: {
+                            authorizedRoles: [USER_ROLES.admin]
+                        }
                     },
                     'content': {
-                        template:'<div class="has-sidebar has-topbar" ui-view></div>'
+                        template:'<div class="has-sidebar has-topbar" ui-view></div>',
+                        access: {
+                            authorizedRoles: [USER_ROLES.admin]
+                        }
                     }
                 }
+
             })
     }
 ]).run(securityHandler);

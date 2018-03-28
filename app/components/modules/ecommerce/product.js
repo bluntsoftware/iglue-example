@@ -148,17 +148,26 @@ catwalkApp.config(['$stateProvider', '$urlRouterProvider','USER_ROLES',
             .state('ecom.products', {
                 url: "/products",
                 templateUrl: "components/modules/ecommerce/templates/product-list.html",
-                controller: 'product-controller'
+                controller: 'product-controller',
+                access: {
+                    authorizedRoles: [USER_ROLES.admin]
+                }
             })
             .state('ecom.new_product', {
                 url: "/product",
                 templateUrl: "components/modules/ecommerce/templates/product.html",
-                controller: 'product-controller'
+                controller: 'product-controller',
+                access: {
+                    authorizedRoles: [USER_ROLES.admin]
+                }
             })
             .state('ecom.product', {
                 url: "/product/:id",
                 templateUrl: "components/modules/ecommerce/templates/product.html",
-                controller: 'product-controller'
+                controller: 'product-controller',
+                access: {
+                    authorizedRoles: [USER_ROLES.admin]
+                }
             })
             .state('shop.home', {
                 url: "/home",

@@ -51,6 +51,27 @@ catwalkApp.factory('USettings', function ($resource,$q) {
     return this;
 });
 
+catwalkApp.factory('Settings', function ($resource,$q) {
+    this.init = function () {
+        this.settings = null;
+    };
+    this.get = function () {
+        var deferred = $q.defer();
+        var self = this;
+        if(!this.settings){
+            $resource(user_manager_base_url + 'applicationSettings' , {}, {
+                'get': { method: 'GET', params: {}, isArray: false}
+            }).get({},function(data) {
+                self.settings = data.rows[0];
+                deferred.resolve(self.settings);
+            });
+        }else{
+            deferred.resolve(this.settings);
+        }
+        return deferred.promise;
+    };
+    return this;
+});
 
 catwalkApp.factory('ResetPassword', function ($resource) {
     return $resource(user_manager_base_url + 'resetpassword', {}, {
