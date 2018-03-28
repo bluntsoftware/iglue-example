@@ -135,8 +135,13 @@ catwalkApp.controller('product-controller', ['$scope','$rootScope','$location','
         $scope.update= function(id){
             $location.path('/ecom/product/' + id);
         };
+
         $scope.detail= function(id){
             $location.path('/shop/detail/' + id);
+        };
+
+        $scope.shopHome= function(){
+            $location.path('/shop/home');
         };
 
         if($stateParams.id){ $scope.get($stateParams.id);}
