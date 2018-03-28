@@ -1,8 +1,11 @@
 
-catwalkApp.controller('product-controller', ['$scope','$location','$stateParams','conduit',
-    function ($scope,$location,$stateParams,conduit) {
+catwalkApp.controller('product-controller', ['$scope','$rootScope','$location','$stateParams','conduit',
+    function ($scope,$rootScope,$location,$stateParams,conduit) {
         $scope.srchterm = '';
         $scope.collection = conduit.collection('product','');
+        $scope.category ='';
+        $scope.subcategory='';
+
         $scope.listParams = {
             or:false,
             filterByFields: "{}",
@@ -13,6 +16,11 @@ catwalkApp.controller('product-controller', ['$scope','$location','$stateParams'
             sidx: "title"
         };
         $scope.totalpages = 0;
+
+        $rootScope.$on('eventSearchProducts',function(events,data){
+            $scope.srchterm = data;
+        });
+
 
         $scope.$watch('srchterm', function(newVal, oldVal) {
             $scope.search();
@@ -31,19 +39,36 @@ catwalkApp.controller('product-controller', ['$scope','$location','$stateParams'
         };
 
         $scope.search = function(){
-            var filterByFields = {'$or':[]};
+            var filterByFields =  {'$and':[]};
+            var or = {'$or':[]};
             var search = $scope.srchterm;
+            var filter = false;
             //lets search on subcategory, category && title mongo search
             $scope.listParams.page = 1;
-            if( search&& search !== '' ){
-                filterByFields['$or'].push({'subcategory':{'$regex':search,'$options':'i'}});
-                filterByFields['$or'].push({'category':{'$regex':search,'$options':'i'}});
-                filterByFields['$or'].push({'title':{'$regex':search,'$options':'i'}});
+
+            if($scope.category && $scope.category !== ''){
+                filterByFields['$and'].push({'category':{'$eq':$scope.category}});
+                filter = true;
+            }
+            if($scope.subcategory && $scope.subcategory !== ''){
+                filterByFields['$and'].push({'subcategory':{'$eq':$scope.subcategory}});
+                filter = true;
+            }
+
+            if( search && search !== '' ){
+                or['$or'].push({'subcategory':{'$regex':search,'$options':'i'}});
+                or['$or'].push({'category':{'$regex':search,'$options':'i'}});
+                or['$or'].push({'title':{'$regex':search,'$options':'i'}});
+                filterByFields['$and'].push(or);
+                filter = true;
+            }
+            if(filter){
                 $scope.listParams['projection']['subcategory'] = 1;
                 $scope.listParams['projection']['category'] = 1;
                 $scope.listParams['projection']['title'] = 1;
                 $scope.listParams['filterByFields'] =  filterByFields;
-            }else{
+            }
+            else{
                 $scope.listParams['projection'] = {};
                 $scope.listParams['filterByFields'] = {};
             }
@@ -135,10 +160,11 @@ catwalkApp.config(['$stateProvider', '$urlRouterProvider','USER_ROLES',
                 templateUrl: "components/modules/ecommerce/templates/product.html",
                 controller: 'product-controller'
             })
-            .state('shop.products', {
-                url: "/products",
-                templateUrl: "components/modules/ecommerce/templates/product-list.html",
+            .state('shop.home', {
+                url: "/home",
+                templateUrl: "components/modules/ecommerce/templates/home.html",
                 controller: 'product-controller'
             })
+
     }
 ]);

@@ -1,21 +1,28 @@
 <div class="page-topbar">
-    <div class='logo-area'>
+    <div ui-sref="ecom.products" class='logo-area'>
         <img alt="Brand" src="{{base_url}}{{settings.logoSrc}}" height="60" >
     </div>
     <div class='quick-area'>
-        <div class='pull-left slantit'>
-            <ul class="info-menu left-links list-inline list-unstyled">
-                <li class="sidebar-toggle-wrap">
-                    <a href data-toggle="sidebar" class="sidebar_toggle" ng-click="app.settings.menuFolded = !app.settings.menuFolded; menuChatToggle('menu',app.settings.menuFolded) ">
-                        <i class="material-icons">menu</i>
-                    </a>
-                </li>
-            </ul>
-        </div>
+
         <div class="pull-left pagetitle">
             <span class='line'></span>
             <h1>Shopping</h1>
-            <div></div>
         </div>
+        <!-- todo: put in css file -->
+        <div style="color: #ffffff;padding-right: 15px" class="pull-right info-menu">
+            <span class='fa fa-2x fa-shopping-cart'></span>
+            <span style="color:#ffffff;background-color:#ff633b" class="badge badge-accent">3</span>
+        </div>
+
+        <form class="searchform pull-right right-links list-inline list-unstyled" ng-submit="search()" >
+            <div  class="input-group search-topbar search">
+                <input class="form-control input-sm" ng-model="globalsearchterm" placeholder="Search for">
+                <span class="input-group-btn">
+                    <button class="btn btn-round btn-sm btn-default" type="submit" ng-click="search()" >
+                        <i class="fa fa-search"></i>
+                    </button>
+                </span>
+            </div>
+        </form>
     </div>
 </div>

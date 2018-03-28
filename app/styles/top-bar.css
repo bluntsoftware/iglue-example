@@ -512,7 +512,13 @@
 .page-topbar li .dropdown-menu.profile li a:hover {
     background: #F5F5F5;
 }
-
+.searchform{
+    padding-top: 10px;
+    padding-right: 20px;
+}
+.search-topbar{
+    max-width:350px;
+}
 @media (max-width: 450px) {
     .profile .toggle span {
         display: none;
@@ -533,6 +539,21 @@
     .page-topbar .quick-area .info-menu li .dropdown-menu {
         width: 290px;
     }
+
+    .pagetitle {
+        display: none;
+    }
+    .searchform{
+        padding-top: 0px;
+        padding-right: 0px;
+
+    }
+    .search-topbar{
+        max-width:100%;
+    }
+    .has-topbar{
+        margin-top: 95px;
+    }
 }
 
 @media (max-width: 680px) {
@@ -548,6 +569,9 @@
     .page-topbar .quick-area .pull-right ul.info-menu {
         padding-left: 0px;
     }
+    .pagetitle {
+        display: none;
+    }
 }
 
 @media (max-width: 245px) {
@@ -559,6 +583,9 @@
 @media (max-width: 860px) {
     .hidden-gxs {
         display: none !important;
+    }
+    .pagetitle {
+        display: none;
     }
 }
 

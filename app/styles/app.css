@@ -1,3 +1,14 @@
+.bottomdiv {
+    height: 62px;
+    position:absolute;
+    bottom:0;
+}
+.rating{
+    color: #ffe64e;
+}
+.list-item{
+    height:285px;
+}
 /* ASSET FILE TREE */
 
 .navbar-brand{
