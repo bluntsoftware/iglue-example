@@ -1,5 +1,23 @@
 catwalkApp.factory('conduit', function ($resource,$q) {
     var conduit =  {
+
+        storage:function(name){
+            return {
+                get:function () {
+                    var storage = angular.fromJson(sessionStorage[name]);
+                    if(!storage){
+                        storage = {};
+                    }
+                    return storage;
+                },
+                save:function (data) {
+                    sessionStorage[name] = angular.toJson(data);
+                },
+                remove:function () {
+                    sessionStorage[name] = null;
+                }
+            }
+        },
         createMongoFlow:function(endpoint,database){
             var context = {
                 'template':'mongo_crud.json',

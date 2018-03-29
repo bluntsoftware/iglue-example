@@ -15,12 +15,30 @@ catwalkApp.controller('product-controller', ['$scope','$rootScope','$location','
             rows: 20,
             sidx: "title"
         };
+        $scope.saveToCart = function(product){
+            if(product && product.tiers[0] && product.tiers[0].price){
+                var id = product['_id'];
+                var storage = conduit.storage('cart');
 
+                var cart = storage.get();
+                var items = cart['items'];
+                if(!items){
+                    items = {};
+                }
+                var item = items[id];
+                if(item){
+                    item['qty'] += 1;
+                }else{
+                    item = $.extend(product,{'qty':1});
+                }
+                items[id] = item;
+                cart['items'] = items;
+                storage.save(cart);
+            }
+        };
         $scope.addToCart = function(id){
             $scope.collection.getById(id).then(function(product) {
-                if(product){
-                    $rootScope.$broadcast('eventAddToCart',product);
-                }
+                $scope.saveToCart(product);
             });
         };
 
@@ -57,9 +75,6 @@ catwalkApp.controller('product-controller', ['$scope','$rootScope','$location','
         $scope.$watch('srchterm', function(newVal, oldVal) {
             $scope.search();
         }, true);
-
-
-
 
         $scope.sort = function(sortField){
             if(sortField){
@@ -160,6 +175,10 @@ catwalkApp.controller('product-controller', ['$scope','$rootScope','$location','
 
         $scope.back = function () {
             window.history.back();
+        };
+
+        $scope.gotoProducts = function () {
+            $location.path('/ecom/products');
         };
 
         $scope.new= function(){

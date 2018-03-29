@@ -1,133 +1,64 @@
-catwalkApp.controller('cart-controller', ['$scope','$location','$stateParams','conduit',
-    function ($scope,$location,$stateParams,conduit) {
-        $scope.srchterm = '';
-        $scope.collection = conduit.collection('cart','');
-        $scope.listParams = {
-            or:false,
-            filterByFields: "{}",
-            page: 1,
-            sord: "ASC",
-            projection: {},
-            rows: 20,
-            sidx: "title"
-        };
-        $scope.totalpages = 0;
+catwalkApp.controller('cart-controller', ['$scope','$rootScope','$location','$stateParams','conduit',
+    function ($scope,$rootScope,$location,$stateParams,conduit) {
 
-        $scope.$watch('srchterm', function(newVal, oldVal) {
-            $scope.search();
-        }, true);
-
-        $scope.sort = function(){
-            if($scope.listParams.sord ==='ASC'){
-                $scope.listParams.sord = 'DESC';
-            }else{
-                $scope.listParams.sord = 'ASC';
-            }
-            $scope.search();
+        $scope.restoreState=function () {
+            var cart = conduit.storage('cart').get();
+           if(cart){
+               $scope.cart = cart;
+           }else{
+               $scope.cart = {'items':{}};
+           }
         };
-
-        $scope.search = function(){
-            var filterByFields = {'$or':[]};
-            var search = $scope.srchterm;
-            //lets search on subcategory, category && title
-            $scope.listParams.page = 1;
-            if( search&& search !== '' ){
-                filterByFields['$or'].push({'subcategory':{'$regex':search,'$options':'i'}});
-                filterByFields['$or'].push({'category':{'$regex':search,'$options':'i'}});
-                filterByFields['$or'].push({'title':{'$regex':search,'$options':'i'}});
-                $scope.listParams['projection']['subcategory'] = 1;
-                $scope.listParams['projection']['category'] = 1;
-                $scope.listParams['projection']['title'] = 1;
-                $scope.listParams['filterByFields'] =  filterByFields;
-            }else{
-                $scope.listParams['projection'] = {};
-                $scope.listParams['filterByFields'] = {};
-            }
-            $scope.list();
-        };
-        $scope.cycle= function(){
-            if($scope.interval){
-                clearInterval($scope.interval);
-                $scope.interval = null;
-            }else{
-                $scope.interval = setInterval(function() {
-                    $scope.nextPage();
-                }, 1500);
-            }
-        };
-        $scope.nextPage = function(){
-            $scope.setPage($scope.listParams.page + 1);
-        };
-        $scope.prevPage = function(){
-            $scope.setPage($scope.listParams.page - 1);
-        };
-
-        $scope.setPage = function(page){
-            $scope.listParams.page = page;
-            $scope.list();
-        };
-
-        $scope.list = function(){
-            $scope.collection.get($scope.listParams ).then(function(data){
-                $scope.items = data.rows;
-                $scope.listParams.page = data.currpage;
-                $scope.totalpages = data.totalpages;
-            });
-        };
-
-        $scope.get = function(id){
-            $scope.collection.getById(id).then(function(cart) {
-                $scope.modelData = cart;
-                $scope.imageSrc = "";
-            });
-        };
-
-        $scope.save = function(){
-            console.log($scope.modelData);
-            $scope.collection.save($scope.modelData).then(function(){
-                $scope.back();
-            });
-        };
+        $scope.restoreState();
 
         $scope.remove = function(id){
-            $scope.collection.remove(id).then(function () {
-                $scope.list();
+            delete  $scope.cart.items[id];
+            $scope.calculate();
+        };
+
+        $scope.saveCart = function(){
+            conduit.storage('cart').save($scope.cart);
+        };
+
+        $scope.$watch('cart', function(newVal, oldVal) {
+            $scope.calculate();
+            $scope.saveCart();
+        }, true);
+
+        $scope.calculate = function(){
+            var subTotal = 0;
+            var estimateShip = 0;
+            $.each($scope.cart.items,function(idx,item){
+                var total = 0;
+                if(item.tiers[0]){
+                    total = item.qty * item.tiers[0].price;
+                }
+
+                $scope.cart.items[item._id]['total'] = total;
+                subTotal += total;
+                estimateShip += item.qty *2;
             });
+            var tax = subTotal * .06;
+            var shipping = 15;
+            if(estimateShip > shipping){
+                shipping = estimateShip;
+            }
+            $scope.cart['subTotal'] = subTotal;
+            $scope.cart['tax'] = tax;
+            $scope.cart['shipping'] = shipping;
+            $scope.cart['total'] =  subTotal + tax + shipping;
+
         };
 
-        $scope.back = function () {
-            window.history.back();
-        };
-
-        $scope.new= function(){
-            $location.path('/ecom/cart/');
-        };
-
-        $scope.update= function(id){
-            $location.path('/ecom/cart/' + id);
-        };
-
-        if($stateParams.id){ $scope.get($stateParams.id);}
-        else{ $scope.list();}
-
+        $scope.calculate();
     }
 ]);
 
 catwalkApp.config(['$stateProvider', '$urlRouterProvider','USER_ROLES',
     function ($stateProvider, $urlRouterProvider,USER_ROLES) {
         $stateProvider
-            .state('ecom.carts', {
-                url: "/carts",
-                templateUrl: "components/modules/ecommerce/templates/cart-list.html",
-                controller: 'cart-controller'
-            })
-            .state('ecom.new_cart', {
+            .state('shop.cart', {
                 url: "/cart",
-                templateUrl: "components/modules/ecommerce/templates/cart.html",
-                controller: 'cart-controller'
-            })
-            .state('ecom.cart', {
-                url: "/cart/:id",
                 templateUrl: "components/modules/ecommerce/templates/cart.html",
                 controller: 'cart-controller'
             })
