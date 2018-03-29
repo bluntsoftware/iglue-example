@@ -34,6 +34,7 @@ catwalkApp.controller('product-controller', ['$scope','$rootScope','$location','
                 items[id] = item;
                 cart['items'] = items;
                 storage.save(cart);
+                $rootScope.$emit('refreshCartQty');
             }
         };
         $scope.addToCart = function(id){

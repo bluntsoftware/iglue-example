@@ -4,14 +4,14 @@
     </div>
     <div class='quick-area'>
 
-        <div class="pull-left pagetitle">
+        <div ui-sref="shop.home" class="pull-left pagetitle">
             <span class='line'></span>
             <h1>Shopping</h1>
         </div>
         <!-- todo: put in css file -->
         <div ui-sref="shop.cart" style="color: #ffffff;padding-right: 15px" class="pull-right info-menu">
             <span class='fa fa-2x fa-shopping-cart'></span>
-            <span style="color:#ffffff;background-color:#ff633b" class="badge badge-accent">3</span>
+            <span style="color:#ffffff;background-color:#ff633b" class="badge badge-accent">{{qty}}</span>
         </div>
 
         <form class="searchform pull-right right-links list-inline list-unstyled" ng-submit="search()" >

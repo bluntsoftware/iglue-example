@@ -1,6 +1,6 @@
 //Main Controller
-catwalkApp.controller('shop-controller', ['$scope','$rootScope','USettings',
-    function ($scope,$rootScope,USettings) {
+catwalkApp.controller('shop-controller', ['$scope','$rootScope','USettings','conduit',
+    function ($scope,$rootScope,USettings,conduit) {
         angular.element('.nav-side-menu').css('background', '#37474F');
         angular.element('.page-topbar').css('background', '#37474F');
         angular.element('.nav-side-menu').css('margin-top', '60px');
@@ -12,6 +12,20 @@ catwalkApp.controller('shop-controller', ['$scope','$rootScope','USettings',
         $scope.$watch('globalsearchterm', function(newVal, oldVal) {
             $rootScope.$broadcast('eventSearchProducts',newVal);
         }, true);
+
+        $rootScope.$on('refreshCartQty',function(){
+            $scope.refreshCartQty();
+        });
+
+        $scope.qty = 0;
+        $scope.refreshCartQty = function(){
+            var cart =  conduit.storage('cart').get();
+            if(cart.items){
+                $scope.qty = Object.keys(cart.items).length;
+            }
+        };
+        $scope.refreshCartQty();
+
         $scope.search = function(){
             $rootScope.$broadcast('eventSearchProducts',$scope.globalsearchterm);
         }

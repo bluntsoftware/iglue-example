@@ -18,6 +18,7 @@ catwalkApp.controller('cart-controller', ['$scope','$rootScope','$location','$st
 
         $scope.saveCart = function(){
             conduit.storage('cart').save($scope.cart);
+            $rootScope.$emit('refreshCartQty');
         };
 
         $scope.$watch('cart', function(newVal, oldVal) {
