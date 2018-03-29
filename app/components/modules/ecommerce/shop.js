@@ -19,7 +19,7 @@ catwalkApp.controller('shop-controller', ['$scope','$rootScope','USettings','con
 
         $scope.qty = 0;
         $scope.refreshCartQty = function(){
-            var cart =  conduit.storage('cart').get();
+            var cart =  conduit.localStorage('cart').get();
             if(cart.items){
                 $scope.qty = Object.keys(cart.items).length;
             }

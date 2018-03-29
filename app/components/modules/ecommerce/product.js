@@ -18,7 +18,7 @@ catwalkApp.controller('product-controller', ['$scope','$rootScope','$location','
         $scope.saveToCart = function(product){
             if(product && product.tiers[0] && product.tiers[0].price){
                 var id = product['_id'];
-                var storage = conduit.storage('cart');
+                var storage = conduit.localStorage('cart');
 
                 var cart = storage.get();
                 var items = cart['items'];

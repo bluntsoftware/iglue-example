@@ -1,7 +1,6 @@
-catwalkApp.factory('conduit', function ($resource,$q) {
+catwalkApp.factory('conduit', function ($resource,$window,$q) {
     var conduit =  {
-
-        storage:function(name){
+        sessionStorage:function(name){
             return {
                 get:function () {
                     var storage = angular.fromJson(sessionStorage[name]);
@@ -15,6 +14,23 @@ catwalkApp.factory('conduit', function ($resource,$q) {
                 },
                 remove:function () {
                     sessionStorage[name] = null;
+                }
+            }
+        },
+        localStorage:function(name){
+            return {
+                get:function () {
+                    var storage = angular.fromJson($window.localStorage.getItem(name));
+                    if(!storage){
+                        storage = {};
+                    }
+                    return storage;
+                },
+                save:function (data) {
+                    $window.localStorage.setItem(name,angular.toJson(data));
+                },
+                remove:function () {
+                    $window.localStorage.removeItem(name);
                 }
             }
         },

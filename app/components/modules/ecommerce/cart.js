@@ -2,7 +2,7 @@ catwalkApp.controller('cart-controller', ['$scope','$rootScope','$location','$st
     function ($scope,$rootScope,$location,$stateParams,conduit) {
 
         $scope.restoreState=function () {
-            var cart = conduit.storage('cart').get();
+            var cart = conduit.localStorage('cart').get();
            if(cart){
                $scope.cart = cart;
            }else{
@@ -17,7 +17,7 @@ catwalkApp.controller('cart-controller', ['$scope','$rootScope','$location','$st
         };
 
         $scope.saveCart = function(){
-            conduit.storage('cart').save($scope.cart);
+            conduit.localStorage('cart').save($scope.cart);
             $rootScope.$emit('refreshCartQty');
         };
 
