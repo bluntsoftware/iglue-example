@@ -18,6 +18,13 @@ catwalkApp.controller('order-controller', ['$scope','$location','$stateParams','
             $scope.qty = Object.keys($scope.modelData.items).length;
         }
 
+        $scope.placeOrder = function(){
+          //Validate Address and Payment Method
+            $scope.collection.save($scope.modelData).then(function(){
+                conduit.localStorage('cart').remove();
+                $location.path('/shop/home');
+            });
+        };
 
         $scope.totalpages = 0;
 
@@ -91,9 +98,8 @@ catwalkApp.controller('order-controller', ['$scope','$location','$stateParams','
         };
 
         $scope.save = function(){
-            console.log($scope.modelData);
             $scope.collection.save($scope.modelData).then(function(){
-                $scope.back();
+
             });
         };
 
