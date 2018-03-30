@@ -14,7 +14,11 @@ catwalkApp.controller('order-controller', ['$scope','$location','$stateParams','
         };
 
         $scope.modelData = conduit.localStorage('cart').get();
-        console.log($scope.modelData);
+        if($scope.modelData.items){
+            $scope.qty = Object.keys($scope.modelData.items).length;
+        }
+
+
         $scope.totalpages = 0;
 
         $scope.$watch('srchterm', function(newVal, oldVal) {

@@ -1,10 +1,10 @@
 <div class='content-wrapper'>
     <section class="box ">
         <div class="content-body">
-            <h3>Review You Order</h3>
+            <h3>Review Your Order</h3>
             <div style="margin-left: 25px" class="row">
 
-                <div class="col-sm-10">
+                <div class="col-sm-9">
                     <div  class="row">
 
                         <div class="col-sm-6">
@@ -43,8 +43,28 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-sm-2">
-                    <h3>Place Order</h3>
+                <div class="col-sm-3">
+                    <button  class="btn btn-warning">Place Order</button>
+                    <h3>Order Summery</h3>
+                    <table class="table-striped table ">
+                        <tr>
+                            <td>Items ({{qty}})</td>
+                            <td>{{modelData.subTotal | currency: "$" : 2}}</td>
+                        </tr>
+                        <tr>
+                            <td>Shipping</td>
+                            <td>{{modelData.shipping | currency: "$" : 2}}</td>
+                        </tr>
+                        <tr>
+                            <td>Tax</td>
+                            <td>{{modelData.tax | currency: "$" : 2}}</td>
+                        </tr>
+                        <tr class="text-danger">
+                            <td><h4>Order Total</h4></td>
+                            <td><h4>{{modelData.total | currency: "$" : 2}}</h4></td>
+                        </tr>
+                    </table>
+
 
                 </div>
             </div>

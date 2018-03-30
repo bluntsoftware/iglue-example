@@ -1,21 +1,13 @@
-<nav class="navbar navbar-default navbar-fixed-top {{classes}}" role="navigation">
-    <div class="navbar-header">
-        <button class="navbar-toggle" data-target="#navbar" data-toggle="collapse" type="button">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-        </button>
-        <a class="navbar-brand"><img alt="Brand"
-                                     src="https://www.wildappledesigngroup.com/themes/cherry_responsive_boilerplate/img/stamp-branding.png"
-                                     height="100" width="125"></a></div>
+<div class="page-topbar">
+    <div class='logo-area'>
+        <img alt="Brand" src="{{base_url}}{{settings.logoSrc}}" height="60" >
     </div>
-    <div class="collapse navbar-collapse" id="navbar">
-        <ul class="nav navbar-nav navbar-left">
-           <li>
+    <div class='quick-area'>
 
-            </li>
-        </ul>
+        <div ui-sref="shop.home" class="pull-left pagetitle">
+            <span class='line'></span>
+            <h1>Home</h1>
+        </div>
         <ul class="nav navbar-nav navbar-right">
             <li ng-show="authenticated">
                 <a ui-sref="index.account"><span class="fa fa-gear"></span>&nbsp;Account</a>
@@ -32,4 +24,6 @@
             </li>
         </ul>
     </div>
-</nav>
+</div>
+
+
