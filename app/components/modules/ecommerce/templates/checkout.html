@@ -1,0 +1,53 @@
+<div class='content-wrapper'>
+    <section class="box ">
+        <div class="content-body">
+            <h3>Review You Order</h3>
+            <div style="margin-left: 25px" class="row">
+
+                <div class="col-sm-10">
+                    <div  class="row">
+
+                        <div class="col-sm-6">
+                            <h3>Shipping Address</h3>
+                            <h5>Alexnader Mcknight</h5>
+                            <h5>816 Stonybrook</h5>
+                            <h5>Norristown, PA 19403</h5>
+                            <h5>United States</h5>
+                            <h5>(215) 360-2660</h5>
+                        </div>
+
+                        <div class="col-sm-6">
+                            <h3>Payment Method</h3>
+                            <h5>Visa ending in ..4543</h5>
+
+                            <h3>Billing Address</h3>
+                            <h5>Alexnader Mcknight</h5>
+                            <h5>816 Stonybrook</h5>
+                            <h5>Norristown, PA 19403</h5>
+
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="row">
+                        <div class="col-sm-12" ng-repeat="item in modelData.items">
+                            <div class="media ">
+                                <img style="width:75px" ng-click="detail(item._id)" alt="Alt Image" class="pull-left "
+                                     src="{{item.images[0].url}}">
+                                <div class="media-body">
+                                    <div class="media-heading editable-header">
+                                        <h5 ng-bind-html="item.title"></h5>
+                                    </div>
+                                    <h5>{{item.qty}} @ {{item.tiers[0].price | currency: "$" : 2}}</h5>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-2">
+                    <h3>Place Order</h3>
+
+                </div>
+            </div>
+        </div>
+    </section>
+</div>

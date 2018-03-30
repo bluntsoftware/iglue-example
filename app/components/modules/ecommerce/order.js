@@ -12,6 +12,9 @@ catwalkApp.controller('order-controller', ['$scope','$location','$stateParams','
             rows: 20,
             sidx: "title"
         };
+
+        $scope.modelData = conduit.localStorage('cart').get();
+        console.log($scope.modelData);
         $scope.totalpages = 0;
 
         $scope.$watch('srchterm', function(newVal, oldVal) {
@@ -130,6 +133,11 @@ catwalkApp.config(['$stateProvider', '$urlRouterProvider','USER_ROLES',
             .state('ecom.order', {
                 url: "/order/:id",
                 templateUrl: "components/modules/ecommerce/templates/order.html",
+                controller: 'order-controller'
+            })
+            .state('shop.checkout', {
+                url: "/checkout",
+                templateUrl: "components/modules/ecommerce/templates/checkout.html",
                 controller: 'order-controller'
             })
     }

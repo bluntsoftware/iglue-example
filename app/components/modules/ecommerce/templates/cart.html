@@ -6,10 +6,10 @@
                     <thead>
                         <tr>
                             <td>
-                                <h4 class="title text-success">{{cart.subTotal | currency: "$" : 2}}</h4>
+                                <h4 class="title pull-right text-success">{{cart.subTotal | currency: "$" : 2}}</h4>
                             </td>
                             <td class="text-right">
-                                <button class="btn btn-success">Check Out</button>
+                                <button ui-sref="shop.checkout" class="btn btn-success">Check Out</button>
                             </td>
                         </tr>
                     </thead>
