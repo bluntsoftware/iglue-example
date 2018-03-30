@@ -241,12 +241,7 @@ catwalkApp.config(['$stateProvider', '$urlRouterProvider','USER_ROLES',
                 templateUrl: "components/modules/ecommerce/templates/detail.html",
                 controller: 'product-controller'
             })
-            .state('shop.car', {
-                url: "/car",
-                templateUrl: "components/modules/ecommerce/templates/multi-carousel.html",
-                controller: 'product-controller'
-            })
-
+           
 
     }
 ]);
