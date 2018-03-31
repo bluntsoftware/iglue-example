@@ -13,6 +13,10 @@ catwalkApp.controller('address-controller', ['$scope','$location','$stateParams'
         };
         $scope.totalpages = 0;
 
+        $scope.select = function(id){
+
+        };
+
         $scope.$watch('srchterm', function(newVal, oldVal) {
             $scope.search();
         }, true);
@@ -98,6 +102,8 @@ catwalkApp.controller('address-controller', ['$scope','$location','$stateParams'
         $scope.back = function () {
             window.history.back();
         };
+
+
 
         $scope.new = function(){
             $location.path('/shop/address/');

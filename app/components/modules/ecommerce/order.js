@@ -12,10 +12,12 @@ catwalkApp.controller('order-controller', ['$scope','$location','$stateParams','
             rows: 20,
             sidx: "title"
         };
-        $scope.customer = {};
+
 
 
         $scope.modelData = conduit.localStorage('cart').get();
+        $scope.modelData.shipping = {};
+        $scope.modelData.billing = {};
 
 
         if($scope.modelData.items){
@@ -23,10 +25,6 @@ catwalkApp.controller('order-controller', ['$scope','$location','$stateParams','
         }
 
         $scope.placeOrder = function(){
-
-            conduit.collection('customer','').get().then(function(){
-
-            });
 
             $scope.modelData['account'] = $scope.account;
             console.log($scope.modelData);

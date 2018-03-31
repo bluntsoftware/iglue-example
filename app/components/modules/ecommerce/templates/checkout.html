@@ -8,24 +8,36 @@
                     <div  class="row">
 
                         <div class="col-sm-6">
-                            <h3>Shipping Address</h3>
-                            <h5>{{customer.name}}</h5>
-                            <h5>{{customer.shipping.address1}}</h5>
-                            <h5>{{customer.shipping.address2}}</h5>
-                            <h5>{{customer.shipping.city}}, {{customer.shipping.state}} {{customer.shipping.zip}}</h5>
+                            <div  class="row">
+                                <div class="col-sm-6"><h3>Shipping Address</h3></div>
+                                <div ui-sref="shop.address-manager" class="col-sm-6"><button class="btn btn-xs btn-default">Change</button></div>
+                            </div>
+
+
+                            <h5>{{modelData.shipping.full_name}}</h5>
+                            <h5>{{modelData.shipping.address1}}</h5>
+                            <h5>{{modelData.shipping.address2}}</h5>
+                            <h5>{{modelData.shipping.city}}, {{modelData.shipping.state}} {{modelData.shipping.zip}}</h5>
                             <h5>United States</h5>
-                            <h5>{{customer.phone}}</h5>
+                            <h5>{{modelData.shipping.phone}}</h5>
                         </div>
 
                         <div class="col-sm-6">
-                            <h3>Payment Method</h3>
+
+                            <div  class="row">
+                                <div class="col-sm-6"><h3>Payment Method</h3></div>
+                                <div   class="col-sm-6"><button class="btn btn-xs btn-default">Change</button></div>
+                            </div>
                             <h5>Visa ending in ..4543</h5>
 
-                            <h3>Billing Address</h3>
-                            <h5>{{customer.name}}</h5>
-                            <h5>{{customer.billing.address1}}</h5>
-                            <h5>{{customer.billing.address2}}</h5>
-                            <h5>{{customer.billing.city}}, {{customer.billing.state}} {{customer.billing.zip}}</h5>
+                            <div  class="row">
+                                <div class="col-sm-6"><h3>Billing Address</h3></div>
+                                <div ui-sref="shop.address-manager" class="col-sm-6"><button class="btn btn-xs btn-default">Change</button></div>
+                            </div>
+                            <h5>{{modelData.billing.full_name}}</h5>
+                            <h5>{{modelData.billing.address1}}</h5>
+                            <h5>{{modelData.billing.address2}}</h5>
+                            <h5>{{modelData.billing.city}}, {{modelData.billing.state}} {{modelData.billing.zip}}</h5>
 
                         </div>
                     </div>
