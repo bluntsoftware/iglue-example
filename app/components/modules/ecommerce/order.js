@@ -1,6 +1,6 @@
 
-catwalkApp.controller('order-controller', ['$scope','$location','$stateParams','conduit','profile',
-    function ($scope,$location,$stateParams,conduit,profile) {
+catwalkApp.controller('order-controller', ['$scope','$rootScope','$location','$stateParams','conduit','profile',
+    function ($scope,$rootScope,$location,$stateParams,conduit,profile) {
         $scope.srchterm = '';
         $scope.collection = conduit.collection('order','');
         $scope.listParams = {
@@ -16,7 +16,7 @@ catwalkApp.controller('order-controller', ['$scope','$location','$stateParams','
         $scope.modelData = conduit.localStorage('cart').get();
         $scope.modelData.shipping = {};
         $scope.modelData.billing = {};
-        profile.get().then(function(profile){
+        profile.get($rootScope.account).then(function(profile){
             $scope.profile  = profile;
             if(profile['shipping']){
                 $scope.modelData.shipping = profile['shipping'];
