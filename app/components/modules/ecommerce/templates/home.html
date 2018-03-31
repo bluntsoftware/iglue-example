@@ -1,4 +1,4 @@
-<div  ><!-- Carousel -->
+<div><!-- Carousel -->
 
     <!-- todo: allow to choose carousel images -->
     <div class="carousel slide" data-ride="carousel" id="carousel_inSlider">
@@ -14,7 +14,8 @@
                     </p>
                 </div>
 
-                <img alt="Carousel Bootstrap First" src="https://images-na.ssl-images-amazon.com/images/G/01/kindle/merch/2018/TPR/FebruaryBiscuit2/VX-1487-TPR_Biscuit2_Black_GW-Hero-Desktop-3000x600-2X._CB487343053_.jpg">
+                <img alt="Carousel Bootstrap First"
+                     src="https://images-na.ssl-images-amazon.com/images/G/01/kindle/merch/2018/TPR/FebruaryBiscuit2/VX-1487-TPR_Biscuit2_Black_GW-Hero-Desktop-3000x600-2X._CB487343053_.jpg">
             </div>
             <div class="item">
                 <div class="carousel-caption">
@@ -23,7 +24,8 @@
                     </p>
                 </div>
 
-                <img alt="Carousel Bootstrap First" src="https://images-na.ssl-images-amazon.com/images/G/01/AMAZON_FASHION/2018/EDITORIAL/SPRING_2/GATEWAY/DESKTOP/HERO_M_xGL_SpringStockUp_2x._CB502042830_.jpg">
+                <img alt="Carousel Bootstrap First"
+                     src="https://images-na.ssl-images-amazon.com/images/G/01/AMAZON_FASHION/2018/EDITORIAL/SPRING_2/GATEWAY/DESKTOP/HERO_M_xGL_SpringStockUp_2x._CB502042830_.jpg">
 
 
             </div>
@@ -34,7 +36,8 @@
                     </p>
                 </div>
 
-                <img alt="Carousel Bootstrap First" src="https://images-na.ssl-images-amazon.com/images/G/01/digital/video/merch/2018/Other/AVD10375_ProjectPeach/Amazon_GW_DesktopHero_AVD10375_ProjectPeach_3000x600_V1._CB487953986_.jpg">
+                <img alt="Carousel Bootstrap First"
+                     src="https://images-na.ssl-images-amazon.com/images/G/01/digital/video/merch/2018/Other/AVD10375_ProjectPeach/Amazon_GW_DesktopHero_AVD10375_ProjectPeach_3000x600_V1._CB487953986_.jpg">
 
 
             </div>
@@ -51,15 +54,12 @@
     </div>
 
 
-
-
-
     <div class="panel-heading">
 
-
-        <form class="row" ng-submit="search()" >
-            <div class="col-sm-6">
-                <div class="input-group search ">
+        <div class="container">
+            <form class="row" ng-submit="search()">
+                <div class="col-sm-6">
+                    <div class="input-group search ">
                     <span class="input-group-btn">
                         <!-- <ui-select ng-model="cities.selected" theme="bootstrap">
                             <ui-select-match placeholder="Select City">
@@ -72,30 +72,32 @@
                                     </li>
                             </ui-select-choices>
                         </ui-select> -->
-                       <!--  <ui-select ng-model="ctrl.person.selected" theme="bootstrap" class="form-control" title="Choose a person">
-                            <ui-select-match placeholder="Select A Categoty">{{$select.selected.name}}</ui-select-match>
-                            <ui-select-choices group-by="'country'" repeat="item in ctrl.people | filter: $select.search">
-                              <span ng-bind-html="item.name | highlight: $select.search"></span>
-                              <small ng-bind-html="item.email | highlight: $select.search"></small>
-                            </ui-select-choices>
-                          </ui-select> -->
+                        <!--  <ui-select ng-model="ctrl.person.selected" theme="bootstrap" class="form-control" title="Choose a person">
+                             <ui-select-match placeholder="Select A Categoty">{{$select.selected.name}}</ui-select-match>
+                             <ui-select-choices group-by="'country'" repeat="item in ctrl.people | filter: $select.search">
+                               <span ng-bind-html="item.name | highlight: $select.search"></span>
+                               <small ng-bind-html="item.email | highlight: $select.search"></small>
+                             </ui-select-choices>
+                           </ui-select> -->
                     </span>
-                    <input class="form-control input-sm" ng-model="srchterm" placeholder="Search for Products">
+                        <input class="form-control input-sm" ng-model="srchterm" placeholder="Search for Products">
                     <span class="input-group-btn">
-                      <button class="btn btn-round btn-sm btn-default" type="submit" ng-click="search()" >
-                        <i class="fa fa-search"></i>
-                    </button>
+                      <button class="btn btn-round btn-sm btn-default" type="submit" ng-click="search()">
+                          <i class="fa fa-search"></i>
+                      </button>
                 </span>
+                    </div>
                 </div>
-            </div>
-            <div class="col-sm-6">
+                <div class="col-sm-6">
                 <span class="btn-group pull-right text-center">
                     <a class="btn btn-sm btn-round btn-default pager_prev" ng-click="prevPage()" type="button">Prev</a>
-                    <a class="btn btn-sm btn-default page_number" ng-click="cycle()" type="button">{{listParams.page}} of {{totalpages}}</a>
+                    <a class="btn btn-sm btn-default page_number" ng-click="cycle()" type="button">{{listParams.page}}
+                        of {{totalpages}}</a>
                     <a class="btn btn-sm btn-round btn-default pager_next" ng-click="nextPage()" type="button">Next</a>
                 </span>
-            </div>
-        </form>
+                </div>
+            </form>
+        </div>
     </div>
 </div>
 
@@ -145,8 +147,12 @@
                     </h5>
                     <div class="space-ten"></div>
                     <div class="btn-ground bottomdiv text-center">
-                        <button type="button" ng-click="addToCart(item._id)" class="btn btn-primary"><i class="fa fa-shopping-cart"></i> Add To Cart</button>
-                        <button type="button" ng-click="detail(item._id)" class="btn btn-primary" data-toggle="modal" data-target="#product_view"><i class="fa fa-search"></i> Quick View</button>
+                        <button type="button" ng-click="addToCart(item._id)" class="btn btn-primary"><i
+                                class="fa fa-shopping-cart"></i> Add To Cart
+                        </button>
+                        <button type="button" ng-click="detail(item._id)" class="btn btn-primary" data-toggle="modal"
+                                data-target="#product_view"><i class="fa fa-search"></i> Quick View
+                        </button>
                     </div>
                     <div class="space-ten"></div>
                 </div>
@@ -159,10 +165,7 @@
     </div>
 
 
-
 </section>
-
-
 
 
 <section id="contact" class="gray-section contact">
@@ -177,7 +180,7 @@
         <div class="row m-b-lg">
             <div class="col-lg-3 col-lg-offset-3">
                 <address>
-                    <strong><span class="navy" translate="company.name">Edit i18n</span></strong><br />
+                    <strong><span class="navy" translate="company.name">Edit i18n</span></strong><br/>
                     <i translate="company.address1">Edit i18n</i><br/>
                     <i translate="company.city">Edit i18n</i>,
                     <i translate="company.state">Edit i18n</i>
@@ -192,7 +195,9 @@
             </div>
             <div class="col-lg-4">
                 <p class="text-color">
-                    Consectetur adipisicing elit. Aut eaque, totam corporis laboriosam veritatis quis ad perspiciatis, totam corporis laboriosam veritatis, consectetur adipisicing elit quos non quis ad perspiciatis, totam corporis ea,
+                    Consectetur adipisicing elit. Aut eaque, totam corporis laboriosam veritatis quis ad perspiciatis,
+                    totam corporis laboriosam veritatis, consectetur adipisicing elit quos non quis ad perspiciatis,
+                    totam corporis ea,
                 </p>
             </div>
         </div>
@@ -214,7 +219,8 @@
         </div>
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2 text-center m-t-lg m-b-lg">
-                <p><strong translate="company.copyright"></strong><br/> consectetur adipisicing elit. Aut eaque, laboriosam veritatis, quos non quis ad perspiciatis, totam corporis ea, alias ut unde.</p>
+                <p><strong translate="company.copyright"></strong><br/> consectetur adipisicing elit. Aut eaque,
+                    laboriosam veritatis, quos non quis ad perspiciatis, totam corporis ea, alias ut unde.</p>
             </div>
         </div>
     </div>
