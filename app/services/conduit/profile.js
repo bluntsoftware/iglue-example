@@ -7,7 +7,7 @@ catwalkApp.factory('profile', function ($q,conduit,$rootScope) {
             var deferred = $q.defer();
             var account = $rootScope.account;
             if(!account){
-               
+
                 deferred.resolve({'error':'Not Logged In'});
             }else{
                 var id = account.login;
