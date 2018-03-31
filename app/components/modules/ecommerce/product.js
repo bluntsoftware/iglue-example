@@ -233,15 +233,15 @@ catwalkApp.config(['$stateProvider', '$urlRouterProvider','USER_ROLES',
             })
             .state('shop.home', {
                 url: "/home",
-                templateUrl: "components/modules/ecommerce/templates/home.html",
+                templateUrl: "components/modules/ecommerce/templates/product-home.html",
                 controller: 'product-controller'
             })
             .state('shop.detail', {
                 url: "/detail/:id",
-                templateUrl: "components/modules/ecommerce/templates/detail.html",
+                templateUrl: "components/modules/ecommerce/templates/product-detail.html",
                 controller: 'product-controller'
             })
-           
+
 
     }
 ]);

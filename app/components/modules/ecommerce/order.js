@@ -156,7 +156,7 @@ catwalkApp.config(['$stateProvider', '$urlRouterProvider','USER_ROLES',
             })
             .state('shop.checkout', {
                 url: "/checkout",
-                templateUrl: "components/modules/ecommerce/templates/checkout.html",
+                templateUrl: "components/modules/ecommerce/templates/order-checkout.html",
                 controller: 'order-controller'
             })
     }
