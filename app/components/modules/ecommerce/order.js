@@ -1,6 +1,6 @@
 
-catwalkApp.controller('order-controller', ['$scope','$location','$stateParams','conduit',
-    function ($scope,$location,$stateParams,conduit) {
+catwalkApp.controller('order-controller', ['$scope','$location','$stateParams','conduit','customer',
+    function ($scope,$location,$stateParams,conduit,customer) {
         $scope.srchterm = '';
         $scope.collection = conduit.collection('order','');
         $scope.listParams = {
@@ -12,17 +12,28 @@ catwalkApp.controller('order-controller', ['$scope','$location','$stateParams','
             rows: 20,
             sidx: "title"
         };
+        $scope.customer = {};
+
 
         $scope.modelData = conduit.localStorage('cart').get();
+
+
         if($scope.modelData.items){
             $scope.qty = Object.keys($scope.modelData.items).length;
         }
 
         $scope.placeOrder = function(){
+
+            conduit.collection('customer','').get().then(function(){
+
+            });
+
+            $scope.modelData['account'] = $scope.account;
+            console.log($scope.modelData);
           //Validate Address and Payment Method
             $scope.collection.save($scope.modelData).then(function(){
-                conduit.localStorage('cart').remove();
-                $location.path('/shop/home');
+               // conduit.localStorage('cart').remove();
+               // $location.path('/shop/home');
             });
         };
 

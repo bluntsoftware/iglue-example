@@ -9,11 +9,12 @@
 
                         <div class="col-sm-6">
                             <h3>Shipping Address</h3>
-                            <h5>Alexnader Mcknight</h5>
-                            <h5>816 Stonybrook</h5>
-                            <h5>Norristown, PA 19403</h5>
+                            <h5>{{customer.name}}</h5>
+                            <h5>{{customer.shipping.address1}}</h5>
+                            <h5>{{customer.shipping.address2}}</h5>
+                            <h5>{{customer.shipping.city}}, {{customer.shipping.state}} {{customer.shipping.zip}}</h5>
                             <h5>United States</h5>
-                            <h5>(215) 360-2660</h5>
+                            <h5>{{customer.phone}}</h5>
                         </div>
 
                         <div class="col-sm-6">
@@ -21,9 +22,10 @@
                             <h5>Visa ending in ..4543</h5>
 
                             <h3>Billing Address</h3>
-                            <h5>Alexnader Mcknight</h5>
-                            <h5>816 Stonybrook</h5>
-                            <h5>Norristown, PA 19403</h5>
+                            <h5>{{customer.name}}</h5>
+                            <h5>{{customer.billing.address1}}</h5>
+                            <h5>{{customer.billing.address2}}</h5>
+                            <h5>{{customer.billing.city}}, {{customer.billing.state}} {{customer.billing.zip}}</h5>
 
                         </div>
                     </div>

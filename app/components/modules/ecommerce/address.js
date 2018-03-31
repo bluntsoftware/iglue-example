@@ -1,8 +1,7 @@
-
-catwalkApp.controller('customer-controller', ['$scope','$location','$stateParams','conduit',
+catwalkApp.controller('address-controller', ['$scope','$location','$stateParams','conduit',
     function ($scope,$location,$stateParams,conduit) {
         $scope.srchterm = '';
-        $scope.collection = conduit.collection('customer','');
+        $scope.collection = conduit.collection('address','');
         $scope.listParams = {
             or:false,
             filterByFields: "{}",
@@ -100,14 +99,21 @@ catwalkApp.controller('customer-controller', ['$scope','$location','$stateParams
             window.history.back();
         };
 
-        $scope.new= function(){
-            $location.path('/ecom/customer/');
+        $scope.new = function(){
+            $location.path('/shop/address/');
+        };
+
+        $scope.admin_new = function(){
+            $location.path('/ecom/address/');
         };
 
         $scope.update= function(id){
-            $location.path('/ecom/customer/' + id);
+            $location.path('/shop/address/' + id);
         };
 
+        $scope.admin_update= function(id){
+            $location.path('/ecom/address/' + id);
+        };
         if($stateParams.id){ $scope.get($stateParams.id);}
         else{ $scope.list();}
 
@@ -117,20 +123,35 @@ catwalkApp.controller('customer-controller', ['$scope','$location','$stateParams
 catwalkApp.config(['$stateProvider', '$urlRouterProvider','USER_ROLES',
     function ($stateProvider, $urlRouterProvider,USER_ROLES) {
         $stateProvider
-            .state('ecom.customers', {
-                url: "/customers",
-                templateUrl: "components/modules/ecommerce/templates/customer-list.html",
-                controller: 'customer-controller'
+            .state('ecom.addresses', {
+                url: "/addresses",
+                templateUrl: "components/modules/ecommerce/templates/address-list.html",
+                controller: 'address-controller'
             })
-            .state('ecom.new_customer', {
-                url: "/customer",
-                templateUrl: "components/modules/ecommerce/templates/customer.html",
-                controller: 'customer-controller'
+            .state('ecom.new_address', {
+                url: "/address",
+                templateUrl: "components/modules/ecommerce/templates/address.html",
+                controller: 'address-controller'
             })
-            .state('ecom.customer', {
-                url: "/customer/:id",
-                templateUrl: "components/modules/ecommerce/templates/customer.html",
-                controller: 'customer-controller'
+            .state('ecom.address', {
+                url: "/address/:id",
+                templateUrl: "components/modules/ecommerce/templates/address.html",
+                controller: 'address-controller'
+            })
+            .state('shop.address-manager', {
+                url: "/address-manager",
+                templateUrl: "components/modules/ecommerce/templates/address-manager.html",
+                controller: 'address-controller'
+            })
+            .state('shop.new_address', {
+                url: "/address",
+                templateUrl: "components/modules/ecommerce/templates/address.html",
+                controller: 'address-controller'
+            })
+            .state('shop.address', {
+                url: "/address/:id",
+                templateUrl: "components/modules/ecommerce/templates/address.html",
+                controller: 'address-controller'
             })
     }
 ]);
