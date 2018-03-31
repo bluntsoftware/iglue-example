@@ -1,6 +1,6 @@
 
-catwalkApp.controller('order-controller', ['$scope','$location','$stateParams','conduit','customer',
-    function ($scope,$location,$stateParams,conduit,customer) {
+catwalkApp.controller('order-controller', ['$scope','$location','$stateParams','conduit','profile',
+    function ($scope,$location,$stateParams,conduit,profile) {
         $scope.srchterm = '';
         $scope.collection = conduit.collection('order','');
         $scope.listParams = {
