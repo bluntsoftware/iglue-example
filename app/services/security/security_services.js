@@ -155,6 +155,7 @@ catwalkApp.factory('AuthenticationSharedService', function ($rootScope, $http, a
         },
 
         valid: function (authorizedRoles) {
+
             if (!authorizedRoles) {
                 return true;
             }

@@ -90,7 +90,10 @@ catwalkApp.config(['$stateProvider', '$urlRouterProvider','USER_ROLES',
             .state('index.home', {
                 url: "/home",
                 templateUrl: "components/home/home.html",
-                controller: 'MainCtrl'
+                controller: 'MainCtrl',
+                access: {
+                    authorizedRoles: [USER_ROLES.all]
+                }
             })
 
     }
