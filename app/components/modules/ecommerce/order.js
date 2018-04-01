@@ -1,6 +1,6 @@
 
-catwalkApp.controller('order-controller', ['$scope','$location','$stateParams','conduit','customer',
-    function ($scope,$location,$stateParams,conduit,customer) {
+catwalkApp.controller('order-controller', ['$scope','$rootScope','$location','$stateParams','conduit','profile',
+    function ($scope,$rootScope,$location,$stateParams,conduit,profile) {
         $scope.srchterm = '';
         $scope.collection = conduit.collection('order','');
         $scope.listParams = {
@@ -13,12 +13,18 @@ catwalkApp.controller('order-controller', ['$scope','$location','$stateParams','
             sidx: "title"
         };
 
-
-
         $scope.modelData = conduit.localStorage('cart').get();
         $scope.modelData.shipping = {};
         $scope.modelData.billing = {};
-
+        profile.get($rootScope.account).then(function(profile){
+            $scope.profile  = profile;
+            if(profile['shipping']){
+                $scope.modelData.shipping = profile['shipping'];
+            }
+            if(profile['billing']){
+                $scope.modelData.shipping = profile['billing'];
+            }
+        });
 
         if($scope.modelData.items){
             $scope.qty = Object.keys($scope.modelData.items).length;
@@ -156,8 +162,11 @@ catwalkApp.config(['$stateProvider', '$urlRouterProvider','USER_ROLES',
             })
             .state('shop.checkout', {
                 url: "/checkout",
-                templateUrl: "components/modules/ecommerce/templates/checkout.html",
-                controller: 'order-controller'
+                templateUrl: "components/modules/ecommerce/templates/order-checkout.html",
+                controller: 'order-controller',
+                access: {
+                    authorizedRoles: [USER_ROLES.user]
+                }
             })
     }
 ]);

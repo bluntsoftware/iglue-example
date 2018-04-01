@@ -47,6 +47,9 @@ catwalkApp.config(['$stateProvider', '$urlRouterProvider','USER_ROLES',
                     'content': {
                         template:'<div class="has-topbar" ui-view></div>'
                     }
+                },
+                access: {
+                    authorizedRoles: [USER_ROLES.all]
                 }
             })
     }
