@@ -30,7 +30,7 @@
             </thead>
             <tbody>
                 <tr ng-dblclick="update(item._id)"  ng-repeat="item in items" >
-                    <td ng-click="update(item._id)" class='img-thumbnail'><img style="max-width:100px;"  ng-if="item.images[0].url" src="{{item.images[0].url}}"></td>
+                    <td ng-click="update(item._id)" class='img-thumbnail'><img class="product-list-thumbnail"   ng-if="item.images[0].url" src="{{item.images[0].url}}"></td>
                     <td>
                         <button class="btn btn-round btn-xs btn-default pull-right"  ng-click="remove(item._id)" >
                             <i class="fa fa-remove"></i>
