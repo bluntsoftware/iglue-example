@@ -24,8 +24,9 @@
         <table class="table table-striped table-bordered table-hover table-responsive table-condensed push-down">
             <thead>
             <tr>
+                <td>Status</td>
                 <td>Order Date</td>
-                <th>Ship To</th>
+                <th>Customer</th>
                 <th>Bill To</th>
                 <th>Item Qty</th>
                 <th>Sub Total</th>
@@ -36,8 +37,9 @@
             </thead>
             <tbody>
             <tr ng-repeat="item in items" >
+                <td>{{item.status}}</td>
                 <td>{{item.orderDate | date : "fullDate"}}</td>
-                <td>{{item.shipping.full_name}} </td>
+                <td>{{item.shipping.user_info.login}} </td>
                 <td>{{item.billing.full_name}}</td>
                 <td>{{item.qty}}</td>
                 <td>{{item.subTotal | currency: "$" : 2}}</td>

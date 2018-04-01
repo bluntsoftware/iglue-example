@@ -46,7 +46,7 @@ catwalkApp.controller('order-controller', ['$scope','$rootScope','$location','$s
             $scope.modelData['account'] = $scope.account;
             $scope.modelData['orderDate'] = new Date();
             $scope.modelData['qty'] = Object.keys($scope.modelData.items).length;
-
+            $scope.modelData['status'] = 'New';
           //Validate Address and Payment Method
             $scope.collection.save($scope.modelData).then(function(){
                 conduit.localStorage('cart').remove();
