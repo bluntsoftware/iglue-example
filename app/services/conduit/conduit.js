@@ -1,7 +1,7 @@
 catwalkApp.factory('conduit', function ($resource,$window,$q,$state,$rootScope) {
     var conduit =  {
         previousState:function(data){
-            alert($rootScope.prevState);
+            //alert($rootScope.prevState);
             if(data){
                 $state.go($rootScope.prevState,data);
             }else{
