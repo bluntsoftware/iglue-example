@@ -12,11 +12,10 @@ catwalkApp.controller('address-controller', ['$scope','$location','$stateParams'
             sidx: "title"
         };
         $scope.totalpages = 0;
-
         $scope.select = function(id){
             profile.get().then(function(data){
                 $scope.collection.getById(id).then(function(address) {
-                    data['shipping'] = address;
+                    data[conduit.getParameter('addressType')] = address;
                     profile.collection().save(data).then(function(){
                         conduit.previousState();
                     });
@@ -154,7 +153,10 @@ catwalkApp.config(['$stateProvider', '$urlRouterProvider','USER_ROLES',
             .state('shop.address-manager', {
                 url: "/address-manager",
                 templateUrl: "components/modules/ecommerce/templates/address-manager.html",
-                controller: 'address-controller'
+                controller: 'address-controller',
+                params:{
+                    addressType:'shipping'
+                }
             })
             .state('shop.new_address', {
                 url: "/address",

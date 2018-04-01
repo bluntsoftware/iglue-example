@@ -12,14 +12,12 @@ catwalkApp.controller('order-controller', ['$scope','$rootScope','$location','$s
             rows: 20,
             sidx: "title"
         };
-
-        $scope.modelPage = function(page){
-
-
-
+        $scope.editBilling = function(){
+            conduit.go('shop.address-manager',{addressType:'billing'});
         };
-
-
+        $scope.editShipping = function(){
+            conduit.go('shop.address-manager',{addressType:'shipping'});
+        };
 
         $scope.refreshOrder = function(){
             $scope.modelData = conduit.localStorage('cart').get();

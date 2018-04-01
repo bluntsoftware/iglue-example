@@ -10,7 +10,7 @@
                         <div class="col-sm-6">
                             <div  class="row">
                                 <div class="col-sm-6"><a>Shipping Address</a></div>
-                                <div ui-sref="shop.address-manager" class="col-sm-6"><button class="btn btn-xs btn-default">Change</button></div>
+                                <div ng-click="editShipping()" class="col-sm-6"><button class="btn btn-xs btn-default">Change</button></div>
                             </div>
 
 
@@ -32,7 +32,7 @@
 
                             <div   class="row">
                                 <div class="col-sm-6"><a>Billing Address</a></div>
-                                <div ui-sref="shop.address-manager" class="col-sm-6"><button class="btn btn-xs btn-default">Change</button></div>
+                                <div ng-click="editBilling()" class="col-sm-6"><button class="btn btn-xs btn-default">Change</button></div>
                             </div>
                             <h5>{{modelData.billing.full_name}}</h5>
                             <h5>{{modelData.billing.address1}}</h5>

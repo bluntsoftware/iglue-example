@@ -2,10 +2,17 @@ catwalkApp.factory('conduit', function ($resource,$window,$q,$state,$rootScope) 
     var conduit =  {
         go:function(state,data){
             if(data){
-               return $state.go(state,data);
+                return $state.go(state,data);
             }else{
                 return $state.go(state);
             }
+        },
+        getParameter:function(key){
+            var ret = $state.params[key];
+            if(!ret){
+                alert("Parameter " + key + " must be defined in the route i.e. --> params{ " + key + ": 'SomeDefaultValue'}");
+            }
+            return $state.params[key];
         },
         previousState:function(data){
             if(data){
