@@ -24,23 +24,26 @@
         <table class="table table-striped table-bordered table-hover table-responsive table-condensed push-down">
             <thead>
             <tr>
-                <th>Image</th>
-                <th ng-click="sort()">Description<span class="fa fa-caret-down"></span></th>
+                <td>Order Date</td>
+                <th>Ship To</th>
+                <th>Bill To</th>
+                <th>Item Qty</th>
+                <th>Sub Total</th>
+                <th>Shipping</th>
+                <th>Tax</th>
+                <th>Total</th>
             </tr>
             </thead>
             <tbody>
             <tr ng-repeat="item in items" >
-                <td ng-click="update(item._id)" class='img-thumbnail'><img  ng-if="item.images[0].url" src="{{item.images[0].url}}"></td>
-                <td>
-                    <button class="btn btn-round btn-xs btn-default pull-right"  ng-click="remove(item._id)" >
-                        <i class="fa fa-remove"></i>
-                    </button>
-                    <h3>{{item.title}} - {{item.category}}
-                    </h3>
-
-                    <h5 ng-bind-html="item.subcategory"></h5>
-                    <i ng-bind-html="item.description"></i>
-                </td>
+                <td>{{item.orderDate | date : "fullDate"}}</td>
+                <td>{{item.shipping.full_name}} </td>
+                <td>{{item.billing.full_name}}</td>
+                <td>{{item.qty}}</td>
+                <td>{{item.subTotal | currency: "$" : 2}}</td>
+                <td>{{item.shippingTotal | currency: "$" : 2}}</td>
+                <td>{{item.tax | currency: "$" : 2}}</td>
+                <td>{{item.total | currency: "$" : 2}}</td>
             </tr>
             </tbody>
         </table>

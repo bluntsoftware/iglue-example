@@ -46,7 +46,7 @@ catwalkApp.controller('cart-controller', ['$scope','$rootScope','$location','$st
             }
             $scope.cart['subTotal'] = subTotal;
             $scope.cart['tax'] = tax;
-            $scope.cart['shipping'] = shipping;
+            $scope.cart['shippingTotal'] = shipping;
             $scope.cart['total'] =  subTotal + tax + shipping;
 
         };

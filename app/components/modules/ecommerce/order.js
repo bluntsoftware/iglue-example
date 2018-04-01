@@ -44,11 +44,14 @@ catwalkApp.controller('order-controller', ['$scope','$rootScope','$location','$s
 
         $scope.placeOrder = function(){
             $scope.modelData['account'] = $scope.account;
-            console.log($scope.modelData);
+            $scope.modelData['orderDate'] = new Date();
+            $scope.modelData['qty'] = Object.keys($scope.modelData.items).length;
+
           //Validate Address and Payment Method
             $scope.collection.save($scope.modelData).then(function(){
-               // conduit.localStorage('cart').remove();
-               // $location.path('/shop/home');
+                conduit.localStorage('cart').remove();
+                conduit.go('shop.home');
+
             });
         };
 
