@@ -1,4 +1,4 @@
-# IGlue-Angular-Client 
+# IGlue-Example 
 #### A seed for an IGlue Angular Client application
 
 This project is an application skeleton for a typical [IGlue Angular Client][iglue-catwalk] web application. You can use it
@@ -11,28 +11,29 @@ framework and iglue user management for instant web development gratification.
 
 ## Getting Started
 
-To get you started you can simply clone the `iglue-angular-client` repository and install the dependencies:
+To get you started you can simply clone the `IGlue-Example` repository and install the dependencies:
 
 ### Prerequisites
 
-You need git to clone the `iglue-angular-client` repository. You can get git from [here][git].
+You need git to clone the `IGlue-Example` repository. You can get git from [here][git].
 
-We also use a number of Node.js tools to initialize `iglue-angular-client`. You must have Node.js
+We also use a number of Node.js tools to initialize `IGlue-Example`. You must have Node.js
 and its package manager (npm) installed. You can get them from [here][node].
 
-### Clone `iglue-angular-client`
+### Clone `IGlue-Example`
 
-Clone the `iglue-angular-client` repository using git:
-
-```
-git clone https://github.com/bluntsoftware/iglue-angular-client.git
-cd iglue-angular-client
-```
-
-If you just want to start a new project without the `iglue-angular-client` commit history then you can do:
+Clone the `IGlue-Example` repository using git and remove remote origin:
 
 ```
-git clone --depth=1 https://github.com/bluntsoftware/iglue-angular-client.git <your-project-name>
+git clone https://github.com/bluntsoftware/IGlue-Example.git
+cd IGlue-Example
+git remote rm origin
+```
+
+If you just want to start a new project without the `IGlue-Example` commit history then you can do:
+
+```
+git clone --depth=1 https://github.com/bluntsoftware/IGlue-Example.git <your-project-name>
 ```
 
 The `depth=1` tells git to only pull down one commit worth of historical data.
