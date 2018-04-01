@@ -13,25 +13,38 @@ catwalkApp.controller('order-controller', ['$scope','$rootScope','$location','$s
             sidx: "title"
         };
 
-        $scope.modelData = conduit.localStorage('cart').get();
-        $scope.modelData.shipping = {};
-        $scope.modelData.billing = {};
-        profile.get($rootScope.account).then(function(profile){
-            $scope.profile  = profile;
-            if(profile['shipping']){
-                $scope.modelData.shipping = profile['shipping'];
-            }
-            if(profile['billing']){
-                $scope.modelData.shipping = profile['billing'];
-            }
-        });
+        $scope.modelPage = function(page){
 
-        if($scope.modelData.items){
-            $scope.qty = Object.keys($scope.modelData.items).length;
-        }
+
+
+        };
+
+
+
+        $scope.refreshOrder = function(){
+            $scope.modelData = conduit.localStorage('cart').get();
+            $scope.modelData.shipping = {};
+            $scope.modelData.billing = {};
+            profile.get().then(function(profile){
+                console.log("************ PROFILE *****************");
+                console.log(profile);
+                $scope.profile  = profile;
+                if(profile['shipping']){
+                    $scope.modelData.shipping = profile['shipping'];
+                }
+                if(profile['billing']){
+                    $scope.modelData.billing = profile['billing'];
+                }else{
+                    $scope.modelData.billing = profile['shipping'];
+                }
+            });
+            if($scope.modelData.items){
+                $scope.qty = Object.keys($scope.modelData.items).length;
+            }
+        };
+        $scope.refreshOrder();
 
         $scope.placeOrder = function(){
-
             $scope.modelData['account'] = $scope.account;
             console.log($scope.modelData);
           //Validate Address and Payment Method
@@ -165,7 +178,7 @@ catwalkApp.config(['$stateProvider', '$urlRouterProvider','USER_ROLES',
                 templateUrl: "components/modules/ecommerce/templates/order-checkout.html",
                 controller: 'order-controller',
                 access: {
-                    authorizedRoles: [USER_ROLES.user]
+                    authorizedRoles: [USER_ROLES.user,USER_ROLES.admin]
                 }
             })
     }
