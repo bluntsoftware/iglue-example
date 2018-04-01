@@ -59,6 +59,18 @@
                                         <label class="control-label editable-label" for="">Sub Category</label>
                                         <input class="form-control input-sm" ng-model="modelData.subcategory" name="subcategory" type="text"></div>
                                 </div>
+                                <div class="col-sm-8" id="snippet_294">
+                                    <!-- Text Input-->
+                                    <div class="form-group">
+                                        <label class="control-label editable-label" for="">Image 1</label>
+                                        <input class="form-control input-sm" ng-model="modelData.images[0].url" name="subcategory" type="text"></div>
+                                </div>
+                                <div class="col-sm-8" id="snippet_294">
+                                    <!-- Text Input-->
+                                    <div class="form-group">
+                                        <label class="control-label editable-label" for="">Image 2</label>
+                                        <input class="form-control input-sm" ng-model="modelData.images[1].url" name="subcategory" type="text"></div>
+                                </div>
                             </div>
 
                             <!-- Text Area -->
@@ -128,7 +140,8 @@
         <div class="col-sm-6">
             <!-- Image ng-model="modelData.images[2].url" img/no_image_placeholder.png -->
             <div class="control-group">
-                <img class="img-responsive " image="images[2].url" src="{{modelData.images[2].url}}">
+
+                <img style="max-height:125px" class="img-responsive " image="images[2].url" src="{{modelData.images[2].url}}">
             </div>
         </div>
     </div>

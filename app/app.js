@@ -18,4 +18,4 @@ var catwalkApp  = angular.module('catwalk', [
     'ngTagsInput',                  // tags
     'as.sortable'                   // Ng Sortable
 ]).run();
-var base_url = 'http://jerb.bluntsoftware.com/KoleImports/'; //'../glue/  http://localhost/glue/ http://localhost:8080/glue/ http://jerb.bluntsoftware.com/KoleImports/
+var base_url = 'http://lizardtee.com/ShirtShop/'; //'../glue/  http://localhost/glue/ http://localhost:8080/glue/ http://jerb.bluntsoftware.com/KoleImports/
