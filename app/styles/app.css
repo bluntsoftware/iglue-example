@@ -25,9 +25,11 @@
     margin-top: 45px;
 }
 .product-list-thumbnail{
-    max-width:100px;
+    max-width:90px;
 }
-
+.product-list-preview{
+    max-width:75%;
+}
 .team-member{
     text-align: center;
 }
