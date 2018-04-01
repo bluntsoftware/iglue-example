@@ -125,13 +125,11 @@ catwalkApp.factory('Session', function () {
 catwalkApp.factory('AuthenticationSharedService', function ($rootScope, $http, authService, Session, Account,$location) {
     return {
         sociallogin:function(){
-
             Account.get(function(data) {
-
-
                 Session.create(data.landingPage,data.login, data.firstName, data.lastName, data.email, data.roles,data.imgSrc);
                 $rootScope.account = Session;
                 authService.loginConfirmed(data);
+
             });
         },
         login: function (param) {
@@ -274,6 +272,7 @@ var securityHandler = ['$rootScope','$log', '$location', '$http','$state','Authe
             $rootScope.isAuthorized = AuthenticationSharedService.isAuthorized;
             $rootScope.userRoles = USER_ROLES;
             var authorizedRoles = null;
+            //Get access from  state provider
             var access = toState.access;
             if(access){
                 authorizedRoles = access.authorizedRoles;
@@ -293,6 +292,7 @@ var securityHandler = ['$rootScope','$log', '$location', '$http','$state','Authe
         });
         // Call when the the client is confirmed
         $rootScope.$on('event:auth-loginConfirmed', function(event,data) {
+            alert('event:auth-loginConfirmed' + $rootScope.returnToState);
             console.log("*************** LOGIN CONFIRMED *****************");
             $rootScope.authenticated = true;
            if($rootScope.returnToState && $rootScope.returnToStateParams ) {

@@ -1,5 +1,9 @@
-catwalkApp.factory('conduit', function ($resource,$window,$q) {
+catwalkApp.factory('conduit', function ($resource,$window,$q,$state,$rootScope) {
     var conduit =  {
+
+        modalView:function(data){
+            $state.go($rootScope.returnToState,data);
+        },
         sessionStorage:function(name){
             return {
                 get:function () {

@@ -1,5 +1,5 @@
-catwalkApp.controller('address-controller', ['$scope','$location','$stateParams','conduit',
-    function ($scope,$location,$stateParams,conduit) {
+catwalkApp.controller('address-controller', ['$scope','$location','$stateParams','conduit','profile',
+    function ($scope,$location,$stateParams,conduit,profile) {
         $scope.srchterm = '';
         $scope.collection = conduit.collection('address','');
         $scope.listParams = {
@@ -14,7 +14,16 @@ catwalkApp.controller('address-controller', ['$scope','$location','$stateParams'
         $scope.totalpages = 0;
 
         $scope.select = function(id){
+            profile.get().then(function(data){
+                $scope.collection.getById(id).then(function(address) {
+                    data['shipping'] = address;
+                    profile.collection().save(data);
+                    $location.path('/shop/checkout');
 
+
+
+                });
+            });
         };
 
         $scope.$watch('srchterm', function(newVal, oldVal) {
