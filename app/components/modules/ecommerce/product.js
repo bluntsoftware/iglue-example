@@ -175,27 +175,28 @@ catwalkApp.controller('product-controller', ['$scope','$rootScope','$location','
         };
 
         $scope.back = function () {
-            window.history.back();
+            conduit.previousState();
         };
 
         $scope.gotoProducts = function () {
-            $location.path('/ecom/products');
+            conduit.go('ecom.products');
+
         };
 
         $scope.new= function(){
-            $location.path('/ecom/product/');
+            conduit.go('ecom.product');
         };
 
         $scope.update= function(id){
-            $location.path('/ecom/product/' + id);
+            conduit.go('ecom.product',{id: id});
         };
 
         $scope.detail= function(id){
-            $location.path('/shop/detail/' + id);
+            conduit.go('shop.detail',{id: id});
         };
 
         $scope.shopHome= function(){
-            $location.path('/shop/home');
+            conduit.go('shop.home');
         };
 
         if($stateParams.id){ $scope.get($stateParams.id);}
