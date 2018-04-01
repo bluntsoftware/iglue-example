@@ -1,8 +1,12 @@
 catwalkApp.factory('conduit', function ($resource,$window,$q,$state,$rootScope) {
     var conduit =  {
-
-        modalView:function(data){
-            $state.go($rootScope.returnToState,data);
+        previousState:function(data){
+            alert($rootScope.prevState);
+            if(data){
+                $state.go($rootScope.prevState,data);
+            }else{
+                $state.go($rootScope.prevState);
+            }
         },
         sessionStorage:function(name){
             return {

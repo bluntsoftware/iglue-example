@@ -269,6 +269,8 @@ var securityHandler = ['$rootScope','$log', '$location', '$http','$state','Authe
         };
         $rootScope.$on('$stateChangeStart',function(event, toState, toParams, fromState, fromParams){
 
+            $rootScope.prevState = fromState.name;
+
             $rootScope.isAuthorized = AuthenticationSharedService.isAuthorized;
             $rootScope.userRoles = USER_ROLES;
             var authorizedRoles = null;
@@ -277,6 +279,7 @@ var securityHandler = ['$rootScope','$log', '$location', '$http','$state','Authe
             if(access){
                 authorizedRoles = access.authorizedRoles;
             }
+
 
             AuthenticationSharedService.valid(authorizedRoles);
 
@@ -292,7 +295,7 @@ var securityHandler = ['$rootScope','$log', '$location', '$http','$state','Authe
         });
         // Call when the the client is confirmed
         $rootScope.$on('event:auth-loginConfirmed', function(event,data) {
-            alert('event:auth-loginConfirmed' + $rootScope.returnToState);
+           // alert('event:auth-loginConfirmed' + $rootScope.returnToState);
             console.log("*************** LOGIN CONFIRMED *****************");
             $rootScope.authenticated = true;
            if($rootScope.returnToState && $rootScope.returnToStateParams ) {

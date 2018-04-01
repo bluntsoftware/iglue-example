@@ -17,11 +17,9 @@ catwalkApp.controller('address-controller', ['$scope','$location','$stateParams'
             profile.get().then(function(data){
                 $scope.collection.getById(id).then(function(address) {
                     data['shipping'] = address;
-                    profile.collection().save(data);
-                    $location.path('/shop/checkout');
-
-
-
+                    profile.collection().save(data).then(function(){
+                        conduit.previousState();
+                    });
                 });
             });
         };
