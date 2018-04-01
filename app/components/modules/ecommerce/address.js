@@ -12,6 +12,8 @@ catwalkApp.controller('address-controller', ['$scope','$location','$stateParams'
             sidx: "title"
         };
         $scope.totalpages = 0;
+
+        //save the default address to the users profile
         $scope.select = function(id){
             profile.get().then(function(data){
                 $scope.collection.getById(id).then(function(address) {
