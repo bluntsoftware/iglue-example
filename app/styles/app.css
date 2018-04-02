@@ -1,7 +1,7 @@
 .bottomdiv {
     height: 62px;
     position:absolute;
-    bottom:0;
+    bottom:-30px;
 }
 .rating{
     color: #ffe64e;
@@ -25,7 +25,7 @@
     margin-top: 45px;
 }
 .product-list-thumbnail{
-    max-width:90px;
+    width:223px;
 }
 .product-list-preview{
     max-width:75%;
