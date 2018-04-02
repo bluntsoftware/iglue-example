@@ -33,11 +33,11 @@ catwalkApp.controller('order-controller', ['$scope','$rootScope','$location','$s
                         alert(message);
                     },
                     onPaymentMethodReceived:function(data){
-                        console.log(data);
+                        $scope.modelData.shipping = $scope.convertAddress(data.details.shippingAddress);
+                        $scope.modelData.billing = $scope.convertAddress(data.details.billingAddress);
+                        $scope.modelData.shipping['phone'] = data.phone;
+                        console.log($scope.modelData );
                         $scope.placeOrder();
-
-
-
                         /*console.log($scope.registerAccount);
                         $scope.registerAccount['payment_info'] = data;
                         $scope.registerAccount['planId'] = $scope.planId;
@@ -53,6 +53,17 @@ catwalkApp.controller('order-controller', ['$scope','$rootScope','$location','$s
 
         $scope.configureBraintree();
 
+        $scope.convertAddress=function(braintreeAddress){
+            return {
+                full_name:braintreeAddress['recipientName'],
+                address1:braintreeAddress['streetAddress'],
+                address2:braintreeAddress['extendedAddress'],
+                city:braintreeAddress['locality'],
+                state:braintreeAddress['region'],
+                zip:braintreeAddress['postalCode'],
+                country:braintreeAddress['countryCodeAlpha2']
+            }
+        };
 
         $scope.refreshOrder = function(){
             $scope.modelData = conduit.localStorage('cart').get();
@@ -93,8 +104,8 @@ catwalkApp.controller('order-controller', ['$scope','$rootScope','$location','$s
             $scope.modelData['status'] = 'New';
           //Validate Address and Payment Method
             $scope.collection.save($scope.modelData).then(function(){
-                //conduit.localStorage('cart').remove();
-               // conduit.go('shop.home');
+                 conduit.localStorage('cart').remove();
+                conduit.go('shop.home');
 
             });
         };

@@ -39,8 +39,8 @@
             <tr ng-repeat="item in items" >
                 <td>{{item.status}}</td>
                 <td>{{item.orderDate | date : "fullDate"}}</td>
-                <td>{{item.shipping.user_info.login}} </td>
-                <td>{{item.billing.full_name}}</td>
+                <td>{{item.user_info.login}} </td>
+                <td>{{item.shipping.full_name}}</td>
                 <td>{{item.qty}}</td>
                 <td>{{item.subTotal | currency: "$" : 2}}</td>
                 <td>{{item.shippingTotal | currency: "$" : 2}}</td>
