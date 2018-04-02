@@ -89,16 +89,7 @@ catwalkApp.controller('order-controller', ['$scope','$rootScope','$location','$s
             }
             $scope.list();
         };
-        $scope.cycle= function(){
-            if($scope.interval){
-                clearInterval($scope.interval);
-                $scope.interval = null;
-            }else{
-                $scope.interval = setInterval(function() {
-                    $scope.nextPage();
-                }, 1500);
-            }
-        };
+
         $scope.nextPage = function(){
             $scope.setPage($scope.listParams.page + 1);
         };
