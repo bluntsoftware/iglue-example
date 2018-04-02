@@ -1,6 +1,6 @@
 
-catwalkApp.controller('order-controller', ['$scope','$rootScope','$location','$stateParams','conduit','profile',
-    function ($scope,$rootScope,$location,$stateParams,conduit,profile) {
+catwalkApp.controller('order-controller', ['$scope','$rootScope','$location','$stateParams','conduit','profile','Payment',
+    function ($scope,$rootScope,$location,$stateParams,conduit,profile,Payment) {
         $scope.srchterm = '';
         $scope.collection = conduit.collection('order','');
         $scope.listParams = {
@@ -12,12 +12,47 @@ catwalkApp.controller('order-controller', ['$scope','$rootScope','$location','$s
             rows: 20,
             sidx: "title"
         };
+        $scope.cod = false;
+
         $scope.editBilling = function(){
             conduit.go('shop.address-manager',{addressType:'billing'});
         };
         $scope.editShipping = function(){
             conduit.go('shop.address-manager',{addressType:'shipping'});
         };
+
+        $scope.configureBraintree = function(){
+            Payment.client_token(function(token){
+
+                braintree.setup(token.client_token, 'dropin', {
+                    container: 'dropin-container',
+                    onReady:function() {
+
+                    },
+                    onError:function(type, message) {
+                        alert(message);
+                    },
+                    onPaymentMethodReceived:function(data){
+                        console.log(data);
+                        $scope.placeOrder();
+
+
+
+                        /*console.log($scope.registerAccount);
+                        $scope.registerAccount['payment_info'] = data;
+                        $scope.registerAccount['planId'] = $scope.planId;
+                        Payment.subscribe( $scope.registerAccount,function(){
+                            //alert('Subscribe');
+                            AuthenticationSharedService.gotoDefaultPage();
+                        });*/
+                    }
+                });
+            });
+
+        };
+
+        $scope.configureBraintree();
+
 
         $scope.refreshOrder = function(){
             $scope.modelData = conduit.localStorage('cart').get();
@@ -35,12 +70,21 @@ catwalkApp.controller('order-controller', ['$scope','$rootScope','$location','$s
                 }else{
                     $scope.modelData.billing = profile['shipping'];
                 }
+
             });
             if($scope.modelData.items){
                 $scope.qty = Object.keys($scope.modelData.items).length;
             }
+
         };
         $scope.refreshOrder();
+
+
+
+
+
+
+
 
         $scope.placeOrder = function(){
             $scope.modelData['account'] = $scope.account;
@@ -49,8 +93,8 @@ catwalkApp.controller('order-controller', ['$scope','$rootScope','$location','$s
             $scope.modelData['status'] = 'New';
           //Validate Address and Payment Method
             $scope.collection.save($scope.modelData).then(function(){
-                conduit.localStorage('cart').remove();
-                conduit.go('shop.home');
+                //conduit.localStorage('cart').remove();
+               // conduit.go('shop.home');
 
             });
         };
