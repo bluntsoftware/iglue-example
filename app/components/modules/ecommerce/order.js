@@ -37,6 +37,9 @@ catwalkApp.controller('order-controller', ['$scope','$rootScope','$location','$s
         $scope.validatePayment  = function(){
             if($scope.bt_instance){
                 $scope.bt_instance.requestPaymentMethod(function (err, payload) {
+
+                    console.log(payload);
+                    console.log(err);
                     if (err) {
                         console.log('Error', err);
                         return;
