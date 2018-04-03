@@ -2,7 +2,7 @@ catwalkApp.factory('Payment', ['$resource',
     function ($resource) {
         return $resource(base_url + 'payment', {}, {
             'client_token': { method: 'POST', params: {}, isArray: false,url:base_url + 'payment' + '/client_token'},
-            'checkout':{method: 'POST',isArray: false,url:base_url + 'payment' + '/checkout'},
+            'checkout':{method: 'POST',params: {},isArray: false,url:base_url + 'payment' + '/checkout'},
             'subscribe':{method: 'POST',isArray: false,url:base_url + 'payment' + '/subscribe'},
             'mysubscriptions':{method: 'GET',isArray: false,url:base_url + 'payment' + '/my_subscriptions'},
             'mytransactions':{method: 'GET',isArray: false,url:base_url + 'payment' + '/my_transactions'},

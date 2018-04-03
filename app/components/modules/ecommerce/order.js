@@ -20,6 +20,20 @@ catwalkApp.controller('order-controller', ['$scope','$rootScope','$location','$s
         $scope.editShipping = function(){
             conduit.go('shop.address-manager',{addressType:'shipping'});
         };
+
+        $scope.uuid = function () {
+            var uuid = "", i, random;
+            for (i = 0; i < 32; i++) {
+                random = Math.random() * 16 | 0;
+
+                if (i === 8 || i === 12 || i === 16 || i === 20) {
+                    uuid += "-"
+                }
+                uuid += (i === 12 ? 4 : (i === 16 ? (random & 3 | 8) : random)).toString(16);
+            }
+            return uuid;
+        };
+
         $scope.validatePayment  = function(){
             if($scope.bt_instance){
                 $scope.bt_instance.requestPaymentMethod(function (err, payload) {
@@ -28,20 +42,39 @@ catwalkApp.controller('order-controller', ['$scope','$rootScope','$location','$s
                         return;
                     }else{
                         if(payload.details.shippingAddress){
-                            $scope.modelData.shipping = $scope.convertAddress(data.details.shippingAddress);
-                            $scope.modelData.shipping['phone'] = data.phone;
+                            $scope.modelData.shipping = $scope.convertAddress(payload.details.shippingAddress);
+                            $scope.modelData.shipping['phone'] = payload.phone;
                         }
                         if(payload.details.billingAddress){
-                            $scope.modelData.billing = $scope.convertAddress(data.details.billingAddress);
+                            $scope.modelData.billing = $scope.convertAddress(payload.details.billingAddress);
                         }
 
-                        console.log(payload);
+                        var order = {
+                            nonce:payload['nonce'],
+                            amount:$scope.modelData.total,
+                            orderNo:$scope.uuid()
+                        };
 
-                       // $scope.placeOrder();
+                        if($scope.modelData.shipping){
+                            order['shipping'] = $scope.modelData.shipping;
+                            if(!$scope.modelData.billing){
+                                order['billing'] = $scope.modelData.shipping;
+                            }
+                        }
+                        if($scope.modelData.billing){
+                            order['billing'] = $scope.modelData.billing;
+                        }
+
+                        Payment.checkout(order,function(data){
+                            console.log(data);
+                            $scope.modelData['_id'] = order.orderNo;
+                            $scope.placeOrder();
+                        });
                     }
                 });
             }
         };
+
         $scope.initBrainTree = function(){
             Payment.client_token(function(token) {
                 braintree.dropin.create({
@@ -104,7 +137,7 @@ catwalkApp.controller('order-controller', ['$scope','$rootScope','$location','$s
             $scope.modelData['orderDate'] = new Date();
             $scope.modelData['qty'] = Object.keys($scope.modelData.items).length;
             $scope.modelData['status'] = 'New';
-
+            console.log($scope.modelData);
             $scope.collection.save($scope.modelData).then(function(){
                 conduit.localStorage('cart').remove();
                 conduit.go('shop.home');
