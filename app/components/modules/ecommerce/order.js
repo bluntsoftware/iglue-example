@@ -20,49 +20,58 @@ catwalkApp.controller('order-controller', ['$scope','$rootScope','$location','$s
         $scope.editShipping = function(){
             conduit.go('shop.address-manager',{addressType:'shipping'});
         };
+        $scope.validatePayment  = function(){
+            if($scope.bt_instance){
+                $scope.bt_instance.requestPaymentMethod(function (err, payload) {
+                    if (err) {
+                        console.log('Error', err);
+                        return;
+                    }else{
+                        if(payload.details.shippingAddress){
+                            $scope.modelData.shipping = $scope.convertAddress(data.details.shippingAddress);
+                            $scope.modelData.shipping['phone'] = data.phone;
+                        }
+                        if(payload.details.billingAddress){
+                            $scope.modelData.billing = $scope.convertAddress(data.details.billingAddress);
+                        }
 
-        $scope.configureBraintree = function(){
-            Payment.client_token(function(token){
+                        console.log(payload);
 
-                braintree.setup(token.client_token, 'dropin', {
-                    container: 'dropin-container',
-                    onReady:function() {
-
-                    },
-                    onError:function(type, message) {
-                        alert(message);
-                    },
-                    onPaymentMethodReceived:function(data){
-                        $scope.modelData.shipping = $scope.convertAddress(data.details.shippingAddress);
-                        $scope.modelData.billing = $scope.convertAddress(data.details.billingAddress);
-                        $scope.modelData.shipping['phone'] = data.phone;
-                        console.log($scope.modelData );
-                        $scope.placeOrder();
-                        /*console.log($scope.registerAccount);
-                        $scope.registerAccount['payment_info'] = data;
-                        $scope.registerAccount['planId'] = $scope.planId;
-                        Payment.subscribe( $scope.registerAccount,function(){
-                            //alert('Subscribe');
-                            AuthenticationSharedService.gotoDefaultPage();
-                        });*/
+                       // $scope.placeOrder();
                     }
                 });
-            });
-
+            }
         };
-
-        $scope.configureBraintree();
+        $scope.initBrainTree = function(){
+            Payment.client_token(function(token) {
+                braintree.dropin.create({
+                    authorization: token.client_token,
+                    container: '#dropin-container',
+                    paypal: {
+                        flow: 'vault'
+                    }
+                }, function (createErr, instance) {
+                    $scope.bt_instance = instance;
+                });
+            });
+        };
+        $scope.initBrainTree();
 
         $scope.convertAddress=function(braintreeAddress){
-            return {
-                full_name:braintreeAddress['recipientName'],
-                address1:braintreeAddress['streetAddress'],
-                address2:braintreeAddress['extendedAddress'],
-                city:braintreeAddress['locality'],
-                state:braintreeAddress['region'],
-                zip:braintreeAddress['postalCode'],
-                country:braintreeAddress['countryCodeAlpha2']
+            try{
+                return {
+                    full_name:braintreeAddress['recipientName'],
+                    address1:braintreeAddress['streetAddress'],
+                    address2:braintreeAddress['extendedAddress'],
+                    city:braintreeAddress['locality'],
+                    state:braintreeAddress['region'],
+                    zip:braintreeAddress['postalCode'],
+                    country:braintreeAddress['countryCodeAlpha2']
+                }
+            }catch(e){
+                console.log(e);
             }
+            return {};
         };
 
         $scope.refreshOrder = function(){
@@ -90,23 +99,15 @@ catwalkApp.controller('order-controller', ['$scope','$rootScope','$location','$s
         };
         $scope.refreshOrder();
 
-
-
-
-
-
-
-
         $scope.placeOrder = function(){
             $scope.modelData['account'] = $scope.account;
             $scope.modelData['orderDate'] = new Date();
             $scope.modelData['qty'] = Object.keys($scope.modelData.items).length;
             $scope.modelData['status'] = 'New';
-          //Validate Address and Payment Method
-            $scope.collection.save($scope.modelData).then(function(){
-                 conduit.localStorage('cart').remove();
-                conduit.go('shop.home');
 
+            $scope.collection.save($scope.modelData).then(function(){
+                conduit.localStorage('cart').remove();
+                conduit.go('shop.home');
             });
         };
 

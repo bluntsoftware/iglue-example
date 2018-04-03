@@ -2,50 +2,42 @@
     <section class="box ">
         <div class="content-body">
             <h3>Review Your Order</h3>
-
             <div style="margin-left: 25px" class="row">
-
-                <div class="col-sm-7">
-                    <div  ng-hide="cod" class="row">
-                        <form id="paymentForm" novalidate role="form" >
-                            <div id="dropin-container">
-
-                            </div>
-
-                        </form>
-                    </div>
-                    <div  ng-show="cod" class="row">
-
-                        <div class="col-sm-6">
+                <div class="col-sm-9">
+                    <div  class="row">
+                        <div class="col-sm-12">
                             <div  class="row">
-                                <div class="col-sm-6"><a>Shipping Address</a></div>
-                                <div ng-click="editShipping()" class="col-sm-6"><button class="btn btn-xs btn-default">Change</button></div>
+                                <div class="col-sm-6">
+                                    <div  class="row">
+                                        <div class="col-sm-6"><a>Shipping Address</a></div>
+                                        <div ng-click="editShipping()" class="col-sm-6"><button class="btn btn-xs btn-default">Change</button></div>
+                                    </div>
+                                    <h5>{{modelData.shipping.full_name}}</h5>
+                                    <h5>{{modelData.shipping.address1}}</h5>
+                                    <h5>{{modelData.shipping.address2}}</h5>
+                                    <h5>{{modelData.shipping.city}}, {{modelData.shipping.state}} {{modelData.shipping.zip}}</h5>
+                                    <h5>United States</h5>
+                                    <h5>{{modelData.shipping.phone}}</h5>
+                                </div>
+                                <div class="col-sm-6">
+
+                                    <div   class="row">
+                                        <div class="col-sm-6"><a>Billing Address</a></div>
+                                        <div ng-click="editBilling()" class="col-sm-6"><button class="btn btn-xs btn-default">Change</button></div>
+                                    </div>
+                                    <h5>{{modelData.billing.full_name}}</h5>
+                                    <h5>{{modelData.billing.address1}}</h5>
+                                    <h5>{{modelData.billing.address2}}</h5>
+                                    <h5>{{modelData.billing.city}}, {{modelData.billing.state}} {{modelData.billing.zip}}</h5>
+                                    <div  style="padding-right: 35px" ng-hide="cod" class="row">
+                                        <form id="paymentForm" novalidate role="form" ng-submit="validatePayment()" >
+                                            <div id="dropin-container">
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
                             </div>
-
-
-                            <h5>{{modelData.shipping.full_name}}</h5>
-                            <h5>{{modelData.shipping.address1}}</h5>
-                            <h5>{{modelData.shipping.address2}}</h5>
-                            <h5>{{modelData.shipping.city}}, {{modelData.shipping.state}} {{modelData.shipping.zip}}</h5>
-                            <h5>United States</h5>
-                            <h5>{{modelData.shipping.phone}}</h5>
-
-
-
-
                         </div>
-                        <div class="col-sm-6">
-                            <div   class="row">
-                                <div class="col-sm-6"><a>Billing Address</a></div>
-                                <div ng-click="editBilling()" class="col-sm-6"><button class="btn btn-xs btn-default">Change</button></div>
-                            </div>
-                            <h5>{{modelData.billing.full_name}}</h5>
-                            <h5>{{modelData.billing.address1}}</h5>
-                            <h5>{{modelData.billing.address2}}</h5>
-                            <h5>{{modelData.billing.city}}, {{modelData.billing.state}} {{modelData.billing.zip}}</h5>
-
-                        </div>
-
                     </div>
                     <hr>
                     <div class="row">
@@ -65,14 +57,13 @@
 
                     </div>
                 </div>
-                <div class="col-sm-5">
+                <div class="col-sm-3">
                     <div  style="padding-right: 40px" class="row pull-right">
                         <input type="checkbox"  ng-model="cod"> Cost On Delivery</input>
                     </div>
 
                     <div  ng-hide="cod" class="row">
-
-                        <button  type="submit" class="btn btn-warning" form="paymentForm">Place Order</button>
+                        <button type="submit" class="btn btn-warning" form="paymentForm">Place Order</button>
                     </div>
                     <div  ng-show="cod" class="row">
                         <button  ng-click="placeOrder()" class="btn btn-warning">Place Order</button>
