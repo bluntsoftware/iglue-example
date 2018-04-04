@@ -72,10 +72,13 @@ catwalkApp.controller('order-controller', ['$scope','$rootScope','$location','$s
                                 $scope.createInvoice(order).then(function(invoice){
                                     invoice.amountDue = 0.0;
                                     invoice.status = "Paid";
+                                    invoice.dueDate = Date.now();
+                                    invoice.sentDate = Date.now();
                                     invoice.payments = [];
                                     invoice.payments.push({
                                         amount:order.amount,
-                                        type:"creditcard"
+                                        type:"creditcard",
+                                        date:Date.now()
                                     });
                                     conduit.collection('billing','').save(invoice).then(function(){
                                         conduit.localStorage('cart').remove();
