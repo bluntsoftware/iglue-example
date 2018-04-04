@@ -1,5 +1,5 @@
-catwalkApp.controller('billing-controller', ['$scope','$location','$stateParams','conduit',
-    function ($scope,$location,$stateParams,conduit) {
+catwalkApp.controller('billing-controller', ['$scope','$location','$stateParams','conduit','Settings',
+    function ($scope,$location,$stateParams,conduit,Settings) {
         $scope.srchterm = '';
         $scope.collection = conduit.collection('billing','');
         $scope.listParams = {
@@ -11,6 +11,7 @@ catwalkApp.controller('billing-controller', ['$scope','$location','$stateParams'
             rows: 20,
             sidx: "title"
         };
+        $scope.today = new Date();
         $scope.totalpages = 0;
 
         $scope.$watch('srchterm', function(newVal, oldVal) {
@@ -28,6 +29,11 @@ catwalkApp.controller('billing-controller', ['$scope','$location','$stateParams'
             }
             $scope.search();
         };
+        Settings.get().then(function(data){
+            $scope.settings = data;
+            $scope.base_url = base_url;
+        });
+
 
         $scope.search = function(){
             var filterByFields = {'$or':[]};
@@ -81,6 +87,10 @@ catwalkApp.controller('billing-controller', ['$scope','$location','$stateParams'
         $scope.get = function(id){
             $scope.collection.getById(id).then(function(billing) {
                 $scope.modelData = billing;
+                conduit.collection('order','').getById(billing.order).then(function(order){
+                    console.log(order);
+                    $scope.order = order;
+                });
                 $scope.imageSrc = "";
             });
         };
@@ -132,6 +142,11 @@ catwalkApp.config(['$stateProvider', '$urlRouterProvider','USER_ROLES',
             .state('ecom.billing', {
                 url: "/billing/:id",
                 templateUrl: "components/modules/ecommerce/templates/billing.html",
+                controller: 'billing-controller'
+            })
+            .state('ecom.billing-invoice', {
+                url: "/billing-invoice/:id",
+                templateUrl: "components/modules/ecommerce/templates/billing-invoice.html",
                 controller: 'billing-controller'
             })
     }

@@ -35,7 +35,7 @@
             </tr>
             </thead>
             <tbody>
-            <tr ng-dblclick="update(item._id)"   ng-repeat="item in items" >
+            <tr ui-sref="ecom.billing-invoice({id:item._id})"    ng-repeat="item in items" >
                 <td>{{item.invoiceNo}}</td>
                 <td>{{item.customer}}</td>
                 <td>{{item.createDate | date : "fullDate"}}</td>

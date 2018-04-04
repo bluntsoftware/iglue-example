@@ -1,0 +1,136 @@
+<div class='content-wrapper'>
+    <div class="modal-header panel-heading">
+        <div class="input-group search">
+            <h4 class="modal-title">Invoice</h4>
+            <span class="input-group-btn">
+              <button class="btn btn-round btn-sm btn-success"  ng-click="makePayment()" >Make Payment</button>
+              <button class="btn btn-round btn-sm btn-success"  ng-click="edit()" >Edit</button>
+                <button class="btn btn-round btn-sm btn-success"  ng-click="print()" >Print</button>
+                <button class="btn btn-round btn-sm btn-default" ng-click="back()" >Cancel</button>
+            </span>
+        </div>
+    </div>
+    <div class="modal-body">
+<div class="col-lg-12">
+    <section class="box ">
+        <div class="content-body">
+            <div class="row">
+                <div class="col-md-12 col-sm-12 col-xs-12">
+                    <!-- start -->
+                    <div class="row">
+                        <div class="col-md-12 col-sm-12 col-xs-12">
+
+                        </div>
+                        <div class="clearfix"></div>
+                        <div class="col-md-4">
+                            <img style="max-height:35px;background-color: #0b58a2" class="invoice-logo" src="{{base_url}}{{settings.logoSrc}}">
+                            <br>
+                            <div class='address'>
+                                795 Folsom Ave, Suite 600
+                                <br> San Francisco, CA 94107
+                                <br> P: (123) 456-7890
+                                <br> E-mail: {{settings.infoEmail}}
+                                <br> Phone: (123) 456-7890
+                                <br> Fax: 800-692-7753
+                            </div>
+                            <br>
+                        </div>
+
+                        <div class="col-md-5">
+                            <h4>Billed To:</h4>
+                            <address >
+                                 {{order.billing.full_name}}
+                                 <br>{{order.billing.address1}}
+                                <br ng-if="order.billing.address2">{{order.billing.address2}}
+                                <br>{{order.billing.city}}, {{order.billing.state}} {{order.billing.zip}}
+                            </address>
+                        </div>
+                        <div class="col-md-3">
+                            <span class=''>Invoice # {{modelData.invoiceNo }}<br>{{ today | date }}</span>
+                            <br>
+                            <div>
+                                Invoice Date: {{modelData.dueDate | date}}
+                                <br>Due Date: {{modelData.dueDate | date}}
+                            </div>
+                        </div>
+                        <div class="clearfix"></div>
+                        <br>
+                        <div class="col-xs-6 invoice-infoblock pull-left">
+                        </div>
+
+                        <div class="clearfix"></div>
+
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12 col-sm-12 col-xs-12">
+
+                            <div class="table-responsive">
+                                <table class="table table-bordered table-hover invoice-table">
+                                    <thead>
+                                    <tr>
+                                        <td>
+                                            <h4>Item</h4></td>
+                                        <td class="text-center">
+                                            <h4>Price</h4></td>
+                                        <td class="text-center">
+                                            <h4>Quantity</h4></td>
+                                        <td class="text-right">
+                                            <h4>Totals</h4></td>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+
+                                    <tr ng-repeat="item in order.items">
+                                        <td ng-bind-html="item.title"></td>
+                                        <td class="text-center">{{item.tiers[0].price | currency: "$" : 2}}</td>
+                                        <td class="text-center">{{item.qty}}</td>
+                                        <td class="text-right">{{item.total | currency: "$" : 2}}</td>
+                                    </tr>
+
+                                    <tr>
+                                        <td class="thick-line"></td>
+                                        <td class="thick-line"></td>
+                                        <td class="thick-line text-center">
+                                            <h4>Subtotal</h4></td>
+                                        <td class="thick-line text-right">
+                                            <h4>{{order.subTotal | currency: "$" : 2}}</h4></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="no-line"></td>
+                                        <td class="no-line"></td>
+                                        <td class="no-line text-center">
+                                            <h4>Shipping</h4></td>
+                                        <td class="no-line text-right">
+                                            <h4>{{order.shippingTotal | currency: "$" : 2}}</h4></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="no-line"></td>
+                                        <td class="no-line"></td>
+                                        <td class="no-line text-center">
+                                            <h4>Tax</h4></td>
+                                        <td class="no-line text-right">
+                                            <h4>{{order.tax | currency: "$" : 2}}</h4></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="no-line"></td>
+                                        <td class="no-line"></td>
+                                        <td class="no-line text-center">
+                                            <h4>Total</h4></td>
+                                        <td class="no-line text-right">
+                                            <h3 style='margin:0px;' class="text-primary">{{order.total | currency: "$" : 2}}</h3></td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
+
+                    <!-- end -->
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+</div>
+</div>
