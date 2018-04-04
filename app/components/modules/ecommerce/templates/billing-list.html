@@ -26,8 +26,10 @@
             <tr>
                 <th>Invoice No.</th>
                 <th>Customer</th>
-                <th>Product</th>
-                <th>Date</th>
+                <th>Create Date</th>
+                <th>Sent Date</th>
+                <th>Due Date</th>
+                <th>Amount</th>
                 <th>Amount Due</th>
                 <th>Status</th>
             </tr>
@@ -36,9 +38,11 @@
             <tr ng-dblclick="update(item._id)"   ng-repeat="item in items" >
                 <td>{{item.invoiceNo}}</td>
                 <td>{{item.customer}}</td>
-                <td>{{item.product}}</td>
-                <td>{{item.createDate}}</td>
-                <td>{{item.amountDue}}</td>
+                <td>{{item.createDate | date : "fullDate"}}</td>
+                <td>{{item.sentDate | date : "fullDate"}}</td>
+                <td>{{item.dueDate | date : "fullDate"}}</td>
+                <td>{{item.amount  | currency: "$" : 2}}</td>
+                <td>{{item.amountDue  | currency: "$" : 2}}</td>
                 <td>{{item.status}}</td>
             </tr>
             </tbody>

@@ -1,6 +1,6 @@
 
-catwalkApp.controller('order-controller', ['$scope','$rootScope','$location','$stateParams','conduit','profile','Payment',
-    function ($scope,$rootScope,$location,$stateParams,conduit,profile,Payment) {
+catwalkApp.controller('order-controller', ['$scope','$rootScope','$location','$stateParams','conduit','profile','Payment','$q',
+    function ($scope,$rootScope,$location,$stateParams,conduit,profile,Payment,$q) {
         $scope.srchterm = '';
         $scope.collection = conduit.collection('order','');
         $scope.listParams = {
@@ -65,11 +65,24 @@ catwalkApp.controller('order-controller', ['$scope','$rootScope','$location','$s
                         if($scope.modelData.billing){
                             order['billing'] = $scope.modelData.billing;
                         }
+                        $scope.modelData['_id'] = order.orderNo;
 
                         Payment.checkout(order,function(data){
-                            console.log(data);
-                            $scope.modelData['_id'] = order.orderNo;
-                            $scope.placeOrder();
+                            $scope.placeOrder().then(function(order){
+                                $scope.createInvoice(order).then(function(invoice){
+                                    invoice.amountDue = 0.0;
+                                    invoice.status = "Paid";
+                                    invoice.payments = [];
+                                    invoice.payments.push({
+                                        amount:order.amount,
+                                        type:"creditcard"
+                                    });
+                                    conduit.collection('billing','').save(invoice).then(function(){
+                                        conduit.localStorage('cart').remove();
+                                        conduit.go('shop.home');
+                                    });
+                                });
+                            });
                         });
                     }
                 });
@@ -133,16 +146,43 @@ catwalkApp.controller('order-controller', ['$scope','$rootScope','$location','$s
         };
         $scope.refreshOrder();
 
+        $scope.createInvoice = function(order){
+            var deferred = $q.defer();
+            var billing = conduit.collection('billing','');
+            var counter = conduit.collection('billing','counter');
+            counter.get().then(function(counter){
+                var now = new Date();
+                var net = new Date();
+                net.setDate(now.getDate() + 30);
+                billing.save({
+                    invoiceNo:counter['seq'],
+                    customer:$scope.account.firstName + ' ' + $scope.account.lastName,
+                    status:'New',
+                    amount:order.total,
+                    amountDue:order.total,
+                    order:order._id,
+                    createDate:now,
+                    dueDate:net
+                }).then(function(invoice){
+                    deferred.resolve(invoice);
+                });
+            });
+            return deferred.promise;
+        };
+        $scope.codOrder = function() {
+            $scope.placeOrder().then(function(order){
+                $scope.createInvoice(order).then(function(invoice){
+                    conduit.localStorage('cart').remove();
+                    conduit.go('shop.home');
+                });
+            });
+        };
         $scope.placeOrder = function(){
             $scope.modelData['account'] = $scope.account;
             $scope.modelData['orderDate'] = new Date();
             $scope.modelData['qty'] = Object.keys($scope.modelData.items).length;
             $scope.modelData['status'] = 'New';
-            console.log($scope.modelData);
-            $scope.collection.save($scope.modelData).then(function(){
-                conduit.localStorage('cart').remove();
-                conduit.go('shop.home');
-            });
+            return $scope.collection.save($scope.modelData);
         };
 
         $scope.totalpages = 0;
