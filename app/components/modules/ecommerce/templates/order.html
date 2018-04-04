@@ -1,0 +1,86 @@
+<div class='content-wrapper'>
+    <section class="box ">
+        <div class="content-body">
+            <div class="row">
+                <div class="col-sm-1"></div>
+                <div class="col-sm-11">
+                    <div  class="row">
+                        <div class="col-sm-4">
+                            <h4>Shipping</h4>
+                            <h5>{{modelData.shipping.full_name}}</h5>
+                            <h5>{{modelData.shipping.address1}}</h5>
+                            <h5>{{modelData.shipping.address2}}</h5>
+                            <h5>{{modelData.shipping.city}}, {{modelData.shipping.state}} {{modelData.shipping.zip}}</h5>
+
+                        </div>
+                        <div class="col-sm-4">
+                            <h4>Billing</h4>
+                            <h5>{{modelData.billing.full_name}}</h5>
+                            <h5>{{modelData.billing.address1}}</h5>
+                            <h5>{{modelData.billing.address2}}</h5>
+                            <h5>{{modelData.billing.city}}, {{modelData.billing.state}} {{modelData.billing.zip}}</h5>
+                        </div>
+                        <div class="col-sm-4">
+                            <h5>{{modelData._id}}</h5>
+                            <h5>{{modelData.shipping.phone}}</h5>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="table">
+                <table class="table table-striped table-bordered table-hover invoice-table">
+                    <thead>
+                        <tr>
+                            <td>Image</td>
+                            <td>Title</td>
+                            <td>Quantity</td>
+                            <td>Price</td>
+                            <td>Total</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    <tr ng-repeat="item in modelData.items">
+                        <td><img  ui-sref="ecom.product({id:item._id})" alt="Alt Image" class="pull-left img-responsive product-list-thumbnail" src="{{item.images[0].url}}" style="max-width: 30px"></td>
+                        <td ng-bind-html="item.title"></td>
+                        <td>{{item.qty}}</td>
+                        <td>{{item.tiers[0].price | currency: "$" : 2}}</td>
+                        <td>{{item.total | currency: "$" : 2}}</td>
+                    </tr>
+                    <tr>
+                        <td class="no-line"></td>
+                        <td class="no-line"></td>
+                        <td class="no-line"></td>
+                        <td class="no-line text-center"><h5>Subtotal</h5></td>
+                        <td><h5>{{modelData.subTotal | currency: "$" : 2}}</h5></td>
+                    </tr>
+                    <tr>
+                        <td class="no-line"></td>
+                        <td class="no-line"></td>
+                        <td class="no-line"></td>
+                        <td class="no-line text-center"><h5>Shipping</h5></td>
+                        <td><h5>{{modelData.shippingTotal | currency: "$" : 2}}</h5></td>
+                    </tr>
+                    <tr>
+                        <td class="no-line"></td>
+                        <td class="no-line"></td>
+                        <td class="no-line"></td>
+                        <td class="no-line text-center"><h5>Tax</h5></td>
+                        <td><h5>{{modelData.tax | currency: "$" : 2}}</h5></td>
+                    </tr>
+                    <tr>
+                        <td class="no-line"></td>
+                        <td class="no-line"></td>
+                        <td class="no-line"></td>
+                        <td class="no-line text-center"><h5>Total</h5></td>
+                        <td><h4 style='margin:0;' class="text-primary">{{modelData.total | currency: "$" : 2}}</h4></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="clearfix"></div>
+    </section>
+</div>
+
+
+

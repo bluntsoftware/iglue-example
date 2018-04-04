@@ -1,6 +1,6 @@
 <div class="panel panel-default filterable" id="snippet_52" >
     <div class="panel-heading">
-        <h3 class="panel-title">Products</h3>
+        <h3 class="panel-title">Orders</h3>
         <form ng-submit="search()" >
             <div class="input-group search">
                 <input class="form-control input-sm" ng-model="srchterm" placeholder="Search for">
@@ -23,7 +23,7 @@
     <div class="panel-body no-more-tables">
         <table class="table table-striped table-bordered table-hover table-responsive table-condensed push-down">
             <thead>
-            <tr>
+            <tr >
                 <td>Status</td>
                 <td>Order Date</td>
                 <th>Customer</th>
@@ -36,7 +36,7 @@
             </tr>
             </thead>
             <tbody>
-            <tr ng-repeat="item in items" >
+            <tr ng-dblclick="update(item._id)" ng-repeat="item in items" >
                 <td>{{item.status}}</td>
                 <td>{{item.orderDate | date : "fullDate"}}</td>
                 <td>{{item.user_info.login}} </td>

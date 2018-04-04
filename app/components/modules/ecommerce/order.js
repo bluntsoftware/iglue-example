@@ -34,15 +34,13 @@ catwalkApp.controller('order-controller', ['$scope','$rootScope','$location','$s
             return uuid;
         };
 
-        $scope.validatePayment  = function(){
+        $scope.validatePayment = function(){
             if($scope.bt_instance){
                 $scope.bt_instance.requestPaymentMethod(function (err, payload) {
-
                     console.log(payload);
                     console.log(err);
                     if (err) {
                         console.log('Error', err);
-                        return;
                     }else{
                         if(payload.details.shippingAddress){
                             $scope.modelData.shipping = $scope.convertAddress(payload.details.shippingAddress);
@@ -93,7 +91,7 @@ catwalkApp.controller('order-controller', ['$scope','$rootScope','$location','$s
         };
         $scope.initBrainTree();
 
-        $scope.convertAddress=function(braintreeAddress){
+        $scope.convertAddress = function(braintreeAddress){
             try{
                 return {
                     full_name:braintreeAddress['recipientName'],
@@ -149,16 +147,12 @@ catwalkApp.controller('order-controller', ['$scope','$rootScope','$location','$s
 
         $scope.totalpages = 0;
 
-        $scope.$watch('srchterm', function(newVal, oldVal) {
+        $scope.$watch('srchterm', function() {
             $scope.search();
         }, true);
 
         $scope.sort = function(){
-            if($scope.listParams.sord ==='ASC'){
-                $scope.listParams.sord = 'DESC';
-            }else{
-                $scope.listParams.sord = 'ASC';
-            }
+            $scope.listParams.sord = $scope.listParams.sord !== 'ASC' ? 'ASC' : 'DESC';
             $scope.search();
         };
 
@@ -197,7 +191,7 @@ catwalkApp.controller('order-controller', ['$scope','$rootScope','$location','$s
         $scope.list = function(){
             $scope.collection.get($scope.listParams ).then(function(data){
                 $scope.items = data.rows;
-                $scope.listParams.page = data.currpage;
+                $scope.listParams.page = data['currpage'];
                 $scope.totalpages = data.totalpages;
             });
         };
