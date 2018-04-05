@@ -84,7 +84,7 @@ catwalkApp.factory('conduit', function ($resource,$window,$q,$state,$rootScope) 
                 },
                 getById:function (id) {
                     var deferred = $q.defer();
-                    $resource( final + '/' + id , {}, {}).get({id: this.id},function(data){
+                    $resource( final + '/' + id + '/?', {}, {}).get({id: this.id},function(data){
                         deferred.resolve(data);
                     });
                     return deferred.promise;
