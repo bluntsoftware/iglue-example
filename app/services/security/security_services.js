@@ -279,15 +279,12 @@ var securityHandler = ['$rootScope','$log', '$location', '$http','$state','Authe
             if(access){
                 authorizedRoles = access.authorizedRoles;
             }
-
-
             AuthenticationSharedService.valid(authorizedRoles);
-
             if($rootScope.authenticated === false && toState.url !== '/login'){
                 $rootScope.returnToState = toState.name;
                 $rootScope.returnToStateParams = toParams;
+                $rootScope.redirectUrl = $state.href(toState.name, toParams, {absolute: true});
             }
-
         });
         $rootScope.$on('event:auth-logout', function(event,data) {
             console.log("*************** LOGOUT *****************");
