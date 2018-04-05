@@ -235,7 +235,10 @@ catwalkApp.config(['$stateProvider', '$urlRouterProvider','USER_ROLES',
             .state('shop.home', {
                 url: "/home",
                 templateUrl: "components/modules/ecommerce/templates/product-home.html",
-                controller: 'product-controller'
+                controller: 'product-controller',
+                access: {
+                    authorizedRoles: [USER_ROLES.all]
+                }
             })
             .state('shop.detail', {
                 url: "/detail/:id",

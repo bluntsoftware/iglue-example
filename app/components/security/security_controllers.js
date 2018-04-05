@@ -206,7 +206,11 @@ catwalkApp.controller('LoginController', ['$scope', '$rootScope', '$location','A
             window.location = base_url + 'auth/linkedin';
         };
         $scope.loginGoogle = function () {
-            window.location = base_url + 'user_manager/sociallogin/google?scope=email&redirect=' + encodeURIComponent($rootScope.redirectUrl);
+            var redirect = '';
+            if($rootScope.redirectUrl){
+                redirect += '&redirect=' + encodeURIComponent($rootScope.redirectUrl);
+            }
+            window.location = base_url + 'user_manager/sociallogin/google?scope=email' + redirect;
         };
         $scope.loginGithub = function () {
             window.location = base_url + 'auth/github';
