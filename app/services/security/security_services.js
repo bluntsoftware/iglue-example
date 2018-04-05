@@ -298,6 +298,8 @@ var securityHandler = ['$rootScope','$log', '$location', '$http','$state','Authe
            // alert('event:auth-loginConfirmed' + $rootScope.returnToState);
             console.log("*************** LOGIN CONFIRMED *****************");
             $rootScope.authenticated = true;
+            console.log("*************** Return To State *****************");
+            console.log($rootScope.returnToState);
            if($rootScope.returnToState && $rootScope.returnToStateParams ) {
                $state.go($rootScope.returnToState ,$rootScope.returnToStateParams);
             }else if( $rootScope.returnToState){

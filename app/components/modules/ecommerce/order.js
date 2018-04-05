@@ -267,7 +267,11 @@ catwalkApp.controller('order-controller', ['$scope','$rootScope','$location','$s
         };
 
         $scope.update= function(id){
-            $location.path('/ecom/order/' + id);
+            if($scope.isAdmin()){
+                $location.path('/ecom/order/' + id);
+            }else{
+                $location.path('/shop/order/' + id);
+            }
         };
 
         if($stateParams.id){ $scope.get($stateParams.id);}
@@ -297,6 +301,22 @@ catwalkApp.config(['$stateProvider', '$urlRouterProvider','USER_ROLES',
             .state('shop.checkout', {
                 url: "/checkout",
                 templateUrl: "components/modules/ecommerce/templates/order-checkout.html",
+                controller: 'order-controller',
+                access: {
+                    authorizedRoles: [USER_ROLES.user,USER_ROLES.admin]
+                }
+            })
+            .state('shop.orders', {
+                url: "/orders",
+                templateUrl: "components/modules/ecommerce/templates/order-list.html",
+                controller: 'order-controller',
+                access: {
+                    authorizedRoles: [USER_ROLES.user,USER_ROLES.admin]
+                }
+            })
+            .state('shop.order', {
+                url: "/order/:id",
+                templateUrl: "components/modules/ecommerce/templates/order.html",
                 controller: 'order-controller',
                 access: {
                     authorizedRoles: [USER_ROLES.user,USER_ROLES.admin]

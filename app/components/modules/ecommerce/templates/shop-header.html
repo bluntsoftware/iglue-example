@@ -13,6 +13,17 @@
             <span class='fa fa-2x fa-shopping-cart'></span>
             <span style="color:#ffffff;background-color:#ff633b" class="badge badge-accent">{{qty}}</span>
         </div>
+
+        <div ng-show="authenticated"  ui-sref="logout" style="cursor:pointer;color: #ffffff;padding-right: 15px" class="pull-right info-menu">
+            <span class='fa fa-lg fa-sign-out'>&nbsp;Sign out</span>
+        </div>
+        <div ng-hide="authenticated"  ui-sref="login" style="cursor:pointer;color: #ffffff;padding-right: 15px" class="pull-right info-menu">
+            <span class='fa fa-lg fa-sign-out'>&nbsp;Sign In</span>
+        </div>
+        <div ng-show="authenticated"  ui-sref="shop.orders" style="cursor:pointer;color: #ffffff;padding-right: 15px" class="pull-right info-menu">
+            <span class='fa fa-lg fa-list-ol'>&nbsp;Orders</span>
+        </div>
+
 <!--
         <form class="searchform pull-right right-links list-inline list-unstyled" ng-submit="search()" >
             <div  class="input-group search-topbar search">
