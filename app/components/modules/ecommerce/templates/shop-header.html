@@ -1,5 +1,5 @@
 <div class="page-topbar">
-    <div  class='logo-area'>
+    <div  ui-sref="index.home" class='logo-area'>
         <img alt="Brand" src="{{base_url}}{{settings.logoSrc}}" height="60" >
     </div>
     <div class='quick-area'>
@@ -23,6 +23,8 @@
         <div ng-show="authenticated"  ui-sref="shop.orders" style="cursor:pointer;color: #ffffff;padding-right: 15px" class="pull-right info-menu">
             <span class='fa fa-lg fa-list-ol'>&nbsp;Orders</span>
         </div>
-
+        <div ng-show="isAdmin()"  ui-sref="ecom.dashboard" style="cursor:pointer;color: #ffffff;padding-right: 15px" class="pull-right info-menu">
+            <span class='fa fa-lg fa-lock'>&nbsp;Admin</span>
+        </div>
     </div>
 </div>

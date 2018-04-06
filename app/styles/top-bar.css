@@ -551,9 +551,9 @@
     .search-topbar{
         max-width:100%;
     }
-    .has-topbar{
+   /* .has-topbar{
         margin-top: 95px;
-    }
+    } */
 }
 
 @media (max-width: 680px) {

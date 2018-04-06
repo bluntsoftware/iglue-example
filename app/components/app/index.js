@@ -20,11 +20,12 @@ catwalkApp.config(['$stateProvider', '$urlRouterProvider','USER_ROLES',
                     },
                     'content': {
                         template:'<div ui-view></div>'
-                    },
+                    }
+                    /*,
                     'footer': {
                         templateUrl:'components/app/footer.html',
                         controller:'indexController as main'
-                    }
+                    }*/
                 }
             })
     }
