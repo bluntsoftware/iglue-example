@@ -26,12 +26,12 @@
                             <img style="max-height:35px;background-color: #0b58a2" class="invoice-logo" src="{{base_url}}{{settings.logoSrc}}">
                             <br>
                             <div class='address'>
-                                795 Folsom Ave, Suite 600
-                                <br> San Francisco, CA 94107
-                                <br> P: (123) 456-7890
-                                <br> E-mail: {{settings.infoEmail}}
-                                <br> Phone: (123) 456-7890
-                                <br> Fax: 800-692-7753
+                                {{settings.company.name}}
+                                <br> {{settings.billing.address1}}
+                                <div ng-if="settings.billing.address2"><br> {{settings.billing.address2}}</div>
+                                <br> {{settings.billing.city}}, {{settings.billing.state}} {{settings.billing.zip}}
+                                <br> P: {{settings.company.phone}}
+                                <br> E-mail: {{settings.company.infoEmail}}
                             </div>
                             <br>
                         </div>
