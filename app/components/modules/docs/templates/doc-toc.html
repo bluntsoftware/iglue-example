@@ -1,0 +1,19 @@
+<div class="nav-side-menu nav-toc-menu">
+    <i class="fa fa-bars fa-2x toggle-btn" data-toggle="collapse" data-target="#side-menu"></i>
+    <div  class="menu-list">
+        <ul class="menu-content collapse out">
+            <li ng-repeat="(cat,sub) in toc" data-toggle="collapse" data-target="#{{cat}}" class="collapsed">
+                <a>
+                    <i class="fa fa-files-o fa-lg"></i>
+                    <span class="nav-label" >{{cat}}</span>
+                    <span class="fa arrow pull-right" ></span>
+                </a>
+                <ul class="sub-menu toc-submenu collapse" id="{{cat}}">
+                    <li  ng-repeat="(key,item) in sub" ng-click="view(item._id); $event.stopPropagation();"  data-toggle="collapse"  class="collapsed">
+                        {{key}}
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+</div>

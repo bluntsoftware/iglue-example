@@ -1,0 +1,22 @@
+<div class="page-topbar">
+    <div  ui-sref="index.home" class='logo-area'>
+        <img alt="Brand" src="{{base_url}}{{settings.logoSrc}}" height="60" >
+    </div>
+    <div class='quick-area'>
+
+        <div ui-sref="shop.home" class="pull-left pagetitle">
+            <span class='line'></span>
+            <h1>Documentation</h1>
+        </div>
+        <!-- todo: put in css file -->
+
+
+        <div ng-show="authenticated"  ui-sref="logout" style="cursor:pointer;color: #ffffff;padding-right: 15px" class="pull-right info-menu">
+            <span class='fa fa-lg fa-sign-out'>&nbsp;Sign out</span>
+        </div>
+        <div ng-hide="authenticated"  ui-sref="login" style="cursor:pointer;color: #ffffff;padding-right: 15px" class="pull-right info-menu">
+            <span class='fa fa-lg fa-sign-out'>&nbsp;Sign In</span>
+        </div>
+
+    </div>
+</div>

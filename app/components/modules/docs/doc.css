@@ -1,0 +1,35 @@
+.nav-toc-menu{
+    background: rgb(255, 255, 255);
+    line-height: 16px;
+    border-right: 1px solid rgba(211, 211, 211, 0.9);
+}
+.nav-toc-menu li {
+    line-height: 35px;
+    border-bottom: 1px solid rgba(211, 211, 211, 0.9);
+}
+
+.nav-toc-menu ul, .nav-toc-menu li{
+    background: rgb(255, 255, 255);
+
+}
+
+.nav-toc-menu .links a {
+    color: rgb(0, 0, 0);
+}
+.nav-toc-menu li a {
+    color: rgb(0, 0, 0);
+}
+
+.nav-toc-menu ul .sub-menu li,
+.nav-toc-menu li .sub-menu li {
+    background: rgba(255, 255, 255, 0.25);
+    color: rgb(0, 0, 0);
+    line-height: 25px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0);
+}
+
+.nav-toc-menu ul .sub-menu li:hover,
+.nav-toc-menu li .sub-menu li:hover {
+    background-color: rgba(255, 230, 78, 0.5);
+}
+

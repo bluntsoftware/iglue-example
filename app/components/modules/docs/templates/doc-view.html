@@ -1,0 +1,12 @@
+<form  ng-show="isAdmin()"  ng-submit="create()" role="form" novalidate class="panel panel-default ng-scope ng-invalid ng-invalid-required ng-dirty ng-valid-minlength" >
+    <div class="modal-header panel-heading">
+
+        <div class="input-group search">
+            <h4 class="modal-title">View Document</h4>
+            <span class="input-group-btn">
+                <button class="btn btn-round btn-sm btn-success"  ng-click="update(modelData._id)" >Edit</button>
+            </span>
+        </div>
+    </div>
+</form>
+<H1>{{modelData.description}}</H1>
