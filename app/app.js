@@ -16,6 +16,29 @@ var catwalkApp  = angular.module('catwalk', [
     'http-auth-interceptor',        // Security
     'pascalprecht.translate',       // Different Languages
     'ngTagsInput',                  // tags
-    'as.sortable'                   // Ng Sortable
-]).run();
+    'as.sortable',                   // Ng Sortable
+    'hc.marked',
+    'hljs',
+    'angular-markdown-editor'
+]).config(['markedProvider', 'hljsServiceProvider', function(markedProvider, hljsServiceProvider) {
+    // marked config
+    markedProvider.setOptions({
+        gfm: true,
+        tables: true,
+        sanitize: true,
+        highlight: function (code, lang) {
+            if (lang) {
+                return hljs.highlight(lang, code, true).value;
+            } else {
+                return hljs.highlightAuto(code).value;
+            }
+        }
+    });
+
+    // highlight config
+    hljsServiceProvider.setOptions({
+        // replace tab with 4 spaces
+        tabReplace: '    '
+    });
+}]).run();
 var base_url = 'http://jerb.bluntsoftware.com/KoleImports/'; //'../glue/  http://localhost/glue/ http://localhost:8080/glue/ http://jerb.bluntsoftware.com/KoleImports/
