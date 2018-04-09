@@ -1,8 +1,6 @@
 //Main Controller
 catwalkApp.controller('doc-controller', ['$scope','$rootScope','$stateParams','USettings','conduit','$q',
     function ($scope,$rootScope,$stateParams,USettings,conduit,$q) {
-
-
         angular.element('.nav-side-menu').css('margin-top', '60px');
 
         $scope.srchterm = '';
@@ -63,7 +61,6 @@ catwalkApp.controller('doc-controller', ['$scope','$rootScope','$stateParams','U
             $scope.list();
         });
 
-
         $rootScope.$on('eventSearchdocs',function(events,data){
             $scope.srchterm = data;
         });
@@ -89,7 +86,7 @@ catwalkApp.controller('doc-controller', ['$scope','$rootScope','$stateParams','U
             var or = {'$or':[]};
             var search = $scope.srchterm;
             var filter = false;
-            //lets search on subcategory, category && title mongo search
+
             $scope.listParams.page = 1;
 
             if($scope.category && $scope.category !== ''){
@@ -100,7 +97,6 @@ catwalkApp.controller('doc-controller', ['$scope','$rootScope','$stateParams','U
                 filterByFields['$and'].push({'subcategory':{'$eq':$scope.subcategory}});
                 filter = true;
             }
-
             if( search && search !== '' ){
                 or['$or'].push({'subcategory':{'$regex':search,'$options':'i'}});
                 or['$or'].push({'category':{'$regex':search,'$options':'i'}});
@@ -153,7 +149,6 @@ catwalkApp.controller('doc-controller', ['$scope','$rootScope','$stateParams','U
             });
             return deferred.promise;
         };
-
 
         $scope.get = function(id){
             $scope.collection.getById(id).then(function(doc) {
@@ -209,7 +204,6 @@ catwalkApp.controller('doc-controller', ['$scope','$rootScope','$stateParams','U
                  $scope.selectFirst();
             }
         });
-
     }
 ]);
 /**
