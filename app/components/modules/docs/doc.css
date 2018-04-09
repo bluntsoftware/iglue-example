@@ -14,16 +14,16 @@
 }
 
 .nav-toc-menu .links a {
-    color: rgb(0, 0, 0);
+    color: #37474F;
 }
 .nav-toc-menu li a {
-    color: rgb(0, 0, 0);
+    color: #37474F;
 }
 
 .nav-toc-menu ul .sub-menu li,
 .nav-toc-menu li .sub-menu li {
     background: rgba(255, 255, 255, 0.25);
-    color: rgb(0, 0, 0);
+    color: rgb(146, 146, 146);
     line-height: 25px;
     border-bottom: 1px solid rgba(255, 255, 255, 0);
 }

@@ -10,7 +10,8 @@
                 </a>
                 <ul class="sub-menu toc-submenu collapse" id="{{cat}}">
                     <li  ng-repeat="(key,item) in sub" ng-click="view(item._id); $event.stopPropagation();"  data-toggle="collapse"  class="collapsed">
-                        {{key}}
+                        <i class="fa fa-arrow-right fa-lg"></i>
+                        <span class="nav-label" >{{key}}</span>
                     </li>
                 </ul>
             </li>
