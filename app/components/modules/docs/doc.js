@@ -22,10 +22,12 @@ catwalkApp.controller('doc-controller', ['$scope','$rootScope','$stateParams','U
             var toc = {};
             $.each($scope.items,function(idx,item){
                 if(item.category && item.subcategory ){
-                    if(!toc[item.category]){
-                        toc[item.category] = {};
+                    var sub = item.subcategory;
+                    var cat = item.category.replace(" ","-");
+                    if(!toc[cat]){
+                        toc[cat] = {};
                     }
-                    toc[item.category][item.subcategory] = item._id;
+                    toc[cat][sub] = item._id;
                 }
             });
             $scope.toc = toc;
@@ -224,7 +226,7 @@ catwalkApp.config(['$stateProvider', '$urlRouterProvider','USER_ROLES',
                         controller:'doc-controller'
                     },
                     'content': {
-                        template:'<div class="has-sidebar has-topbar" ui-view></div>'
+                        template:'<div class="has-doc-sidebar has-topbar" ui-view></div>'
                     }
 
                 }
