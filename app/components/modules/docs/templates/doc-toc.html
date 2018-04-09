@@ -1,4 +1,20 @@
 <div class="nav-side-menu nav-toc-menu">
+    <form ng-submit="search()" >
+        <div class="input-group search">
+            <input class="form-control input-sm" ng-model="srchterm" placeholder="Search for">
+            <span class="input-group-btn">
+                    <button ng-hide="isAdmin()" class="btn btn-round btn-sm btn-default" type="submit" ng-click="search()" >
+                        <i class="fa fa-search"></i>
+                    </button>
+                    <button ng-show="isAdmin()" class="btn btn-round btn-sm btn-default"  ng-click="new()" >
+                        <i class="fa fa-plus"> New</i>
+                    </button>
+                </span>
+
+        </div>
+    </form>
+
+
     <i class="fa fa-bars fa-2x toggle-btn" data-toggle="collapse" data-target="#side-menu"></i>
     <div  class="menu-list">
         <ul class="menu-content collapse out">
@@ -9,7 +25,7 @@
                     <span class="fa arrow pull-right" ></span>
                 </a>
                 <ul class="sub-menu toc-submenu collapse" id="{{cat}}">
-                    <li  ng-repeat="(key,item) in sub" ng-click="view(item._id); $event.stopPropagation();"  data-toggle="collapse"  class="collapsed">
+                    <li  ng-repeat="(key,itemId) in sub" ng-click="view(itemId); $event.stopPropagation();"  data-toggle="collapse"  class="collapsed">
                         <i class="fa fa-arrow-right fa-lg"></i>
                         <span class="nav-label" >{{key}}</span>
                     </li>

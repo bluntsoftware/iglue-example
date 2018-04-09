@@ -1,8 +1,14 @@
+.doc-topbar{
+    background:#929292;
+}
+
 .nav-toc-menu{
     background: rgb(255, 255, 255);
     line-height: 16px;
     border-right: 1px solid rgba(211, 211, 211, 0.9);
+
 }
+
 .nav-toc-menu li {
     line-height: 35px;
     border-bottom: 1px solid rgba(211, 211, 211, 0.9);
@@ -10,7 +16,6 @@
 
 .nav-toc-menu ul, .nav-toc-menu li{
     background: rgb(255, 255, 255);
-
 }
 
 .nav-toc-menu .links a {

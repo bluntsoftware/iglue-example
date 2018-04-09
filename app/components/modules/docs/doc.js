@@ -1,8 +1,8 @@
 //Main Controller
 catwalkApp.controller('doc-controller', ['$scope','$rootScope','$stateParams','USettings','conduit','$q',
     function ($scope,$rootScope,$stateParams,USettings,conduit,$q) {
-        //angular.element('.nav-side-menu').css('background', '#ffffff');
-        angular.element('.page-topbar').css('background', '#929292');
+
+
         angular.element('.nav-side-menu').css('margin-top', '60px');
 
         $scope.srchterm = '';
@@ -27,10 +27,9 @@ catwalkApp.controller('doc-controller', ['$scope','$rootScope','$stateParams','U
                     if(!toc[item.category]){
                         toc[item.category] = {};
                     }
-                    toc[item.category][item.subcategory] = item;
+                    toc[item.category][item.subcategory] = item._id;
                 }
             });
-            console.log(toc);
             $scope.toc = toc;
         };
 
@@ -59,6 +58,11 @@ catwalkApp.controller('doc-controller', ['$scope','$rootScope','$stateParams','U
         };
 
         $scope.totalpages = 0;
+
+        $rootScope.$on('docChanged',function(events,data){
+            $scope.list();
+        });
+
 
         $rootScope.$on('eventSearchdocs',function(events,data){
             $scope.srchterm = data;
@@ -100,14 +104,14 @@ catwalkApp.controller('doc-controller', ['$scope','$rootScope','$stateParams','U
             if( search && search !== '' ){
                 or['$or'].push({'subcategory':{'$regex':search,'$options':'i'}});
                 or['$or'].push({'category':{'$regex':search,'$options':'i'}});
-                or['$or'].push({'title':{'$regex':search,'$options':'i'}});
+                or['$or'].push({'description':{'$regex':search,'$options':'i'}});
                 filterByFields['$and'].push(or);
                 filter = true;
             }
             if(filter){
                 $scope.listParams['projection']['subcategory'] = 1;
                 $scope.listParams['projection']['category'] = 1;
-                $scope.listParams['projection']['title'] = 1;
+                $scope.listParams['projection']['description'] = 1;
                 $scope.listParams['filterByFields'] =  filterByFields;
             }
             else{
@@ -139,12 +143,15 @@ catwalkApp.controller('doc-controller', ['$scope','$rootScope','$stateParams','U
         };
 
         $scope.list = function(){
+            var deferred = $q.defer();
             $scope.collection.get($scope.listParams ).then(function(data){
                 $scope.items = data.rows;
                 $scope.listParams.page = data.currpage;
                 $scope.totalpages = data.totalpages;
                 $scope.listTOC();
+                deferred.resolve(data);
             });
+            return deferred.promise;
         };
 
 
@@ -157,24 +164,24 @@ catwalkApp.controller('doc-controller', ['$scope','$rootScope','$stateParams','U
 
         $scope.save = function(){
             $scope.collection.save($scope.modelData).then(function(doc){
-                $scope.list();
+                $rootScope.$emit('docChanged');
                 $scope.view(doc._id);
             });
         };
 
+        $scope.selectFirst = function(){
+            $scope.view($scope.items[0]._id);
+        };
+
         $scope.remove = function(id){
             $scope.collection.remove(id).then(function () {
-                $scope.list();
+                $rootScope.$emit('docChanged');
+                $scope.selectFirst();
             });
         };
 
         $scope.back = function () {
             conduit.previousState();
-        };
-
-        $scope.gotodocs = function () {
-            conduit.go('ecom.docs');
-
         };
 
         $scope.new= function(){
@@ -193,12 +200,15 @@ catwalkApp.controller('doc-controller', ['$scope','$rootScope','$stateParams','U
             conduit.go('doc.view',{id: id});
         };
 
-        $scope.shopHome= function(){
-            conduit.go('shop.home');
-        };
+        if($stateParams.id){
+            $scope.get($stateParams.id);
+        }
 
-        if($stateParams.id){ $scope.get($stateParams.id);}
-        $scope.list();
+        $scope.list().then(function(){
+            if(!$scope.modelData && !$scope.isAdmin()){
+                 $scope.selectFirst();
+            }
+        });
 
     }
 ]);

@@ -2,9 +2,10 @@
     <div class="modal-header panel-heading">
 
         <div class="input-group search">
-            <h4 class="modal-title">View Document</h4>
+            <h4 class="modal-title">View {{modelData.category}} - {{modelData.subcategory}}</h4>
             <span class="input-group-btn">
                 <button class="btn btn-round btn-sm btn-success"  ng-click="update(modelData._id)" >Edit</button>
+            <button class="btn btn-round btn-sm btn-danger"  ng-click="remove(modelData._id)" >Delete</button>
             </span>
         </div>
     </div>
