@@ -89,12 +89,15 @@ catwalkApp.factory('conduit', function ($resource,$window,$q,$state,$rootScope) 
                     });
                     return deferred.promise;
                 },
-                save:function (params) {
+                post:function(params){
                     var deferred = $q.defer();
                     $resource( final, {}, {}).save(params,function(data){
                         deferred.resolve(data);
                     });
                     return deferred.promise;
+                },
+                save:function (params) {
+                    return this.post(params);
                 },
                 remove:function (id) {
                     var deferred = $q.defer();
