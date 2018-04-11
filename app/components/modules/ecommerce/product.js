@@ -43,6 +43,10 @@ catwalkApp.controller('product-controller', ['$scope','$rootScope','$location','
             });
         };
 
+        $scope.relativeUrl= function(url){
+          return !url.includes('http');
+        };
+
         $scope.addProductTag = function(tag){
             if(tag && tag.text){
                 conduit.collection('product-tag','').save({_id:tag.text});

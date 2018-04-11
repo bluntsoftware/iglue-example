@@ -74,7 +74,7 @@
                                 <div class="col-sm-8">
                                     <label class="control-label editable-label">Image 3</label>
                                     <div class="form-group">
-                                        <image-url base-path='{{base_url}}' ng-model="modelData.images[2].url"></image-url>
+                                        <image-url  ng-model="modelData.images[2].url"></image-url>
                                     </div>
                                 </div>
                                     <!-- Text Input-->
@@ -151,9 +151,11 @@
         </div>
         <div class="col-sm-6">
             <!-- Image ng-model="modelData.images[2].url" img/no_image_placeholder.png -->
-            <div class="control-group">
-
-                <img style="max-height:125px" class="img-responsive " image="images[2].url" src="{{modelData.images[2].url}}">
+            <div ng-show="relativeUrl(modelData.images[2].url)" class="control-group">
+                <img  style="max-height:125px" class="img-responsive " image="images[2].url" src="{{base_url}}{{modelData.images[2].url}}">
+            </div>
+            <div ng-hide="relativeUrl(modelData.images[2].url)" class="control-group">
+                <img  style="max-height:125px" class="img-responsive " image="images[2].url" src="{{modelData.images[2].url}}">
             </div>
         </div>
     </div>
