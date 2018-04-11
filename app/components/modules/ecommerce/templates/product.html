@@ -72,12 +72,17 @@
                                         <input class="form-control input-sm" ng-model="modelData.images[1].url" name="subcategory" type="text"></div>
                                 </div>
                                 <div class="col-sm-8">
-                                    <image-url></image-url>
+                                    <label class="control-label editable-label">Image 3</label>
+                                    <div class="form-group">
+                                        <image-url base-path='{{base_url}}' ng-model="modelData.images[2].url"></image-url>
+                                    </div>
+                                </div>
                                     <!-- Text Input-->
+                                    <!--
                                     <div class="form-group">
                                         <label class="control-label editable-label" for="">Image 3</label>
                                         <input class="form-control input-sm" ng-model="modelData.images[2].url" name="subcategory" type="text"></div>
-                                </div>
+                                </div> -->
                             </div>
 
                             <!-- Text Area -->

@@ -14,7 +14,7 @@
         var span =  jQuery('<span class="input-group-btn"></span>');
         var button = jQuery('<button class="btn btn-default  fa fa-image fileBrowser"></button>');
         span.append(button);
-        jQuery(input).parent().css('padding-left','15px').css('padding-right','15px').addClass("input-group").append(span);
+        jQuery(input).parent().addClass("input-group").append(span);//.css('padding-left','15px').css('padding-right','15px')
         jQuery(button).unbind('click').bind('click',function(e){
             e.preventDefault();
             window.assetEditor.browseFiles(function(path){

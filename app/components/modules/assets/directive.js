@@ -23,13 +23,16 @@ catwalkApp.directive('imageUrl', function() {
             srcUrlVar:'='
         },
         link: function (scope, element, attrs, ngModel) {
-            var input = element.find('input');
-            window.assetEditor.chooseImage(input).done(function(path){
-                input.val(path);
-                input.change();
+            var base_path = '';
+            if(attrs.basePath){
+                base_path =  attrs.basePath;
+            }
+            window.assetEditor.chooseImage(element).done(function(path){
+                element.val(base_path + path);
+                element.change();
             });
         },
-        template:'<div class="form-group"><input  ng-model="srcUrlVar" class="form-control" type="text"></div>',
+        template:'<input  class="form-control" type="text">',
         replace:true,
         transclude:true
     };
