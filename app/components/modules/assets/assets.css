@@ -1,0 +1,46 @@
+#main-file-content {
+    margin-left: 350px;
+    padding: 5px;
+}
+.bootbox.modal {z-index: 9999 !important;}
+.popup-dialog{
+    margin-left: -250px;
+}
+
+#fileDetail img{
+    max-height: 240px;
+}
+.zoom50{
+    zoom: 0.5;
+    -moz-transform: scale(0.5);
+}
+.scroll-me{
+    overflow-y:scroll;
+}
+.menu-scroll {
+    overflow-y: scroll;
+    max-height: 200px;
+}
+.file-tree-side {
+    overflow: auto;
+    width: 350px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    margin-top: 45px;
+    border-color: #e6e6e6;
+    border-style: solid;
+    border-width: 1px;
+}
+
+.browser .file-tree-side{
+    margin-top: 60px;
+}
+.browser{
+     padding-bottom: 80px;
+    max-height: 370px;
+}
+#jsfiletree{
+    padding-left: 10px;
+    padding-top: 5px;
+}

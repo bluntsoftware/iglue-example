@@ -170,12 +170,13 @@
             script: that.getBaseUrl() + 'assets/filetree'
         },function(file) {
             $('#fileDetail').html('<img  class="image-detail" src="' + that.getBaseUrl() + "assets/get?file=" + file + '"></img>');
-            $('.image-detail').css('width',450);
+            $('.image-detail').css('width',350);
         }).on('filetreeclicked', function(e, data) {
             $('#dir').html(data.rel);
         }).on('filetreeexpand filetreecollapse',function(e, data) {
             $('#dir').html(data.rel);
             $('#fileDetail').html('<input id="upload-files" name="file" multiple type="file" class="file file-loading" >');
+
             $("#upload-files").fileinput({
                 uploadUrl:  that.getBaseUrl() + 'assets/multi_upload',
                 uploadExtraData: function (previewId, index) {
@@ -230,7 +231,7 @@
     };
     AssetEditor.prototype.init = function (element) {
         var that = this;
-        $(element).load("modules/assets/editor/asset_editor.html", function(responseTxt, statusTxt, xhr){
+        $(element).load("components/modules/assets/editor/asset_editor.html", function(responseTxt, statusTxt, xhr){
             if(statusTxt == "success"){
                     that.refreshTree();
             }else if(statusTxt == "error"){
@@ -243,10 +244,9 @@
         that.resize();
     };
     AssetEditor.prototype.resize = function(){
-        var newHeight =  jQuery(window).height() - 90;
+        var newHeight =  jQuery(window).height() - 180;
         jQuery('#file-tree-holder').css('height', newHeight);
         jQuery('#main-file-content').css('min-height', newHeight-120);
-
     };
 
     window.assetEditor = new AssetEditor();

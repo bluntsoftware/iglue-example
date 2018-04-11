@@ -34,6 +34,7 @@
     <link href="bower_components/jQuery-QueryBuilder/dist/css/query-builder.dark.min.css" rel="stylesheet">
     <link href="bower_components/ng-sortable/dist/ng-sortable.min.css" rel="stylesheet" >
     <link href="bower_components/angular-ui-select/dist/select.css" rel="stylesheet" >
+    <link href="bower_components/jqueryfiletree/dist/jQueryFileTree.min.css" rel="stylesheet" >
 
     <!-- Mark Down Editor Style -->
     <link href="bower_components/bootstrap-markdown/css/bootstrap-markdown.min.css" rel="stylesheet" >
@@ -48,9 +49,11 @@
     <link href="styles/landingpage.css" rel="stylesheet">
     <link href="styles/plan.css" rel="stylesheet">
     <link href="styles/app.css" rel="stylesheet">
+    <link href="components/modules/util/jQueryFileTree.css" rel="stylesheet">
     <link href="styles/side-bar.css" rel="stylesheet">
     <link href="styles/top-bar.css" rel="stylesheet">
     <link href="components/modules/docs/doc.css" rel="stylesheet">
+    <link href="components/modules/assets/assets.css" rel="stylesheet">
     <!-- endbuild -->
 </head>
 
@@ -134,6 +137,7 @@
 <script src="bower_components/sockjs-client/dist/sockjs.min.js"></script>
 <script src="bower_components/stomp-websocket/lib/stomp.js"></script>
 <!--  File Dependencies -->
+<script src="bower_components/jqueryfiletree/dist/jQueryFileTree.min.js"></script>
 <script src="bower_components/bootstrap-fileinput/js/fileinput.min.js"></script>
 <!-- endbuild -->
 <script src="app.js"></script>
@@ -163,6 +167,16 @@
 <script src="services/subscriptions/payment_services.js"></script>
 
 <!-- Begin Services Controllers And Routers -->
+<script src="components/modules/util/class.js"></script>
+<script src="components/modules/util/rest_collection.js"></script>
+<script src="components/modules/util/paged_collection.js"></script>
+
+
+<!--  Assets -->
+<script src="components/modules/assets/services/asset_service.js"></script>
+<script src="components/modules/assets/editor/assets.js"></script>
+<script src="components/modules/assets/directive.js"></script>
+
 
 <script src="components/modules/ecommerce/ecom.js"></script>
 <script src="components/modules/ecommerce/shop.js"></script>
