@@ -14,20 +14,36 @@
         </div>
     </form>
 
-
     <i class="fa fa-bars fa-2x toggle-btn" data-toggle="collapse" data-target="#side-menu"></i>
-    <div  class="menu-list">
-        <ul class="menu-content collapse out">
-            <li ng-repeat="(cat,sub) in toc" data-toggle="collapse" data-target="#{{cat}}" class="collapsed">
-                <a>
+    <div ng-show="isAdmin()" class="menu-list">
+        <ul data-as-sortable="dragControlListeners"  data-ng-model="toc" class="menu-content collapse out" >
+            <li data-as-sortable-item ng-repeat="cat in toc" data-toggle="collapse" data-target="#{{cat.cat}}" class="collapsed" >
+                <a data-as-sortable-item-handle>
                     <i class="fa fa-files-o fa-lg"></i>
-                    <span class="nav-label" >{{cat}}</span>
+                    <span class="nav-label" >{{cat.cat}}</span>
                     <span class="fa arrow pull-right" ></span>
                 </a>
-                <ul class="sub-menu toc-submenu collapse" id="{{cat}}">
-                    <li  ng-repeat="(key,itemId) in sub" ng-click="view(itemId); $event.stopPropagation();"  data-toggle="collapse"  class="collapsed">
-                        <i class="fa fa-arrow-right fa-lg"></i>
-                        <span class="nav-label" >{{key}}</span>
+                <ul data-as-sortable="dragControlListeners"  data-ng-model="toc[$index].subs" class="sub-menu toc-submenu collapse" id="{{cat.cat}}" >
+                    <li data-as-sortable-item ng-repeat="sub in toc[$index].subs" ng-click="view(sub.id); $event.stopPropagation();"  data-toggle="collapse"  class="collapsed" >
+                        <i   class="fa fa-arrow-right fa-lg" ></i>
+                        <span data-as-sortable-item-handle class="nav-label" >{{sub.sub}}</span>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+    <div ng-hide="isAdmin()" class="menu-list">
+        <ul  class="menu-content collapse out" >
+            <li ng-repeat="cat in toc" data-toggle="collapse" data-target="#s{{cat.cat}}" class="collapsed" >
+                <a>
+                    <i class="fa fa-files-o fa-lg"></i>
+                    <span class="nav-label" >{{cat.cat}}</span>
+                    <span class="fa arrow pull-right" ></span>
+                </a>
+                <ul  class="sub-menu toc-submenu collapse" id="s{{cat.cat}}" >
+                    <li ng-repeat="sub in toc[$index].subs" ng-click="view(sub.id); $event.stopPropagation();"  data-toggle="collapse"  class="collapsed" >
+                        <i class="fa fa-arrow-right fa-lg" ></i>
+                        <span class="nav-label" >{{sub.sub}}</span>
                     </li>
                 </ul>
             </li>

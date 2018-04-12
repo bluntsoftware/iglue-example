@@ -20,6 +20,7 @@ catwalkApp.controller('doc-controller', ['$scope','$rootScope','$stateParams','U
 
         $scope.listTOC = function(){
             var toc = {};
+            $scope.toc = [];
             $.each($scope.items,function(idx,item){
                 if(item.category && item.subcategory ){
                     var sub = item.subcategory;
@@ -30,7 +31,24 @@ catwalkApp.controller('doc-controller', ['$scope','$rootScope','$stateParams','U
                     toc[cat][sub] = item._id;
                 }
             });
-            $scope.toc = toc;
+            var idx = 0;
+            $.each(toc,function(cat,subs){
+                var subIdx = 0;
+                $.each(subs,function(sub,id) {
+                    if(!$scope.toc[idx]){
+                        $scope.toc[idx] = { cat:cat,subs:[]};
+                    }
+                    $scope.toc[idx].subs[subIdx++] = {cat:cat,sub:sub,id:id};
+                });
+                idx++;
+            });
+           // $scope.toc = toc;
+        };
+        $scope.dragControlListeners = {
+            orderChanged: function(event) {
+                console.log(event.source.itemScope.modelValue);
+                console.log(event);
+            }
         };
 
         $scope.addCategoryTag = function(tag){
