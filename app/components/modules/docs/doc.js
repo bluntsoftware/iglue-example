@@ -15,7 +15,7 @@ catwalkApp.controller('doc-controller', ['$scope','$rootScope','$stateParams','U
             sord: "ASC",
             projection: {},
             rows: 5000,
-            sidx: "title"
+            sidx: "sidx"
         };
 
         $scope.listTOC = function(){
@@ -42,15 +42,27 @@ catwalkApp.controller('doc-controller', ['$scope','$rootScope','$stateParams','U
                 });
                 idx++;
             });
-           // $scope.toc = toc;
         };
         $scope.dragControlListeners = {
             orderChanged: function(event) {
-                console.log(event.source.itemScope.modelValue);
-                console.log(event);
+                $scope.reOrder();
             }
         };
-
+        $scope.reOrder = function(){
+            var sidx = 0;
+            var itemOrder = [];
+            $.each($scope.toc,function(idx,cat){
+                $.each(cat.subs,function(sub_idx,sub) {
+                    itemOrder.push({sidx:sidx++,id:sub.id});
+                });
+            });
+            $.each(itemOrder,function(idx,item){
+                $scope.collection.getById(item.id).then(function(doc) {
+                    doc['sidx'] =  item.sidx;
+                    $scope.collection.save(doc);
+                });
+            });
+        };
         $scope.addCategoryTag = function(tag){
             if(tag && tag.text){
                 conduit.collection('doc-tag','').save({_id:tag.text});
