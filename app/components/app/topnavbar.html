@@ -1,6 +1,6 @@
 <div class="page-topbar">
     <div class='logo-area'>
-        <img alt="Brand" src="{{base_url}}{{settings.logoSrc}}" height="60" >
+        <img ui-sref="index.home" alt="Brand" src="{{base_url}}{{settings.logoSrc}}" height="60" >
     </div>
     <div class='quick-area'>
 
@@ -17,8 +17,8 @@
                 <span class='fa fa-lg fa-sign-out'>&nbsp;Sign In</span>
 
             </div>
-        <div ng-show="authenticated" ui-sref="index.account" style="cursor:pointer;color: #ffffff;padding-right: 15px" class="pull-right info-menu">
-            <span class='fa fa-lg fa-sign-out'>&nbsp;Account</span>
+        <div ng-show="authenticated" ui-sref="index.account" style="cursor:pointer;color: #ffffff;padding-right: 15px" class="info-menu">
+             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Welcome {{ account.firstName}} {{ account.lastName}}
 
         </div>
 

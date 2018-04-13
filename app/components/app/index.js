@@ -1,6 +1,7 @@
 //Main Controller
-catwalkApp.controller('indexController', ['$scope',
-    function ($scope) {
+catwalkApp.controller('indexController', ['$scope','Account',
+    function ($scope,Account) {
+
     }
 ]);
 
