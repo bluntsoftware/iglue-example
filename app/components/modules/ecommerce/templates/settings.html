@@ -1,0 +1,47 @@
+<form ng-submit="create()" role="form" novalidate class="panel panel-default ng-scope ng-invalid ng-invalid-required ng-dirty ng-valid-minlength" >
+    <div class="modal-header panel-heading">
+        <div class="input-group search">
+            <h4 class="modal-title">Settings</h4>
+            <span class="input-group-btn">
+                <button class="btn btn-round btn-sm btn-success"  ng-click="save()" >Save</button>
+                <button class="btn btn-round btn-sm btn-default" ng-click="back()" >Cancel</button>
+            </span>
+        </div>
+    </div>
+    <div class="modal-body">
+        <div class="row form-row ">
+            <div class="col-sm-6">
+                <div>
+                    <div class="tabbable selectable container-padding">
+                        <ul class="nav nav-tabs" role="tablist">
+                            <li>
+                                <a class="editable-label active" data-target="#carousel" data-toggle="tab">Carousel</a>
+                            </li>
+                        </ul>
+                        <div class="tab-content">
+                            <div class="tab-pane active sortable" id="carousel" role="tabpanel">
+                                <!-- Horizontal Line -->
+                                <div style="border-top:1px solid rgb(185, 185, 185);height:1px;padding:10px;width:100%"></div>
+
+                                <label class="control-label editable-label">Carousel Image 1</label>
+                                <div class="form-group">
+                                    <image-url  ng-model="ecom_settings.carousel_images[0].url"></image-url>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <!-- Image ng-model="modelData.images[2].url" img/no_image_placeholder.png -->
+                <div ng-show="relativeUrl(ecom_settings.carousel_images[0].url)" class="control-group">
+                    <img  style="max-height:125px" class="img-responsive " image="carousel_images[0].url" src="{{base_url}}{{ecom_settings.carousel_images[0].url}}">
+                </div>
+                <div ng-hide="relativeUrl(ecom_settings.carousel_images[0].url)" class="control-group">
+                    <img  style="max-height:125px" class="img-responsive " image="carousel_images[0].url" src="{{ecom_settings.carousel_images[0].url}}">
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
