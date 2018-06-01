@@ -19,7 +19,8 @@ var catwalkApp  = angular.module('catwalk', [
     'as.sortable',                   // Ng Sortable
     'hc.marked',
     'hljs',
-    'angular-markdown-editor'
+    'angular-markdown-editor',
+    'iglue'
 ]).config(['markedProvider', 'hljsServiceProvider', function(markedProvider, hljsServiceProvider) {
     // marked config
     markedProvider.setOptions({
@@ -40,5 +41,6 @@ var catwalkApp  = angular.module('catwalk', [
         // replace tab with 4 spaces
         tabReplace: '    '
     });
+    window.iglue_env.base_url = "http://jerb.bluntsoftware.com/KoleImports/";
 }]).run();
 var base_url = 'http://jerb.bluntsoftware.com/KoleImports/'; //'../glue/  http://localhost/glue/ http://localhost:8080/glue/ http://jerb.bluntsoftware.com/KoleImports/
