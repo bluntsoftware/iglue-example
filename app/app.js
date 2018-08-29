@@ -41,6 +41,6 @@ var catwalkApp  = angular.module('catwalk', [
         // replace tab with 4 spaces
         tabReplace: '    '
     });
-    window.iglue_env.base_url = "http://jerb.bluntsoftware.com/KoleImports/";
+    window.iglue_env.base_url = "https://jerb.bluntsoftware.com/KoleImports/";
 }]).run();
-var base_url = 'http://jerb.bluntsoftware.com/KoleImports/'; //'../glue/  http://localhost/glue/ http://localhost:8080/glue/ http://jerb.bluntsoftware.com/KoleImports/
+var base_url = 'https://jerb.bluntsoftware.com/KoleImports/'; //'../glue/  http://localhost/glue/ http://localhost:8080/glue/ http://jerb.bluntsoftware.com/KoleImports/
